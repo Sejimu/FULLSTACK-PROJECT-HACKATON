@@ -55,7 +55,7 @@ function Navbar() {
         position="static"
         sx={{
           backgroundColor: "rgba(0, 0, 0, 0)",
-          color: "black",
+          color: "white",
           boxShadow: "none",
         }}
       >
@@ -113,7 +113,7 @@ function Navbar() {
                       component={Link}
                       to={page.link}
                       onClick={handleCloseNavMenu}
-                      sx={{ color: "black" }}
+                      sx={{ color: "white" }}
                     >
                       <Typography textAlign="center">{page.title}</Typography>
                     </MenuItem>
@@ -143,7 +143,7 @@ function Navbar() {
                     component={Link}
                     to={page.link}
                     onClick={handleCloseNavMenu}
-                    sx={{ my: 2, color: "black", display: "block" }}
+                    sx={{ my: 2, color: "white", display: "block" }}
                   >
                     {page.title}
                   </Button>
