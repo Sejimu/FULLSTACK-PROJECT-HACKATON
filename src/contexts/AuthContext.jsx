@@ -20,7 +20,7 @@ function AuthContext({ children }) {
         `${BASE_URL}/account/register/`,
         credentials
       );
-      console.log(res);
+      console.log("res" + res);
     } catch (e) {
       console.log(e);
     }
@@ -31,7 +31,7 @@ function AuthContext({ children }) {
       const res = await $axios.post(`${BASE_URL}/account/activate/`, {
         activation_code: code,
       });
-      console.log(res);
+      console.log("res" + res);
       navigate("/");
     } catch (e) {
       console.log(e);
