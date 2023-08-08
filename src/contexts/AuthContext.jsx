@@ -20,7 +20,7 @@ function AuthContext({ children }) {
         `${BASE_URL}/account/register/`,
         credentials
       );
-      console.log(res);
+      console.log("res" + res);
     } catch (e) {
       console.log(e);
     }
@@ -33,6 +33,7 @@ function AuthContext({ children }) {
       });
       console.log(res);
       navigate("/auth");
+
     } catch (e) {
       console.log(e);
     }
