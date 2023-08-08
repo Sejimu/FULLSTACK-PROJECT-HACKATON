@@ -44,7 +44,7 @@ function Navbar() {
 
   const theme = createTheme({
     typography: {
-      fontFamily: '"Jost", sans-serif',
+      fontFamily: '"Play", sans-serif',
     },
   });
 
