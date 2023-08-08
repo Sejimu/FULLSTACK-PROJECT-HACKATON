@@ -115,7 +115,7 @@ function Navbar() {
                       component={Link}
                       to={page.link}
                       onClick={handleCloseNavMenu}
-                      sx={{ color: "white" }}
+                      sx={{ color: "black" }}
                     >
                       <Typography textAlign="center">{page.title}</Typography>
                     </MenuItem>
