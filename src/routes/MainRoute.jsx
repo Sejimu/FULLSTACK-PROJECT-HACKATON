@@ -6,6 +6,7 @@ import NotFoundPage from "../pages/NotFoundPage";
 import MainLayout from "../layouts/MainLayout";
 import ActivationPage from "../pages/ActivationPage";
 import Checkout from "../pages/paymentPage/Checkout";
+import AddLesson from "../pages/AddLesson";
 
 function MainRoute() {
   return (
@@ -13,10 +14,11 @@ function MainRoute() {
       <Route element={<MainLayout />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/payment" element={<Checkout />} />
+        <Route path="/courses/:id/addlesson" element={<AddLesson />} />
       </Route>
+      <Route path="*" element={<NotFoundPage />} />
       <Route path="/auth" element={<AuthPage />} />
       <Route path="/api/account/activate/" element={<ActivationPage />} />
-      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 }
