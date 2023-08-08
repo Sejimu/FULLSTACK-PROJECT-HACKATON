@@ -48,7 +48,7 @@ function AuthContext({ children }) {
       console.log(tokens);
       localStorage.setItem("tokens", JSON.stringify(tokens));
 
-      const { data } = await $axios.get(`${BASE_URL}/account/`);
+      const { data } = await $axios.get(`${BASE_URL}/account/profile/`);
 
       setUser(data);
 
