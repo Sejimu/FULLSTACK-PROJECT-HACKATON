@@ -32,7 +32,7 @@ function AuthContext({ children }) {
         activation_code: code,
       });
       console.log(res);
-      navigate("/");
+      navigate("/auth");
     } catch (e) {
       console.log(e);
     }
@@ -45,14 +45,13 @@ function AuthContext({ children }) {
         credentials
       );
 
-      console.log(tokens);
       localStorage.setItem("tokens", JSON.stringify(tokens));
 
-      const { data } = await $axios.get(`${BASE_URL}/account/`);
-
-      setUser(data);
+      const { data } = await $axios.get(`${BASE_URL}/account/profile/`);
 
       console.log(data);
+
+      setUser(data);
     } catch (e) {
       console.log(e);
     }
