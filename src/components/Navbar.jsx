@@ -26,7 +26,7 @@ function Navbar() {
 
   React.useEffect(() => {
     console.log(user);
-  }, []);
+  }, [user]);
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -65,8 +65,8 @@ function Navbar() {
               <Typography
                 variant="h6"
                 noWrap
-                component="a"
-                href="/"
+                component={Link}
+                to="/"
                 sx={{
                   mr: 2,
                   display: { xs: "none", md: "flex" },
@@ -113,6 +113,7 @@ function Navbar() {
                       component={Link}
                       to={page.link}
                       onClick={handleCloseNavMenu}
+                      key={page.title}
                       sx={{ color: "white" }}
                     >
                       <Typography textAlign="center">{page.title}</Typography>
@@ -143,6 +144,7 @@ function Navbar() {
                     component={Link}
                     to={page.link}
                     onClick={handleCloseNavMenu}
+                    key={page.title}
                     sx={{ my: 2, color: "white", display: "block" }}
                   >
                     {page.title}
