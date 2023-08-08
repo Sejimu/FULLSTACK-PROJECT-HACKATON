@@ -37,6 +37,17 @@
   }
 }
 
-body {
-  font-family: "Jost", sans-serif !important;
+.addLessonPage {
+  background: url(https://video-public.canva.com/VAFGWxITitg/p/0eddd416b5.jpg);
+  background-repeat: no-repeat;
 }
+
+video {
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+
+
