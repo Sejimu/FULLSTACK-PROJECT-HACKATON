@@ -11,7 +11,6 @@ import AddLesson from "../pages/AddLesson";
 import UserProtectedRoute from "./UserProtectedRoute";
 import ProfilePage from "../pages/ProfilePage";
 
-
 function MainRoute() {
   return (
     <Routes>
@@ -20,11 +19,11 @@ function MainRoute() {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/payment" element={<Checkout />} />
         <Route path="/courses/:id/addlesson" element={<AddLesson />} />
+        <Route path="/addcourse" element={<AddCourse />} />
       </Route>
 
       <Route element={<UserProtectedRoute />}></Route>
       <Route path="/api/account/activate/" element={<ActivationPage />} />
-      <Route path="/course" element={<AddCourse />} />
       <Route path="*" element={<NotFoundPage />} />
       <Route path="/auth" element={<AuthPage />} />
     </Routes>
