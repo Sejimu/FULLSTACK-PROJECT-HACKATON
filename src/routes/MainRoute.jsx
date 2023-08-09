@@ -5,6 +5,7 @@ import AuthPage from "../pages/AuthPage";
 import NotFoundPage from "../pages/NotFoundPage";
 import MainLayout from "../layouts/MainLayout";
 import ActivationPage from "../pages/ActivationPage";
+import AddCourse from "../pages/AddCourse";
 
 function MainRoute() {
   return (
@@ -14,6 +15,7 @@ function MainRoute() {
       </Route>
       <Route path="/auth" element={<AuthPage />} />
       <Route path="/api/account/activate/" element={<ActivationPage />} />
+      <Route path="/course" element={<AddCourse />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
