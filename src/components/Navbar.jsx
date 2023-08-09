@@ -27,6 +27,11 @@ function Navbar() {
   React.useEffect(() => {
     console.log(user);
   }, [user]);
+
+  React.useEffect(() => {
+    console.log(user);
+  }, []);
+
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
