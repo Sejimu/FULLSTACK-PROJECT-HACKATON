@@ -13,8 +13,8 @@ import {
   Rating,
   Select,
 } from "@mui/material";
-import { deepPurple, grey } from "@mui/material/colors";
-// import { useProductContext } from "../contexts/ProductContext";
+import { grey } from "@mui/material/colors";
+import { useCourseContext } from "../contexts/CourseContext";
 
 // TODO remove, this demo shouldn't need to reset the theme.
 
@@ -30,7 +30,7 @@ const theme = createTheme({
 });
 
 export default function AddCourse() {
-  // const { createProduct, categories, getCategories } = useProductContext();
+  const { createCourse, getCourses, getSubject, subjects } = useCourseContext();
   const [formValue, setFormValue] = useState({
     title: "",
     description: "",
@@ -41,10 +41,10 @@ export default function AddCourse() {
     image: "",
   });
 
-  //   useEffect(() => {
-  //     getCategories();
-  //   }, []);
-  //   console.log("qwe");
+  useEffect(() => {
+    getSubject();
+  }, []);
+
   useEffect(() => {
     document.body.classList.add("addCoursePage");
     return () => {
@@ -82,9 +82,9 @@ export default function AddCourse() {
 
     const data = new FormData(event.currentTarget);
 
-    console.log(formValue);
+    // console.log(formValue);
     console.log(...data);
-    // createProduct(data);
+    createCourse(data);
 
     setFormValue({
       title: "",
@@ -147,12 +147,12 @@ export default function AddCourse() {
             />
             <TextField
               sx={{
-                color: "white", // Цвет текста
-                background: "transparent", // Фон инпута
-                border: "1px solid white", // Границы инпута
+                color: "white",
+                background: "transparent",
+                border: "1px solid white",
                 borderRadius: "5px",
                 "& label": {
-                  color: "white", // Цвет placeholder
+                  color: "white",
                 },
               }}
               inputProps={{ style: { color: "white" } }}
@@ -166,12 +166,12 @@ export default function AddCourse() {
             />
             <TextField
               sx={{
-                color: "white", // Цвет текста
-                background: "transparent", // Фон инпута
-                border: "1px solid white", // Границы инпута
+                color: "white",
+                background: "transparent",
+                border: "1px solid white",
                 borderRadius: "5px",
                 "& label": {
-                  color: "white", // Цвет placeholder
+                  color: "white",
                 },
               }}
               inputProps={{ style: { color: "white" } }}
@@ -186,12 +186,12 @@ export default function AddCourse() {
             />
             <TextField
               sx={{
-                color: "white", // Цвет текста
-                background: "transparent", // Фон инпута
-                border: "1px solid white", // Границы инпута
+                color: "white",
+                background: "transparent",
+                border: "1px solid white",
                 borderRadius: "5px",
                 "& label": {
-                  color: "white", // Цвет placeholder
+                  color: "white",
                 },
               }}
               inputProps={{ style: { color: "white" } }}
@@ -244,11 +244,11 @@ export default function AddCourse() {
                 onChange={handleChange}
                 label="Выберите напраление"
                 name="subject">
-                {/* {categories.map((category) => (
-                  <MenuItem key={category.slug} value={category.slug}>
-                    {category.name}
+                {subjects.map((subject) => (
+                  <MenuItem key={subject.slug} value={subject.slug}>
+                    {subject.title}
                   </MenuItem>
-                ))} */}
+                ))}
               </Select>
             </FormControl>
 
