@@ -5,10 +5,12 @@ import AuthPage from "../pages/AuthPage";
 import NotFoundPage from "../pages/NotFoundPage";
 import MainLayout from "../layouts/MainLayout";
 import ActivationPage from "../pages/ActivationPage";
+import AddCourse from "../pages/AddCourse";
 import Checkout from "../pages/paymentPage/Checkout";
 import AddLesson from "../pages/AddLesson";
 import UserProtectedRoute from "./UserProtectedRoute";
 import ProfilePage from "../pages/ProfilePage";
+
 
 function MainRoute() {
   return (
@@ -22,6 +24,7 @@ function MainRoute() {
 
       <Route element={<UserProtectedRoute />}></Route>
       <Route path="/api/account/activate/" element={<ActivationPage />} />
+      <Route path="/course" element={<AddCourse />} />
       <Route path="*" element={<NotFoundPage />} />
       <Route path="/auth" element={<AuthPage />} />
     </Routes>
