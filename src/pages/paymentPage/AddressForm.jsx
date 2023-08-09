@@ -6,9 +6,30 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 
 export default function AddressForm() {
+  React.useEffect(() => {
+    document.body.classList.add("addLessonPage");
+    return () => {
+      document.body.classList.remove("addLessonPage");
+    };
+  }, []);
   return (
     <React.Fragment>
-      <Typography variant="h6" gutterBottom>
+      <Typography
+        variant="h6"
+        gutterBottom
+        sx={{
+          color: "white",
+          background: "transparent",
+          "& label": {
+            color: "white",
+          },
+        }}
+        inputProps={{
+          style: {
+            color: "white",
+          },
+        }}
+      >
         Shipping address
       </Typography>
       <Grid container spacing={3}>
@@ -21,6 +42,20 @@ export default function AddressForm() {
             fullWidth
             autoComplete="given-name"
             variant="standard"
+            sx={{
+              color: "white",
+              background: "transparent",
+              border: "1px solid white",
+              borderRadius: "5px",
+              "& label": {
+                color: "white",
+              },
+            }}
+            inputProps={{
+              style: {
+                color: "white",
+              },
+            }}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -32,6 +67,20 @@ export default function AddressForm() {
             fullWidth
             autoComplete="family-name"
             variant="standard"
+            sx={{
+              color: "white",
+              background: "transparent",
+              border: "1px solid white",
+              borderRadius: "5px",
+              "& label": {
+                color: "white",
+              },
+            }}
+            inputProps={{
+              style: {
+                color: "white",
+              },
+            }}
           />
         </Grid>
         <Grid item xs={12}>
@@ -43,6 +92,20 @@ export default function AddressForm() {
             fullWidth
             autoComplete="shipping address-line1"
             variant="standard"
+            sx={{
+              color: "white",
+              background: "transparent",
+              border: "1px solid white",
+              borderRadius: "5px",
+              "& label": {
+                color: "white",
+              },
+            }}
+            inputProps={{
+              style: {
+                color: "white",
+              },
+            }}
           />
         </Grid>
         <Grid item xs={12}>
@@ -53,6 +116,20 @@ export default function AddressForm() {
             fullWidth
             autoComplete="shipping address-line2"
             variant="standard"
+            sx={{
+              color: "white",
+              background: "transparent",
+              border: "1px solid white",
+              borderRadius: "5px",
+              "& label": {
+                color: "white",
+              },
+            }}
+            inputProps={{
+              style: {
+                color: "white",
+              },
+            }}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -64,6 +141,20 @@ export default function AddressForm() {
             fullWidth
             autoComplete="shipping address-level2"
             variant="standard"
+            sx={{
+              color: "white",
+              background: "transparent",
+              border: "1px solid white",
+              borderRadius: "5px",
+              "& label": {
+                color: "white",
+              },
+            }}
+            inputProps={{
+              style: {
+                color: "white",
+              },
+            }}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -73,6 +164,20 @@ export default function AddressForm() {
             label="State/Province/Region"
             fullWidth
             variant="standard"
+            sx={{
+              color: "white",
+              background: "transparent",
+              border: "1px solid white",
+              borderRadius: "5px",
+              "& label": {
+                color: "white",
+              },
+            }}
+            inputProps={{
+              style: {
+                color: "white",
+              },
+            }}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -84,6 +189,20 @@ export default function AddressForm() {
             fullWidth
             autoComplete="shipping postal-code"
             variant="standard"
+            sx={{
+              color: "white",
+              background: "transparent",
+              border: "1px solid white",
+              borderRadius: "5px",
+              "& label": {
+                color: "white",
+              },
+            }}
+            inputProps={{
+              style: {
+                color: "white",
+              },
+            }}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -95,12 +214,46 @@ export default function AddressForm() {
             fullWidth
             autoComplete="shipping country"
             variant="standard"
+            sx={{
+              color: "white",
+              background: "transparent",
+              border: "1px solid white",
+              borderRadius: "5px",
+              "& label": {
+                color: "white",
+              },
+            }}
+            inputProps={{
+              style: {
+                color: "white",
+              },
+            }}
           />
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
+            sx={{
+              color: "white",
+              background: "transparent",
+              border: "1px solid white",
+              borderRadius: "5px",
+              "& label": {
+                color: "white",
+              },
+            }}
             control={
-              <Checkbox color="secondary" name="saveAddress" value="yes" />
+              <Checkbox
+                color="secondary"
+                name="saveAddress"
+                value="yes"
+                sx={{
+                  color: "white",
+                  background: "transparent",
+                  "& label": {
+                    color: "white",
+                  },
+                }}
+              />
             }
             label="Use this address for payment details"
           />

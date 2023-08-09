@@ -6,9 +6,15 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 
 export default function PaymentForm() {
+  React.useEffect(() => {
+    document.body.classList.add("addLessonPage");
+    return () => {
+      document.body.classList.remove("addLessonPage");
+    };
+  }, []);
   return (
     <React.Fragment>
-      <Typography variant="h6" gutterBottom>
+      <Typography variant="h6" gutterBottom sx={{ color: "white" }}>
         Payment method
       </Typography>
       <Grid container spacing={3}>
@@ -20,6 +26,20 @@ export default function PaymentForm() {
             fullWidth
             autoComplete="cc-name"
             variant="standard"
+            sx={{
+              color: "white",
+              background: "transparent",
+              border: "1px solid white",
+              borderRadius: "5px",
+              "& label": {
+                color: "white",
+              },
+            }}
+            inputProps={{
+              style: {
+                color: "white",
+              },
+            }}
           />
         </Grid>
         <Grid item xs={12} md={6}>
@@ -30,6 +50,20 @@ export default function PaymentForm() {
             fullWidth
             autoComplete="cc-number"
             variant="standard"
+            sx={{
+              color: "white",
+              background: "transparent",
+              border: "1px solid white",
+              borderRadius: "5px",
+              "& label": {
+                color: "white",
+              },
+            }}
+            inputProps={{
+              style: {
+                color: "white",
+              },
+            }}
           />
         </Grid>
         <Grid item xs={12} md={6}>
@@ -40,6 +74,20 @@ export default function PaymentForm() {
             fullWidth
             autoComplete="cc-exp"
             variant="standard"
+            sx={{
+              color: "white",
+              background: "transparent",
+              border: "1px solid white",
+              borderRadius: "5px",
+              "& label": {
+                color: "white",
+              },
+            }}
+            inputProps={{
+              style: {
+                color: "white",
+              },
+            }}
           />
         </Grid>
         <Grid item xs={12} md={6}>
@@ -51,12 +99,54 @@ export default function PaymentForm() {
             fullWidth
             autoComplete="cc-csc"
             variant="standard"
+            sx={{
+              color: "white",
+              background: "transparent",
+              border: "1px solid white",
+              borderRadius: "5px",
+              "& label": {
+                color: "white",
+              },
+            }}
+            inputProps={{
+              style: {
+                color: "white",
+              },
+            }}
           />
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
-            control={<Checkbox color="secondary" name="saveCard" value="yes" />}
+            control={
+              <Checkbox
+                color="secondary"
+                name="saveCard"
+                value="yes"
+                sx={{
+                  color: "white",
+                  background: "transparent",
+
+                  "& label": {
+                    color: "white",
+                  },
+                }}
+              />
+            }
             label="Remember credit card details for next time"
+            sx={{
+              color: "white",
+              background: "transparent",
+              border: "1px solid white",
+              borderRadius: "5px",
+              "& label": {
+                color: "white",
+              },
+            }}
+            inputProps={{
+              style: {
+                color: "white",
+              },
+            }}
           />
         </Grid>
       </Grid>
