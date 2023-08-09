@@ -36,3 +36,27 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  font-family: "Play", sans-serif !important;
+}
+.addLessonPage {
+  background: url(https://video-public.canva.com/VAFGWxITitg/p/0eddd416b5.jpg);
+  background-repeat: no-repeat;
+}
+.homePage {
+  background: linear-gradient(
+    90deg,
+    rgb(68, 32, 99),
+    rgb(29, 50, 99),
+    rgb(31, 45, 81)
+  );
+}
+video {
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}

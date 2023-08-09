@@ -60,12 +60,18 @@ export default function AuthPage() {
     console.log(...data);
   };
 
+  const theme = createTheme({
+    typography: {
+      fontFamily: '"Play", sans-serif',
+    },
+  });
+
   if (user) {
     return <Navigate to="/" />;
   }
 
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: "100vh" }}>
         <CssBaseline />
         <Grid
