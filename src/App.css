@@ -62,6 +62,37 @@ video {
   bottom: 0;
 }
 
+.slide-left.animated-element {
+  animation: slideInFromLeft 1s ease-in-out;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+hr {
+  width: 100%;
+  margin-left: 0;
+}
+
 .css-1hv8oq8-MuiStepLabel-label.Mui-active {
   color: rgba(9, 207, 72, 0.87) !important;
   font-weight: 500;
