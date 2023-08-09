@@ -91,6 +91,7 @@ export default function AddLesson() {
   return (
     <ThemeProvider theme={theme}>
       <video
+        className="addLess-Course"
         src="https://video-public.canva.com/VAFGWxITitg/v/a0407fd778.mp4"
         autoPlay
         loop
@@ -109,8 +110,7 @@ export default function AddLesson() {
             color: "white",
             margin: "0 auto",
             maxWidth: "70%",
-          }}
-        >
+          }}>
           <Box noValidate sx={{ mt: 1 }}>
             <TextField
               sx={{
@@ -190,8 +190,7 @@ export default function AddLesson() {
                 row
                 aria-labelledby="demo-row-radio-buttons-group-label"
                 name="row-radio-buttons-group"
-                color="white"
-              >
+                color="white">
                 <FormControlLabel
                   value="test"
                   control={<Radio sx={{ color: "white" }} />}
@@ -283,8 +282,7 @@ export default function AddLesson() {
           <Button
             type="submit"
             variant="outlined"
-            sx={{ mt: 3, mb: 2, py: 1, px: 4 }}
-          >
+            sx={{ mt: 3, mb: 2, py: 1, px: 4 }}>
             Добавить
           </Button>
         </Box>

@@ -100,6 +100,7 @@ export default function AddCourse() {
   return (
     <ThemeProvider theme={theme}>
       <video
+        className="addLess-Course"
         src="https://video-public.canva.com/VAFGWxITitg/v/a0407fd778.mp4"
         autoPlay
         loop

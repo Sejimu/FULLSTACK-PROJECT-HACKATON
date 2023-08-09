@@ -11,7 +11,6 @@ import AddLesson from "../pages/AddLesson";
 import UserProtectedRoute from "./UserProtectedRoute";
 import ProfilePage from "../pages/ProfilePage";
 
-
 function MainRoute() {
   return (
     <Routes>
