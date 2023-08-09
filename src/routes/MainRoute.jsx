@@ -6,6 +6,7 @@ import NotFoundPage from "../pages/NotFoundPage";
 import MainLayout from "../layouts/MainLayout";
 import ActivationPage from "../pages/ActivationPage";
 import AddLesson from "../pages/AddLesson";
+import DetailsPage from "../pages/DetailsPage";
 
 function MainRoute() {
   return (
@@ -13,6 +14,7 @@ function MainRoute() {
       <Route element={<MainLayout />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/courses/:id/addlesson" element={<AddLesson />} />
+        <Route path="/courses/:id" element={<DetailsPage />} />
       </Route>
       <Route path="*" element={<NotFoundPage />} />
       <Route path="/auth" element={<AuthPage />} />
