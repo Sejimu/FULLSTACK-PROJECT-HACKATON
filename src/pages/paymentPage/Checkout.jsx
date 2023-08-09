@@ -17,10 +17,13 @@ import Review from "./Review";
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+    <Typography variant="body2" color="white" align="center">
+      {"Dream Team © "}
+      <Link
+        color="inherit"
+        href="https://github.com/Sejimu/FULLSTACK-PROJECT-HACKATON"
+      >
+        Our Github Page
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -53,43 +56,54 @@ export default function Checkout() {
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
+  React.useEffect(() => {
+    document.body.classList.add("addLessonPage");
+    return () => {
+      document.body.classList.remove("addLessonPage");
+    };
+  }, []);
 
   return (
     <React.Fragment>
       <CssBaseline />
-      <AppBar
-        position="absolute"
-        color="default"
-        elevation={0}
-        sx={{
-          position: "relative",
-          borderBottom: (t) => `1px solid ${t.palette.divider}`,
-        }}
-      >
-        <Toolbar>
-          <Typography variant="h6" color="inherit" noWrap>
-            VanillaCode
-          </Typography>
-        </Toolbar>
-      </AppBar>
+      <video
+        src="https://video-public.canva.com/VAFGWxITitg/v/a0407fd778.mp4"
+        autoPlay
+        loop
+        muted
+      />
+
       <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
         <Paper
           variant="outlined"
-          sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}
+          sx={{
+            my: { xs: 3, md: 6 },
+            p: { xs: 2, md: 3 },
+            backgroundColor: "transparent",
+          }}
         >
-          <Typography component="h1" variant="h4" align="center">
+          <Typography component="h1" variant="h4" align="center" color="white">
             Checkout
           </Typography>
           <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
             {steps.map((label) => (
-              <Step key={label}>
+              <Step
+                key={label}
+                sx={{
+                  color: "white",
+                  background: "transparent",
+                  "& label": {
+                    color: "white",
+                  },
+                }}
+              >
                 <StepLabel>{label}</StepLabel>
               </Step>
             ))}
           </Stepper>
           {activeStep === steps.length ? (
             <React.Fragment>
-              <Typography variant="h5" gutterBottom>
+              <Typography variant="h5" gutterBottom color="white">
                 Thank you for your order.
               </Typography>
               <Typography variant="subtitle1">
@@ -103,7 +117,11 @@ export default function Checkout() {
               {getStepContent(activeStep)}
               <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
                 {activeStep !== 0 && (
-                  <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
+                  <Button
+                    variant="contained"
+                    onClick={handleBack}
+                    sx={{ mt: 3, ml: 1 }}
+                  >
                     Back
                   </Button>
                 )}
