@@ -11,6 +11,7 @@ import AddLesson from "../pages/AddLesson";
 import DetailsPage from "../pages/DetailsPage";
 import UserProtectedRoute from "./UserProtectedRoute";
 import ProfilePage from "../pages/ProfilePage";
+import LessonPage from "../pages/LessonPage";
 
 function MainRoute() {
   return (
@@ -19,6 +20,7 @@ function MainRoute() {
         <Route path="/" element={<HomePage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/payment" element={<Checkout />} />
+        <Route path="/courses/:id/lesson" element={<LessonPage />} />
         <Route path="/courses/:id/addlesson" element={<AddLesson />} />
         <Route path="/courses/:id" element={<DetailsPage />} />
         <Route path="/addcourse" element={<AddCourse />} />
