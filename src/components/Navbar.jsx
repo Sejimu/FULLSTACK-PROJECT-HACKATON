@@ -26,7 +26,12 @@ function Navbar() {
 
   React.useEffect(() => {
     console.log(user);
+  }, [user]);
+
+  React.useEffect(() => {
+    console.log(user);
   }, []);
+
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -48,6 +53,8 @@ function Navbar() {
     },
   });
 
+  console.log(user);
+
   return (
     <ThemeProvider theme={theme}>
       <AppBar
@@ -65,8 +72,8 @@ function Navbar() {
               <Typography
                 variant="h6"
                 noWrap
-                component="a"
-                href="/"
+                component={Link}
+                to="/"
                 sx={{
                   mr: 2,
                   display: { xs: "none", md: "flex" },
@@ -113,6 +120,7 @@ function Navbar() {
                       component={Link}
                       to={page.link}
                       onClick={handleCloseNavMenu}
+                      key={page.title}
                       sx={{ color: "white" }}
                     >
                       <Typography textAlign="center">{page.title}</Typography>
@@ -143,6 +151,7 @@ function Navbar() {
                     component={Link}
                     to={page.link}
                     onClick={handleCloseNavMenu}
+                    key={page.title}
                     sx={{ my: 2, color: "white", display: "block" }}
                   >
                     {page.title}
@@ -153,7 +162,23 @@ function Navbar() {
                 <Box sx={{ flexGrow: 0 }}>
                   <Tooltip title="Open settings">
                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                      <Avatar alt="" src={user.avatar} />
+                      <Avatar
+                        alt={user.username}
+                        src={null}
+                        sx={{ color: "black", backgroundColor: "black" }}
+                      >
+                        <Typography variant="h5" color="white">
+                          {user.username ? (
+                            <>
+                              {user.username.split(" ")[0][0]}
+                              {user.username.includes(" ") &&
+                                user.username.split(" ")[1][0]}
+                            </>
+                          ) : (
+                            "N/A"
+                          )}
+                        </Typography>
+                      </Avatar>
                     </IconButton>
                   </Tooltip>
                   <Menu

@@ -20,7 +20,7 @@ function AuthContext({ children }) {
         `${BASE_URL}/account/register/`,
         credentials
       );
-      console.log(res);
+      console.log("res" + res);
     } catch (e) {
       console.log(e);
     }
@@ -32,7 +32,7 @@ function AuthContext({ children }) {
         activation_code: code,
       });
       console.log(res);
-      navigate("/");
+      navigate("/auth");
     } catch (e) {
       console.log(e);
     }
@@ -45,14 +45,14 @@ function AuthContext({ children }) {
         credentials
       );
 
-      console.log(tokens);
       localStorage.setItem("tokens", JSON.stringify(tokens));
 
-      const { data } = await $axios.get(`${BASE_URL}/account/`);
-
+      const { data } = await $axios.get(`${BASE_URL}/account/profile/`);
       setUser(data);
 
       console.log(data);
+
+      setUser(data);
     } catch (e) {
       console.log(e);
     }
@@ -63,7 +63,20 @@ function AuthContext({ children }) {
     setUser(null);
   }
 
-  const value = { user, register, login, activateUser, logout };
+  async function checkAuth() {
+    try {
+      const tokens = JSON.parse(localStorage.getItem("tokens"));
+      if (tokens) {
+        const { data } = await $axios.get(`${BASE_URL}/account/profile/`);
+        setUser(data);
+      } else {
+        setUser(null);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }
+  const value = { user, register, login, activateUser, logout, checkAuth };
   return <authContext.Provider value={value}>{children}</authContext.Provider>;
 }
 

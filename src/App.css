@@ -43,6 +43,7 @@ body {
 .addLessonPage {
   background: url(https://video-public.canva.com/VAFGWxITitg/p/0eddd416b5.jpg);
   background-repeat: no-repeat;
+  background-size: cover;
 }
 .homePage {
   background: linear-gradient(
@@ -90,4 +91,52 @@ video {
 hr {
   width: 100%;
   margin-left: 0;
+}
+
+.css-1hv8oq8-MuiStepLabel-label.Mui-active {
+  color: rgba(9, 207, 72, 0.87) !important;
+  font-weight: 500;
+}
+
+.css-1hv8oq8-MuiStepLabel-label {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  display: block;
+  -webkit-transition: color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  color: rgb(255 255 255 / 87%) !important;
+}
+.css-83ijpv-MuiTypography-root {
+  margin: 0;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  color: rgb(255, 255, 255) !important;
+  display: block;
+}
+
+.css-d3wcwz-MuiTypography-root {
+  margin: 0;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  margin-bottom: 0.35em;
+  color: white !important;
+}
+
+.css-10wpov9-MuiTypography-root {
+  margin: 0;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.75;
+  letter-spacing: 0.00938em;
+  color: white;
 }
