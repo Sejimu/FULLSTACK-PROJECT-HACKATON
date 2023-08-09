@@ -163,3 +163,10 @@ hr {
   color: white;
 }
 
+
+.lessonPage {
+  background: linear-gradient(135deg, rgb(233, 172, 223), rgb(103, 38, 179));
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
