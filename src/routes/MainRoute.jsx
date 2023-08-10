@@ -13,6 +13,7 @@ import UserProtectedRoute from "./UserProtectedRoute";
 import ProfilePage from "../pages/ProfilePage";
 import LessonPage from "../pages/LessonPage";
 import EditLesson from "../pages/EditLesson";
+import EditCourse from "../pages/EditCourse";
 
 function MainRoute() {
   return (
@@ -26,6 +27,7 @@ function MainRoute() {
         <Route path="/courses/editlesson/:id" element={<EditLesson />} />
         <Route path="/courses/:id" element={<DetailsPage />} />
         <Route path="/addcourse" element={<AddCourse />} />
+        <Route path="/editcourse/:id" element={<EditCourse />} />
       </Route>
 
       <Route element={<UserProtectedRoute />}></Route>
