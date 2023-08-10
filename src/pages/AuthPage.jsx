@@ -16,6 +16,7 @@ import { useAuthContext } from "../contexts/AuthContext";
 import { Navigate } from "react-router-dom";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { IconButton, InputAdornment } from "@mui/material";
+import ResetPasswordModal from "../components/ResetPasswordModal";
 
 function Copyright(props) {
   return (
@@ -41,8 +42,9 @@ const defaultTheme = createTheme();
 
 export default function AuthPage() {
   const [isLogin, setIsLogin] = React.useState(true);
+  const { register, user, login, handleClickOpen, handleClose } =
+    useAuthContext();
   const [showPassword, setShowPassword] = React.useState(false);
-  const { register, user, login } = useAuthContext();
 
   function changeVisibility() {
     setShowPassword(!showPassword);
@@ -72,6 +74,7 @@ export default function AuthPage() {
 
   return (
     <ThemeProvider theme={theme}>
+      <ResetPasswordModal />
       <Grid container component="main" sx={{ height: "100vh" }}>
         <CssBaseline />
         <Grid
@@ -163,7 +166,9 @@ export default function AuthPage() {
                 {isLogin ? "Sign in" : "Sign up"}
               </Button>
               <Grid container>
-                <Grid item xs></Grid>
+                <Grid item xs onClick={handleClickOpen}>
+                  {isLogin ? <Link variant="body2">Forgot password?</Link> : ""}
+                </Grid>
                 <Grid item>
                   <Link
                     href="#"
@@ -176,7 +181,6 @@ export default function AuthPage() {
                   </Link>
                 </Grid>
               </Grid>
-              <Copyright sx={{ mt: 5 }} />
             </Box>
           </Box>
         </Grid>
