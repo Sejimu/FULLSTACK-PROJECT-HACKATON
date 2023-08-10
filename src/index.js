@@ -5,14 +5,24 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import AuthContext from "./contexts/AuthContext";
 import CoursesContext from "./contexts/CoursesContext";
+import LessonContext from "./contexts/LessonContext";
+import FavouriteContext from "./contexts/FavouriteContext";
+import CourseContext from "./contexts/CourseContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
-    <CoursesContext>
-      <AuthContext>
-        <App />
-      </AuthContext>
-    </CoursesContext>
+    <AuthContext>
+      <FavouriteContext>
+      <CoursesContext>
+        <CourseContext>
+          <LessonContext>
+            <App />
+          </LessonContext>
+        </CourseContext>
+      </CoursesContext>
+      </FavouriteContext>
+    </AuthContext>
+
   </BrowserRouter>
 );
