@@ -48,7 +48,8 @@ function HomePage() {
               color: "white",
               padding: "10px",
               animation: "slideInFromLeft 1s ease-in-out",
-            }}>
+            }}
+          >
             Vanilla Code -
           </div>
           <span
@@ -60,7 +61,8 @@ function HomePage() {
               color: "white",
               padding: "10px",
               animation: "slideInFromLeft 1s ease-in-out",
-            }}>
+            }}
+          >
             о сложном простыми словами
           </span>
           <Button
@@ -73,7 +75,8 @@ function HomePage() {
               top: "60%",
               left: "4%",
               padding: "10px",
-            }}>
+            }}
+          >
             Перейти к курсам
           </Button>
         </div>
@@ -83,7 +86,8 @@ function HomePage() {
             justifyContent: "space-evenly",
             marginTop: "100px",
             marginBottom: "100px",
-          }}>
+          }}
+        >
           <img
             className="homeImg"
             src="https://video-public.canva.com/VAFKHPCHN00/v/397c1bb2f3.gif"
@@ -93,14 +97,16 @@ function HomePage() {
               style={{
                 fontSize: "40px",
                 animation: "slideInFromRight 1s ease-in-out",
-              }}>
+              }}
+            >
               Основные обучающие онлайн-курсы
             </h2>
             <span
               style={{
                 fontSize: "20px",
                 animation: "slideInFromRight 1s ease-in-out",
-              }}>
+              }}
+            >
               Полноценные программы, на которых вы освоите востребованную
               IT-профессию с нуля и будете готовы к работе.
             </span>
@@ -109,7 +115,8 @@ function HomePage() {
         <div
           style={{
             color: "white",
-          }}>
+          }}
+        >
           <h2 style={{ animation: "slideInFromRight 1s ease-in-out" }}>
             На обучении в Vanilla Code вас ждут
           </h2>
@@ -120,12 +127,14 @@ function HomePage() {
               justifyContent: "space-evenly",
               marginTop: "50px",
               marginBottom: "150px",
-            }}>
+            }}
+          >
             <div
               style={{
                 textAlign: "left",
                 width: "30%",
-              }}>
+              }}
+            >
               <div>
                 <h3 style={{ color: "#D73CBE" }}>Материал без «воды»</h3>
                 <span>
@@ -152,7 +161,8 @@ function HomePage() {
               style={{
                 textAlign: "left",
                 width: "30%",
-              }}>
+              }}
+            >
               <div>
                 <h3 style={{ color: "#D73CBE" }}>
                   Рекомендации по трудоустройству
@@ -180,7 +190,8 @@ function HomePage() {
               style={{
                 textAlign: "left",
                 width: "30%",
-              }}>
+              }}
+            >
               <div>
                 <h3 style={{ color: "#D73CBE" }}>
                   Большое количество практики
@@ -222,14 +233,16 @@ function HomePage() {
               marginTop: "50px",
               marginLeft: "35px",
               marginBottom: "100px",
-            }}>
+            }}
+          >
             <div
               style={{
                 width: "50%",
                 display: "flex",
                 flexDirection: "column",
                 gap: "5%",
-              }}>
+              }}
+            >
               <div>
                 <h3 style={{ color: "#D73CBE" }}>
                   Собственная удобная онлайн-платформа

@@ -11,6 +11,7 @@ import AddLesson from "../pages/AddLesson";
 import DetailsPage from "../pages/DetailsPage";
 import UserProtectedRoute from "./UserProtectedRoute";
 import ProfilePage from "../pages/ProfilePage";
+import ResetPasswordConfirmPage from "../pages/ResetPasswordConfirmPage";
 import CoursesPage from "../pages/CoursesPage";
 import LessonPage from "../pages/LessonPage";
 import EditLesson from "../pages/EditLesson";
@@ -34,6 +35,10 @@ function MainRoute() {
 
       <Route element={<UserProtectedRoute />}></Route>
       <Route path="/api/account/activate/" element={<ActivationPage />} />
+      <Route
+        path="/api/account/reset-password/confirm/"
+        element={<ResetPasswordConfirmPage />}
+      />
       <Route path="*" element={<NotFoundPage />} />
       <Route path="/auth" element={<AuthPage />} />
     </Routes>

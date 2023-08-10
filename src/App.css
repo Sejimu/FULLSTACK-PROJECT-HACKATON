@@ -80,12 +80,11 @@ body {
 
 .homeImg2 {
   width: 80%;
-  height: 80%;}
-
+  height: 80%;
+}
 
 .slide-left.animated-element {
   animation: slideInFromLeft 1s ease-in-out;
-
 }
 
 @keyframes slideInFromLeft {
@@ -163,6 +162,18 @@ hr {
   color: white;
 }
 
+.css-9hp64e-MuiTypography-root-MuiLink-root {
+  margin: 0;
+  font-family: "Play", sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  color: #1976d2;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  text-decoration-color: rgba(25, 118, 210, 0.4);
+  margin-right: 50px !important;
+}
 
 .lessonPage {
   background: linear-gradient(135deg, rgb(233, 172, 223), rgb(103, 38, 179));

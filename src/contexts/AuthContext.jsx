@@ -12,6 +12,7 @@ export function useAuthContext() {
 
 function AuthContext({ children }) {
   const [user, setUser] = useState(null);
+  const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
 
   async function register(credentials) {
@@ -32,6 +33,31 @@ function AuthContext({ children }) {
         activation_code: code,
       });
       console.log(res);
+      navigate("/auth");
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async function resetPassword(credentials) {
+    try {
+      const res = await axios.post(
+        `${BASE_URL}/account/reset-password/`,
+        credentials
+      );
+      console.log(res);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async function confirmResetPassword(credentials, code) {
+    console.log(credentials);
+    try {
+      const res = await axios.post(
+        `${BASE_URL}/account/reset-password/confirm/?c=${code}`,
+        credentials
+      );
       navigate("/auth");
     } catch (e) {
       console.log(e);
@@ -76,7 +102,29 @@ function AuthContext({ children }) {
       console.log(e);
     }
   }
-  const value = { user, register, login, activateUser, logout, checkAuth };
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const value = {
+    user,
+    register,
+    login,
+    activateUser,
+    logout,
+    checkAuth,
+    resetPassword,
+    setOpen,
+    open,
+    handleClickOpen,
+    handleClose,
+    confirmResetPassword,
+  };
   return <authContext.Provider value={value}>{children}</authContext.Provider>;
 }
 
