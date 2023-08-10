@@ -174,3 +174,10 @@ hr {
   text-decoration-color: rgba(25, 118, 210, 0.4);
   margin-right: 50px !important;
 }
+
+.lessonPage {
+  background: linear-gradient(135deg, rgb(233, 172, 223), rgb(103, 38, 179));
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
