@@ -80,13 +80,36 @@ const CourseContext = ({ children }) => {
     }
   }
   //   getSubject();
+
+  async function editCourse(id, newData) {
+    try {
+      await $axios.patch(`${BASE_URL}/courses/${id}/`, newData);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async function getOneCourse(id) {
+    try {
+      const { data } = await $axios.get(`${BASE_URL}/courses/${id}/`);
+      dispatch({
+        type: "oneCourse",
+        payload: data,
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
   const value = {
     courses: state.courses,
     subjects: state.subjects,
+    oneCourse: state.oneCourse,
     getCourses,
     createCourse,
     deleteCourse,
     getSubject,
+    editCourse,
+    getOneCourse,
   };
   return (
     <courseContext.Provider value={value}>{children}</courseContext.Provider>
