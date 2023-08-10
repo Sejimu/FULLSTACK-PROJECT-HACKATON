@@ -10,7 +10,7 @@ import React, { useEffect } from "react";
 import { createTheme } from "@mui/material/styles";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import ThumbDownOffAltOutlinedIcon from "@mui/icons-material/ThumbDownOffAltOutlined";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { useLessonContext } from "../contexts/LessonContext";
 
 const theme = createTheme({
@@ -27,7 +27,8 @@ const theme = createTheme({
   },
 });
 const LessonPage = () => {
-  const { getLessons, lessons } = useLessonContext();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const { getLessons, lessons, page, setPage } = useLessonContext();
   const { id } = useParams();
   useEffect(() => {
     getLessons();
@@ -36,6 +37,10 @@ const LessonPage = () => {
       document.body.classList.remove("lessonPage");
     };
   }, []);
+  useEffect(() => {
+    const currentParams = Object.fromEntries([...searchParams]);
+    setSearchParams({ ...currentParams, course_id: id, lesson: page });
+  }, [page]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -48,7 +53,13 @@ const LessonPage = () => {
             margin: 0,
           }}
         >
-          <Pagination count={5} variant="outlined" color="secondary" />
+          <Pagination
+            count={5}
+            page={page}
+            onChange={(_, val) => setPage(val)}
+            variant="outlined"
+            color="secondary"
+          />
         </Box>
         <Box sx={{ margin: "5% auto" }}>
           <Typography component="h1" variant="h4">
