@@ -1,6 +1,7 @@
-import React, { createContext, useContext, useReducer } from "react";
+import React, { createContext, useContext, useReducer, useState } from "react";
 import $axios from "../utils/axios";
 import { BASE_URL } from "../utils/consts";
+import { useSearchParams } from "react-router-dom";
 
 const lessonContext = createContext();
 export function useLessonContext() {
@@ -25,7 +26,9 @@ function reducer(state, action) {
   }
 }
 const LessonContext = ({ children }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [state, dispatch] = useReducer(reducer, initState);
+  const [page, setPage] = useState(+searchParams.get("_page") || 1);
 
   async function getLessons() {
     try {
@@ -80,6 +83,8 @@ const LessonContext = ({ children }) => {
   const value = {
     lessons: state.lessons,
     oneLesson: state.oneLesson,
+    page,
+    setPage,
     getLessons,
     getOneLesson,
     createLesson,
