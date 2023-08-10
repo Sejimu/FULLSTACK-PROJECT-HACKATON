@@ -34,27 +34,30 @@ const theme = createTheme({
   },
 });
 
-export default function AddLesson() {
-  const { getLessons, createLesson } = useLessonContext();
+export default function EditLesson() {
+  const { getOneLesson, oneLesson, updateLesson } = useLessonContext();
   const { id } = useParams();
   const [test, setTest] = useState(true);
 
   useEffect(() => {
-    getLessons();
+    getOneLesson(id);
     document.body.classList.add("addLessonPage");
     return () => {
       document.body.classList.remove("addLessonPage");
     };
   }, []);
+  useEffect(() => {
+    oneLesson && setFormValue(oneLesson);
+  }, [oneLesson]);
 
   const [formValue, setFormValue] = useState({
-    course: +id,
+    course: 0,
     title: "",
     body: "",
     youtube_link: "",
     questions: "",
     right_answer: "",
-    wrong_answers: "",
+    wrong_answer: "",
   });
 
   function handleChange(e) {
@@ -75,17 +78,7 @@ export default function AddLesson() {
     ) {
       return;
     }
-
-    createLesson(formValue);
-
-    setFormValue({
-      title: "",
-      body: "",
-      youtube_link: "",
-      questions: "",
-      right_answer: "",
-      wrong_answers: "",
-    });
+    updateLesson(id, formValue);
   };
 
   return (
@@ -100,7 +93,7 @@ export default function AddLesson() {
       <Container component="main" sx={{ marginTop: 3, color: "white" }}>
         <CssBaseline />
         <Typography component="h1" variant="h4" sx={{ marginBottom: 3 }}>
-          Добавьте новый урок к курсу
+          Добавьте изменения к уроку
         </Typography>
         <Box
           component="form"
@@ -286,7 +279,7 @@ export default function AddLesson() {
             variant="outlined"
             sx={{ mt: 3, mb: 2, py: 1, px: 4 }}
           >
-            Добавить
+            Изменить урок
           </Button>
         </Box>
       </Container>

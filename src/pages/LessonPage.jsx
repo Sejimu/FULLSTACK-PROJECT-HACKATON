@@ -10,6 +10,8 @@ import React, { useEffect } from "react";
 import { createTheme } from "@mui/material/styles";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import ThumbDownOffAltOutlinedIcon from "@mui/icons-material/ThumbDownOffAltOutlined";
+import { useParams } from "react-router-dom";
+import { useLessonContext } from "../contexts/LessonContext";
 
 const theme = createTheme({
   typography: {
@@ -25,12 +27,16 @@ const theme = createTheme({
   },
 });
 const LessonPage = () => {
+  const { getLessons, lessons } = useLessonContext();
+  const { id } = useParams();
   useEffect(() => {
+    getLessons();
     document.body.classList.add("lessonPage");
     return () => {
       document.body.classList.remove("lessonPage");
     };
   }, []);
+
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" sx={{ color: "white", width: "90%" }}>
@@ -42,12 +48,7 @@ const LessonPage = () => {
             margin: 0,
           }}
         >
-          <Pagination
-            count={5}
-            variant="outlined"
-            color="secondary"
-            // sx={{ position: "fixed" }}
-          />
+          <Pagination count={5} variant="outlined" color="secondary" />
         </Box>
         <Box sx={{ margin: "5% auto" }}>
           <Typography component="h1" variant="h4">
