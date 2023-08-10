@@ -11,6 +11,7 @@ import AddLesson from "../pages/AddLesson";
 import DetailsPage from "../pages/DetailsPage";
 import UserProtectedRoute from "./UserProtectedRoute";
 import ProfilePage from "../pages/ProfilePage";
+import CoursesPage from "../pages/CoursesPage";
 import LessonPage from "../pages/LessonPage";
 import EditLesson from "../pages/EditLesson";
 import EditCourse from "../pages/EditCourse";
@@ -22,6 +23,7 @@ function MainRoute() {
         <Route path="/" element={<HomePage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/payment" element={<Checkout />} />
+        <Route path="/courses" element={<CoursesPage />} />
         <Route path="/courses/:id/lesson" element={<LessonPage />} />
         <Route path="/courses/:id/addlesson" element={<AddLesson />} />
         <Route path="/courses/editlesson/:id" element={<EditLesson />} />
