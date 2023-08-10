@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useReducer } from "react";
 import { useSearchParams } from "react-router-dom";
-
+import { notify } from "../components/Toastify";
 import $axios from "../utils/axios";
 import { BASE_URL } from "../utils/consts";
 
@@ -35,17 +35,15 @@ const CourseContext = ({ children }) => {
   async function getCourses() {
     try {
       const { data } = await $axios.get(`${BASE_URL}/courses/`);
-
       console.log(data);
       dispatch({
         type: "courses",
         payload: data,
       });
     } catch (e) {
-      console.log(e);
+      notify(e.code.split("/")[1], "error");
     }
   }
-  //   getCourses();
 
   async function createCourse(course) {
     try {

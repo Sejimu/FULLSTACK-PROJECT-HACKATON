@@ -15,8 +15,6 @@ code {
 .addCoursePage {
   background: url(https://video-public.canva.com/VAFGWxITitg/p/0eddd416b5.jpg);
 }
-
-
 video {
   position: fixed;
   z-index: -1;
@@ -104,4 +102,3 @@ video {
     gap: 20px;
   }
 }
-
