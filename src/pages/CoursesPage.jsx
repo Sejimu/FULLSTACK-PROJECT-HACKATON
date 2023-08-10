@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Box, Typography, createTheme } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
 import CoursesItem from "../components/CoursesItem";
-import { useCoursesContext } from "../contexts/CoursesContext";
+import { useCourseContext } from "../contexts/CourseContext";
 
 const theme = createTheme({
   typography: {
@@ -11,7 +11,7 @@ const theme = createTheme({
 });
 
 const CoursesPage = () => {
-  const { getCourses, courses } = useCoursesContext();
+  const { getCourses, courses } = useCourseContext();
   useEffect(() => {
     getCourses();
     document.body.classList.add("homePage");
