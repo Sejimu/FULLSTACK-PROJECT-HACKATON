@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import { useCourseContext } from "../contexts/CourseContext";
+import { useNavigate, useParams } from "react-router-dom";
 
 // TODO remove, this demo shouldn't need to reset the theme.
 
@@ -32,8 +33,17 @@ const theme = createTheme({
   },
 });
 
-export default function AddCourse() {
-  const { createCourse, getCourses, getSubject, subjects } = useCourseContext();
+export default function EditCourse() {
+  const navigate = useNavigate();
+  const {
+    createCourse,
+    getCourses,
+    getSubject,
+    subjects,
+    getOneCourse,
+    oneCourse,
+    editCourse,
+  } = useCourseContext();
   const [formValue, setFormValue] = useState({
     title: "",
     description: "",
@@ -43,11 +53,17 @@ export default function AddCourse() {
     subject: "",
     preview: "",
   });
+  const { id } = useParams();
 
   useEffect(() => {
     getSubject();
+    getOneCourse(id);
   }, []);
 
+  useEffect(() => {
+    oneCourse && setFormValue(oneCourse);
+  }, [oneCourse]);
+  console.log(oneCourse, "dsfds");
   useEffect(() => {
     document.body.classList.add("addCoursePage");
     return () => {
@@ -72,7 +88,7 @@ export default function AddCourse() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // console.log("das");
+
     if (
       !formValue.title.trim() ||
       !formValue.description.trim() ||
@@ -85,19 +101,16 @@ export default function AddCourse() {
 
     const data = new FormData(event.currentTarget);
 
-    // console.log(formValue);
+    console.log(formValue);
     console.log(...data);
-    createCourse(data);
 
-    setFormValue({
-      title: "",
-      description: "",
-      duration: "",
-      youtube_link: "",
-      price: "",
-      subject: "",
-      preview: "",
-    });
+    if (!formValue.preview) {
+      data.delete("preview");
+      editCourse(id, data);
+    } else {
+      editCourse(id, data);
+    }
+    navigate("/courses");
   };
 
   return (
@@ -115,7 +128,7 @@ export default function AddCourse() {
           component="h1"
           variant="h5"
           sx={{ marginTop: 3, color: "white" }}>
-          Добавьте новый курс!
+          Добавьте изменения к курсу
         </Typography>
         <Box
           component="form"
@@ -280,7 +293,7 @@ export default function AddCourse() {
               fullWidth
               variant="outlined"
               sx={{ mt: 2, mb: 1, height: "53px" }}>
-              Добавьте курс
+              Изменить курс
             </Button>
           </Box>
         </Box>

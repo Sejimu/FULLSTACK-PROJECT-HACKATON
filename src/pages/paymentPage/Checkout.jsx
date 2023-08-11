@@ -67,6 +67,7 @@ export default function Checkout() {
     <React.Fragment>
       <CssBaseline />
       <video
+        className="paymentPage"
         src="https://video-public.canva.com/VAFGWxITitg/v/a0407fd778.mp4"
         autoPlay
         loop

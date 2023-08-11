@@ -11,6 +11,11 @@ import AddLesson from "../pages/AddLesson";
 import DetailsPage from "../pages/DetailsPage";
 import UserProtectedRoute from "./UserProtectedRoute";
 import ProfilePage from "../pages/ProfilePage";
+import ResetPasswordConfirmPage from "../pages/ResetPasswordConfirmPage";
+import CoursesPage from "../pages/CoursesPage";
+import LessonPage from "../pages/LessonPage";
+import EditLesson from "../pages/EditLesson";
+import EditCourse from "../pages/EditCourse";
 
 function MainRoute() {
   return (
@@ -19,13 +24,21 @@ function MainRoute() {
         <Route path="/" element={<HomePage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/payment" element={<Checkout />} />
+        <Route path="/courses" element={<CoursesPage />} />
+        <Route path="/courses/:id/lesson" element={<LessonPage />} />
         <Route path="/courses/:id/addlesson" element={<AddLesson />} />
+        <Route path="/courses/editlesson/:id" element={<EditLesson />} />
         <Route path="/courses/:id" element={<DetailsPage />} />
         <Route path="/addcourse" element={<AddCourse />} />
+        <Route path="/editcourse/:id" element={<EditCourse />} />
       </Route>
 
       <Route element={<UserProtectedRoute />}></Route>
       <Route path="/api/account/activate/" element={<ActivationPage />} />
+      <Route
+        path="/api/account/reset-password/confirm/"
+        element={<ResetPasswordConfirmPage />}
+      />
       <Route path="*" element={<NotFoundPage />} />
       <Route path="/auth" element={<AuthPage />} />
     </Routes>
