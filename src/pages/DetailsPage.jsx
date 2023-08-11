@@ -14,9 +14,13 @@ import {
 import React, { useEffect } from "react";
 import HourglassBottomIcon from "@mui/icons-material/HourglassBottom";
 import { useCourseContext } from "../contexts/CourseContext";
+
+import CoursesReviews from "../components/CoursesReviews";
+
 import { useNavigate, useParams } from "react-router-dom";
 import ExtensionIcon from "@mui/icons-material/Extension";
 import { BASE_URL } from "../utils/consts";
+
 
 const theme = createTheme({
   typography: {
@@ -45,14 +49,27 @@ const animateOnScroll = () => {
   });
 };
 window.addEventListener("scroll", animateOnScroll);
+
 const DetailsPage = () => {
+
+  const {
+    oneCourse,
+    getOneCourse,
+    reviews,
+    getReviews,
+    addReviews,
+    deleteReviews,
+    editCourse,
+    deleteCourse
+  } = useCourseContext();
+
   const navigate = useNavigate();
-  const { oneCourse, getOneCourse, editCourse, deleteCourse } =
-    useCourseContext();
+
   const { id } = useParams();
 
   useEffect(() => {
     getOneCourse(id);
+    getReviews(id);
   }, []);
 
   useEffect(() => {
@@ -61,6 +78,7 @@ const DetailsPage = () => {
       document.body.classList.remove("homePage");
     };
   }, []);
+
 
   // console.log(oneCourse.preview);
 
@@ -119,7 +137,8 @@ const DetailsPage = () => {
               display: "flex",
               alignItems: "center",
               textAlign: "left",
-            }}>
+            }}
+          >
             <Box sx={{ animation: "slideInFromLeft 1s ease-in-out" }}>
               <Typography component="h1" variant="h3">
                 {/* Профессия Frontend-разработчик */}
@@ -161,7 +180,8 @@ const DetailsPage = () => {
               alignItems: "center",
               justifyContent: "space-between",
               // gap: "20%",
-            }}>
+            }}
+          >
             <img
               className="icon-details"
               src="https://video-public.canva.com/VAFKHPCHN00/v/397c1bb2f3.gif"
@@ -178,7 +198,8 @@ const DetailsPage = () => {
                 textAlign: "right",
                 margin: "5% auto",
                 animation: "slideInFromRight 1s ease-in-out",
-              }}>
+              }}
+            >
               {/* Frontend-разработчик разрабатывает frontend-часть веб-приложения
               или сайта: это та часть сайта, которая работает у пользователя в
               браузере и общается посредством http-запросов с серверной частью
@@ -192,9 +213,10 @@ const DetailsPage = () => {
               height="450"
               src={oneCourse.youtube_link}
               title="YouTube video player"
-              frameborder="0"
+              frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullscreen></iframe>
+              allowFullScreen
+            ></iframe>
           </Box>
           <Box
             sx={{
@@ -204,23 +226,26 @@ const DetailsPage = () => {
               alignItems: "center",
               gap: "10%",
               // justifyContent: "space-evenly",
-            }}>
+            }}
+          >
             <Box
-              className="animated-element"
               sx={{
+                className: "animated-element",
                 width: "60%",
-              }}>
+              }}
+            >
               <Typography
                 variant="h4"
-                sx={{ textAlign: "left", marginBottom: "5%" }}>
+                sx={{ textAlign: "left", marginBottom: "5%" }}
+              >
                 Программа курса
               </Typography>
               <List
                 sx={{ textAlign: "left", cursor: "pointer" }}
                 component="nav">
                 <hr />
-                {oneCourse.lessons.map((item) => (
-                  <>
+                {oneCourse.lessons.map((item, index) => (
+                  <React.Fragment key={index}>
                     <ListItemText
                       primary={`Урок ${item.id} - ${item.title}`}
                       onClick={() => navigate(`/courses/:id/lesson`)}
@@ -231,7 +256,7 @@ const DetailsPage = () => {
                       }}
                     />
                     <hr />
-                  </>
+                  </React.Fragment>
                 ))}
               </List>
             </Box>
@@ -242,19 +267,12 @@ const DetailsPage = () => {
               style={{ marginTop: "5%" }}
             />
           </Box>
-          <Box
-            sx={{
-              width: "90%",
-              margin: "5% auto",
-            }}>
-            <Typography component="h1" variant="h4">
-              Отзывы
-            </Typography>
-          </Box>
         </Container>
       ) : (
         <h2 style={{ color: "white" }}>Loading...</h2>
       )}
+
+      <CoursesReviews id={id} />
     </ThemeProvider>
   );
 };

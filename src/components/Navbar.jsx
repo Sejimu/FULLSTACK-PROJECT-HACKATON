@@ -17,7 +17,9 @@ import { ThemeProvider, createTheme } from "@mui/material";
 import { useAuthContext } from "../contexts/AuthContext";
 
 const pages = [{ title: "Курсы", link: "/courses" }];
-const settings = [{ title: "Профиль", link: "/profile", key: 1 }, ,];
+
+const settings = [{ title: "Профиль", link: "/profile" }];
+
 
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -107,12 +109,16 @@ function Navbar() {
                     display: { xs: "block", md: "none" },
                   }}
                 >
-                  {pages.map((page) => (
+                  {pages.map((page, index) => (
+
+
                     <MenuItem
                       component={Link}
                       to={page.link}
                       onClick={handleCloseNavMenu}
-                      key={page.title}
+
+                      key={index}
+
                       sx={{ color: "white" }}
                     >
                       <Typography textAlign="center">{page.title}</Typography>
@@ -130,7 +136,6 @@ function Navbar() {
                   display: { xs: "flex", md: "none" },
                   flexGrow: 1,
                   fontWeight: 700,
-                  // letterSpacing: ".3rem",
                   color: "inherit",
                   textDecoration: "none",
                 }}
@@ -138,12 +143,14 @@ function Navbar() {
                 VanillaCode
               </Typography>
               <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-                {pages.map((page) => (
+                {pages.map((page, index) => (
                   <Button
                     component={Link}
                     to={page.link}
                     onClick={handleCloseNavMenu}
-                    key={page.title}
+
+                    key={index}
+
                     sx={{ my: 2, color: "white", display: "block" }}
                   >
                     {page.title}
@@ -189,8 +196,10 @@ function Navbar() {
                     open={Boolean(anchorElUser)}
                     onClose={handleCloseUserMenu}
                   >
-                    {settings.map((setting) => (
-                      <Box key={setting.key}>
+
+                    {settings.map((setting, index) => (
+                      <Box key={index}>
+
                         <MenuItem
                           component={Link}
                           to={setting.link}

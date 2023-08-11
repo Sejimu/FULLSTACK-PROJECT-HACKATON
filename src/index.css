@@ -29,7 +29,7 @@ code {
   padding: 0;
   box-sizing: border-box;
 }
-/* ! profile starts ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+/* !  ++++++++++++++++++++++++++++++++++++Profile starts++++++++++++++++++++++++++++++++++++++++*/
 
 .profile_container {
   display: flex;
@@ -201,7 +201,137 @@ code {
   background-color: gray;
 }
 
-/* ! profile ends ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+/* !  ++++++++++++++++++++++++++++++++++++Profile ends++++++++++++++++++++++++++++++++++++++++*/
+
+/* !  ---------------------------------CoursesReviews starts-----------------------------------------*/
+
+.cardCom {
+  background-color: transparent;
+  border-radius: 10px;
+  padding: 20px;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+}
+
+.titleCom {
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+  color: white;
+}
+
+.formCom {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.groupCom {
+  position: relative;
+}
+
+.formCom .groupCom label {
+  font-size: 14px;
+  color: rgb(255, 255, 255);
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  transition: all 0.1s ease;
+}
+
+.formCom .groupCom input,
+.formCom .groupCom textarea {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid rgb(255, 255, 255);
+  margin-bottom: 20px;
+  outline: 0;
+  width: 100%;
+  background-color: transparent;
+  color: white;
+}
+
+.formCom .groupCom input:placeholder-shown + label,
+.formCom .groupCom textarea:placeholder-shown + label {
+  top: 10px;
+  background-color: transparent;
+}
+
+.formCom .groupCom input:focus,
+.formCom .groupCom textarea:focus {
+  border-color: #ff00dd;
+}
+
+.formCom .groupCom input:focus + label,
+.formCom .groupCom textarea:focus + label {
+  top: -10px;
+  left: 10px;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.formCom .groupCom textarea {
+  resize: none;
+  height: 100px;
+}
+
+.formCom button {
+  background-color: rgb(215, 60, 190);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.formCom button:hover {
+  background-color: rgb(245, 98, 220);
+}
+
+.review {
+  background-color: rgba(243, 244, 246, 1);
+  padding: 2rem;
+  max-width: 310px;
+  border-radius: 10px;
+  box-shadow: 0 20px 30px -20px rgba(5, 5, 5, 0.24);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  grid-gap: 1rem;
+  gap: 1rem;
+}
+
+.stars {
+  display: flex;
+  justify-content: center;
+  grid-gap: 0.125rem;
+  gap: 0.125rem;
+  color: rgb(215, 60, 190);
+}
+
+.name_review {
+  margin-top: 0.25rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+  --tw-text-opacity: 1;
+  color: rgba(55, 65, 81, 1);
+}
+
+.review_text {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  margin-top: 1rem;
+  color: rgba(107, 114, 128, 1);
+}
+/* !  ---------------------------------CoursesReviews ends-----------------------------------------*/
 
 /* todo ======================================1024px=============================================== */
 @media screen and (max-width: 1024px) {

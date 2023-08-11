@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import { createTheme } from "@mui/material";
 
 import { useNavigate } from "react-router";
+import CoursesReviews from "../components/CoursesReviews";
 
 const theme = createTheme({
   typography: {

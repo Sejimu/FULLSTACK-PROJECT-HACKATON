@@ -3,6 +3,7 @@ import { Box, Typography, createTheme } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
 import CoursesItem from "../components/CoursesItem";
 import { useCourseContext } from "../contexts/CourseContext";
+import CoursesReviews from "../components/CoursesReviews";
 
 const theme = createTheme({
   typography: {
