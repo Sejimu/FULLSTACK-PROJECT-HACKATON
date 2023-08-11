@@ -17,20 +17,12 @@ import { ThemeProvider, createTheme } from "@mui/material";
 import { useAuthContext } from "../contexts/AuthContext";
 
 const pages = [{ title: "Курсы", link: "/courses" }];
-const settings = [{ title: "Профиль", link: "/profile" }, ,];
+const settings = [{ title: "Профиль", link: "/profile", key: 1 }, ,];
 
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const { logout, user } = useAuthContext();
-
-  React.useEffect(() => {
-    console.log(user);
-  }, [user]);
-
-  React.useEffect(() => {
-    console.log(user);
-  }, []);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -64,7 +56,8 @@ function Navbar() {
           backgroundColor: "rgba(0, 0, 0, 0)",
           color: "white",
           boxShadow: "none",
-        }}>
+        }}
+      >
         <Container maxWidth="xl">
           <Box sx={{ maxWidth: "80%", margin: "0 auto" }}>
             <Toolbar disableGutters>
@@ -80,7 +73,8 @@ function Navbar() {
                   // letterSpacing: ".3rem",
                   color: "inherit",
                   textDecoration: "none",
-                }}>
+                }}
+              >
                 VanillaCode
               </Typography>
 
@@ -91,7 +85,8 @@ function Navbar() {
                   aria-controls="menu-appbar"
                   aria-haspopup="true"
                   onClick={handleOpenNavMenu}
-                  color="inherit">
+                  color="inherit"
+                >
                   <MenuIcon />
                 </IconButton>
                 <Menu
@@ -110,14 +105,16 @@ function Navbar() {
                   onClose={handleCloseNavMenu}
                   sx={{
                     display: { xs: "block", md: "none" },
-                  }}>
+                  }}
+                >
                   {pages.map((page) => (
                     <MenuItem
                       component={Link}
                       to={page.link}
                       onClick={handleCloseNavMenu}
                       key={page.title}
-                      sx={{ color: "white" }}>
+                      sx={{ color: "white" }}
+                    >
                       <Typography textAlign="center">{page.title}</Typography>
                     </MenuItem>
                   ))}
@@ -136,7 +133,8 @@ function Navbar() {
                   // letterSpacing: ".3rem",
                   color: "inherit",
                   textDecoration: "none",
-                }}>
+                }}
+              >
                 VanillaCode
               </Typography>
               <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
@@ -146,7 +144,8 @@ function Navbar() {
                     to={page.link}
                     onClick={handleCloseNavMenu}
                     key={page.title}
-                    sx={{ my: 2, color: "white", display: "block" }}>
+                    sx={{ my: 2, color: "white", display: "block" }}
+                  >
                     {page.title}
                   </Button>
                 ))}
@@ -158,7 +157,8 @@ function Navbar() {
                       <Avatar
                         alt={user.username}
                         src={null}
-                        sx={{ color: "black", backgroundColor: "black" }}>
+                        sx={{ color: "black", backgroundColor: "black" }}
+                      >
                         <Typography variant="h5" color="white">
                           {user.username ? (
                             <>
@@ -187,13 +187,15 @@ function Navbar() {
                       horizontal: "right",
                     }}
                     open={Boolean(anchorElUser)}
-                    onClose={handleCloseUserMenu}>
+                    onClose={handleCloseUserMenu}
+                  >
                     {settings.map((setting) => (
                       <Box key={setting.key}>
                         <MenuItem
                           component={Link}
                           to={setting.link}
-                          onClick={handleCloseUserMenu}>
+                          onClick={handleCloseUserMenu}
+                        >
                           <Typography style={{ textAlign: "center" }}>
                             {setting.title}
                           </Typography>
@@ -208,7 +210,8 @@ function Navbar() {
                           textTransform: "capitalize",
                         }}
                         component={Button}
-                        onClick={logout}>
+                        onClick={logout}
+                      >
                         Выйти
                       </Typography>
                     </MenuItem>
@@ -219,7 +222,8 @@ function Navbar() {
                   <Typography
                     component={Link}
                     sx={{ textDecoration: "none", color: "inherit" }}
-                    to="/auth">
+                    to="/auth"
+                  >
                     Вoйти
                   </Typography>
                 </MenuItem>

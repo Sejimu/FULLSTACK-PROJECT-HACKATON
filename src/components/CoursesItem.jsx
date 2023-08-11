@@ -2,13 +2,19 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import { IconButton } from "@mui/material";
+import { BASE_URL } from "../utils/consts";
 
 const CoursesItem = ({ item }) => {
   const navigate = useNavigate();
+  console.log(item.preview);
   return (
     <div className="cardCourse">
       <div className="imgCourse">
-        <img className="imgCardCourse" src={item.preview} alt="img" />
+        <img
+          className="imgCardCourse"
+          src={`http://16.171.231.50/${item.preview}`}
+          alt="Course Preview"
+        />
         <IconButton
           sx={{ zIndex: "10", position: "absolute", color: "#e0a3df" }}
         >
