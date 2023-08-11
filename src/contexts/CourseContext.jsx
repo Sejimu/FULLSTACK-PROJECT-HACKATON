@@ -58,7 +58,7 @@ const CourseContext = ({ children }) => {
 
   async function deleteCourse(id) {
     try {
-      await $axios.delete(`${BASE_URL}/courses/${id}`);
+      await $axios.delete(`${BASE_URL}/courses/${id}/`);
       getCourses();
     } catch (e) {
       console.log(e);

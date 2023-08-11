@@ -6,13 +6,16 @@ import {
   IconButton,
   List,
   ListItemText,
+  Menu,
+  MenuItem,
   Typography,
   createTheme,
 } from "@mui/material";
 import React, { useEffect } from "react";
 import HourglassBottomIcon from "@mui/icons-material/HourglassBottom";
 import { useCourseContext } from "../contexts/CourseContext";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import ExtensionIcon from "@mui/icons-material/Extension";
 
 const theme = createTheme({
   typography: {
@@ -42,7 +45,9 @@ const animateOnScroll = () => {
 };
 window.addEventListener("scroll", animateOnScroll);
 const DetailsPage = () => {
-  const { oneCourse, getOneCourse } = useCourseContext();
+  const navigate = useNavigate();
+  const { oneCourse, getOneCourse, editCourse, deleteCourse } =
+    useCourseContext();
   const { id } = useParams();
 
   useEffect(() => {
@@ -57,10 +62,49 @@ const DetailsPage = () => {
   }, []);
 
   console.log(oneCourse);
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <ThemeProvider theme={theme}>
       {oneCourse ? (
         <Container component="main" sx={{ color: "white" }}>
+          <IconButton
+            onClick={handleClick}
+            sx={{ marginLeft: "90%", color: "white" }}>
+            <ExtensionIcon />
+          </IconButton>
+          <Menu
+            id="basic-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            MenuListProps={{
+              "aria-labelledby": "basic-button",
+            }}>
+            <MenuItem
+              component={Button}
+              sx={{ textTransform: "capitalize", color: "red" }}
+              onClick={() => {
+                deleteCourse(oneCourse.id);
+                navigate(`/courses`);
+              }}>
+              Delete
+            </MenuItem>
+            <MenuItem
+              onClick={() => navigate(`/editcourse/${oneCourse.id}`)}
+              component={Button}
+              sx={{ textTransform: "capitalize", width: "100%" }}>
+              Edit
+            </MenuItem>
+          </Menu>
           <Box
             sx={{
               width: "90%",
