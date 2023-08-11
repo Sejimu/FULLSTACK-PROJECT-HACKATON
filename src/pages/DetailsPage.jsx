@@ -13,6 +13,7 @@ import React, { useEffect } from "react";
 import HourglassBottomIcon from "@mui/icons-material/HourglassBottom";
 import { useCourseContext } from "../contexts/CourseContext";
 import { useParams } from "react-router-dom";
+import CoursesReviews from "../components/CoursesReviews";
 
 const theme = createTheme({
   typography: {
@@ -41,12 +42,21 @@ const animateOnScroll = () => {
   });
 };
 window.addEventListener("scroll", animateOnScroll);
+
 const DetailsPage = () => {
-  const { oneCourse, getOneCourse } = useCourseContext();
+  const {
+    oneCourse,
+    getOneCourse,
+    reviews,
+    getReviews,
+    addReviews,
+    deleteReviews,
+  } = useCourseContext();
   const { id } = useParams();
 
   useEffect(() => {
     getOneCourse(id);
+    getReviews(id);
   }, []);
 
   useEffect(() => {
@@ -56,7 +66,6 @@ const DetailsPage = () => {
     };
   }, []);
 
-  console.log(oneCourse);
   return (
     <ThemeProvider theme={theme}>
       {oneCourse ? (
@@ -68,7 +77,8 @@ const DetailsPage = () => {
               display: "flex",
               alignItems: "center",
               textAlign: "left",
-            }}>
+            }}
+          >
             <Box sx={{ animation: "slideInFromLeft 1s ease-in-out" }}>
               <Typography component="h1" variant="h3">
                 {/* Профессия Frontend-разработчик */}
@@ -103,7 +113,8 @@ const DetailsPage = () => {
               alignItems: "center",
               justifyContent: "space-between",
               // gap: "20%",
-            }}>
+            }}
+          >
             <img
               className="icon-details"
               src="https://video-public.canva.com/VAFKHPCHN00/v/397c1bb2f3.gif"
@@ -120,7 +131,8 @@ const DetailsPage = () => {
                 textAlign: "right",
                 margin: "5% auto",
                 animation: "slideInFromRight 1s ease-in-out",
-              }}>
+              }}
+            >
               {/* Frontend-разработчик разрабатывает frontend-часть веб-приложения
               или сайта: это та часть сайта, которая работает у пользователя в
               браузере и общается посредством http-запросов с серверной частью
@@ -134,9 +146,10 @@ const DetailsPage = () => {
               height="450"
               src={oneCourse.youtube_link}
               title="YouTube video player"
-              frameborder="0"
+              frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullscreen></iframe>
+              allowFullScreen
+            ></iframe>
           </Box>
           <Box
             sx={{
@@ -146,21 +159,24 @@ const DetailsPage = () => {
               alignItems: "center",
               gap: "10%",
               // justifyContent: "space-evenly",
-            }}>
+            }}
+          >
             <Box
-              className="animated-element"
               sx={{
+                className: "animated-element",
                 width: "60%",
-              }}>
+              }}
+            >
               <Typography
                 variant="h4"
-                sx={{ textAlign: "left", marginBottom: "5%" }}>
+                sx={{ textAlign: "left", marginBottom: "5%" }}
+              >
                 Программа курса
               </Typography>
               <List sx={{ textAlign: "left" }} component="nav">
                 <hr />
-                {oneCourse.lessons.map((item) => (
-                  <>
+                {oneCourse.lessons.map((item, index) => (
+                  <React.Fragment key={index}>
                     <ListItemText
                       primary={`Урок ${item.id} - ${item.title}`}
                       primaryTypographyProps={{
@@ -170,7 +186,7 @@ const DetailsPage = () => {
                       }}
                     />
                     <hr />
-                  </>
+                  </React.Fragment>
                 ))}
               </List>
             </Box>
@@ -181,19 +197,12 @@ const DetailsPage = () => {
               style={{ marginTop: "5%" }}
             />
           </Box>
-          <Box
-            sx={{
-              width: "90%",
-              margin: "5% auto",
-            }}>
-            <Typography component="h1" variant="h4">
-              Отзывы
-            </Typography>
-          </Box>
         </Container>
       ) : (
         <h2>Loading...</h2>
       )}
+
+      <CoursesReviews id={id} />
     </ThemeProvider>
   );
 };

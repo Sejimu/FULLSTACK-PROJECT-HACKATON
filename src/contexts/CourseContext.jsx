@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer } from "react";
+import React, { createContext, useContext, useReducer, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { notify } from "../components/Toastify";
 import $axios from "../utils/axios";
@@ -31,6 +31,7 @@ function reducer(state, action) {
 const CourseContext = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initState);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [reviews, setReviews] = useState(null);
 
   async function getCourses() {
     try {
@@ -68,7 +69,7 @@ const CourseContext = ({ children }) => {
   async function getSubject() {
     try {
       const { data } = await $axios.get(`${BASE_URL}/subjects/`);
-      //   console.log(data);
+
       dispatch({
         type: "subjects",
         payload: data,
@@ -82,6 +83,40 @@ const CourseContext = ({ children }) => {
   async function editCourse(id, newData) {
     try {
       await $axios.patch(`${BASE_URL}/courses/${id}/`, newData);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async function getReviews(id) {
+    try {
+      const { data } = await $axios.get(`${BASE_URL}/courses/${id}/reviews/`);
+      setReviews(data);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async function addReviews(id, aaaa) {
+    try {
+      const { data } = await $axios.post(
+        `${BASE_URL}/courses/${id}/reviews/`,
+        aaaa
+      );
+
+      getReviews(id);
+      setReviews(data);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async function deleteReviews(id) {
+    try {
+      const { data } = await $axios.delete(
+        `${BASE_URL}/courses/${id}/reviews/`
+      );
+      setReviews(data);
     } catch (e) {
       console.log(e);
     }
@@ -108,6 +143,10 @@ const CourseContext = ({ children }) => {
     getSubject,
     editCourse,
     getOneCourse,
+    reviews,
+    getReviews,
+    addReviews,
+    deleteReviews,
   };
   return (
     <courseContext.Provider value={value}>{children}</courseContext.Provider>
