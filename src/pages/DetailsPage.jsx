@@ -6,14 +6,21 @@ import {
   IconButton,
   List,
   ListItemText,
+  Menu,
+  MenuItem,
   Typography,
   createTheme,
 } from "@mui/material";
 import React, { useEffect } from "react";
 import HourglassBottomIcon from "@mui/icons-material/HourglassBottom";
 import { useCourseContext } from "../contexts/CourseContext";
-import { useParams } from "react-router-dom";
+
 import CoursesReviews from "../components/CoursesReviews";
+
+import { useNavigate, useParams } from "react-router-dom";
+import ExtensionIcon from "@mui/icons-material/Extension";
+import { BASE_URL } from "../utils/consts";
+
 
 const theme = createTheme({
   typography: {
@@ -44,6 +51,7 @@ const animateOnScroll = () => {
 window.addEventListener("scroll", animateOnScroll);
 
 const DetailsPage = () => {
+
   const {
     oneCourse,
     getOneCourse,
@@ -51,7 +59,12 @@ const DetailsPage = () => {
     getReviews,
     addReviews,
     deleteReviews,
+    editCourse,
+    deleteCourse
   } = useCourseContext();
+
+  const navigate = useNavigate();
+
   const { id } = useParams();
 
   useEffect(() => {
@@ -66,10 +79,57 @@ const DetailsPage = () => {
     };
   }, []);
 
+
+  // console.log(oneCourse.preview);
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <ThemeProvider theme={theme}>
       {oneCourse ? (
         <Container component="main" sx={{ color: "white" }}>
+          <IconButton
+            onClick={handleClick}
+            sx={{ marginLeft: "90%", color: "white" }}>
+            <ExtensionIcon />
+          </IconButton>
+          <Menu
+            id="basic-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            MenuListProps={{
+              "aria-labelledby": "basic-button",
+            }}>
+            <MenuItem
+              component={Button}
+              sx={{ textTransform: "capitalize", color: "red" }}
+              onClick={() => {
+                deleteCourse(oneCourse.id);
+                navigate(`/courses`);
+              }}>
+              Удалить курс
+            </MenuItem>
+            <MenuItem
+              onClick={() => navigate(`/editcourse/${oneCourse.id}`)}
+              component={Button}
+              sx={{ textTransform: "capitalize", width: "100%" }}>
+              Изменить курс
+            </MenuItem>
+            <MenuItem
+              onClick={() => navigate(`/courses/${oneCourse.id}/addlesson`)}
+              component={Button}
+              sx={{ textTransform: "capitalize", width: "100%" }}>
+              Добавить урок
+            </MenuItem>
+          </Menu>
           <Box
             sx={{
               width: "90%",
@@ -89,20 +149,27 @@ const DetailsPage = () => {
                   {<HourglassBottomIcon sx={{ color: "white" }} />}
                 </IconButton>
                 {/* Длительность - 3 месяца */}
-                {oneCourse.duration}
+                Длительность - {oneCourse.duration} месяца
               </Typography>
-              <Button variant="outlined" sx={{ color: "#D73CBE" }}>
+              <Button
+                onClick={() => navigate("/payment")}
+                variant="outlined"
+                sx={{ color: "#D73CBE" }}>
                 Начать обучение
               </Button>
             </Box>
-            <Box sx={{ position: "relative", width: "60%" }}>
+            <Box
+              sx={{
+                position: "relative",
+                width: "100%",
+                height: "100%",
+                left: "10%",
+              }}>
               <img
-                width={"100%"}
+                src={`http://16.171.231.50/${oneCourse.preview}`}
+                width={"80%"}
                 height="300px"
-                src="https://video-public.canva.com/VAFKHLeOx28/v/45cb848511.gif"
-                style={{ position: "absolute", zIndex: "-1" }}
               />
-              <img src={oneCourse.preview} width={"70%"} height="200px" />
             </Box>
           </Box>
           <Box
@@ -173,12 +240,15 @@ const DetailsPage = () => {
               >
                 Программа курса
               </Typography>
-              <List sx={{ textAlign: "left" }} component="nav">
+              <List
+                sx={{ textAlign: "left", cursor: "pointer" }}
+                component="nav">
                 <hr />
                 {oneCourse.lessons.map((item, index) => (
                   <React.Fragment key={index}>
                     <ListItemText
                       primary={`Урок ${item.id} - ${item.title}`}
+                      onClick={() => navigate(`/courses/:id/lesson`)}
                       primaryTypographyProps={{
                         fontSize: 22,
                         fontWeight: "medium",
@@ -199,7 +269,7 @@ const DetailsPage = () => {
           </Box>
         </Container>
       ) : (
-        <h2>Loading...</h2>
+        <h2 style={{ color: "white" }}>Loading...</h2>
       )}
 
       <CoursesReviews id={id} />

@@ -36,10 +36,6 @@ function Copyright(props) {
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
-
-const defaultTheme = createTheme();
-
 export default function AuthPage() {
   const [isLogin, setIsLogin] = React.useState(true);
   const { register, user, login, handleClickOpen, handleClose } =
@@ -75,7 +71,12 @@ export default function AuthPage() {
   return (
     <ThemeProvider theme={theme}>
       <ResetPasswordModal />
-      <Grid container component="main" sx={{ height: "100vh" }}>
+      <Grid
+        container
+        component="main"
+        sx={{ height: "100vh" }}
+        style={{ backgroundColor: "#342557" }}
+      >
         <CssBaseline />
         <Grid
           item
@@ -120,6 +121,19 @@ export default function AuthPage() {
                 margin="normal"
                 required
                 fullWidth
+                inputProps={{
+                  style: {
+                    color: "black",
+                  },
+                }}
+                sx={{
+                  color: "white",
+                  border: "1px solid purple",
+                  borderRadius: "5px",
+                  "& label": {
+                    color: "black",
+                  },
+                }}
                 id="email"
                 label="Email Address"
                 name="email"
@@ -132,6 +146,19 @@ export default function AuthPage() {
                 fullWidth
                 name="password"
                 label="Password"
+                inputProps={{
+                  style: {
+                    color: "black",
+                  },
+                }}
+                sx={{
+                  color: "white",
+                  border: "1px solid purple",
+                  borderRadius: "5px",
+                  "& label": {
+                    color: "black",
+                  },
+                }}
                 type={showPassword ? "text" : "password"}
                 InputProps={{
                   endAdornment: (
@@ -151,26 +178,53 @@ export default function AuthPage() {
                   name="password_confirmation"
                   label="Confirm Password"
                   type="password"
+                  inputProps={{
+                    style: {
+                      color: "black",
+                    },
+                  }}
+                  sx={{
+                    color: "white",
+                    border: "1px solid purple",
+                    borderRadius: "5px",
+                    "& label": {
+                      color: "black",
+                    },
+                  }}
                 />
               )}
               <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
+                control={
+                  <Checkbox value="remember" sx={{ color: "#29196E" }} />
+                }
                 label="Remember me"
               />
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
-                sx={{ mt: 3, mb: 2 }}
+                sx={{
+                  mt: 3,
+                  mb: 2,
+                  backgroundColor: "#342557",
+                  "&:hover": { backgroundColor: "#1d3263" },
+                }}
               >
                 {isLogin ? "Sign in" : "Sign up"}
               </Button>
               <Grid container>
                 <Grid item xs onClick={handleClickOpen}>
-                  {isLogin ? <Link variant="body2">Forgot password?</Link> : ""}
+                  {isLogin ? (
+                    <Link variant="body2" sx={{ color: "#F57CBA" }}>
+                      Forgot password?
+                    </Link>
+                  ) : (
+                    ""
+                  )}
                 </Grid>
                 <Grid item>
                   <Link
+                    sx={{ color: "#F57CBA" }}
                     href="#"
                     variant="body2"
                     onClick={() => setIsLogin(!isLogin)}

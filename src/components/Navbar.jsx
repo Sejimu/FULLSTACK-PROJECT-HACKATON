@@ -17,20 +17,14 @@ import { ThemeProvider, createTheme } from "@mui/material";
 import { useAuthContext } from "../contexts/AuthContext";
 
 const pages = [{ title: "Курсы", link: "/courses" }];
+
 const settings = [{ title: "Профиль", link: "/profile" }];
+
 
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const { logout, user } = useAuthContext();
-
-  React.useEffect(() => {
-    console.log(user);
-  }, [user]);
-
-  React.useEffect(() => {
-    console.log(user);
-  }, []);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -116,11 +110,15 @@ function Navbar() {
                   }}
                 >
                   {pages.map((page, index) => (
+
+
                     <MenuItem
                       component={Link}
                       to={page.link}
                       onClick={handleCloseNavMenu}
+
                       key={index}
+
                       sx={{ color: "white" }}
                     >
                       <Typography textAlign="center">{page.title}</Typography>
@@ -150,7 +148,9 @@ function Navbar() {
                     component={Link}
                     to={page.link}
                     onClick={handleCloseNavMenu}
+
                     key={index}
+
                     sx={{ my: 2, color: "white", display: "block" }}
                   >
                     {page.title}
@@ -196,8 +196,10 @@ function Navbar() {
                     open={Boolean(anchorElUser)}
                     onClose={handleCloseUserMenu}
                   >
+
                     {settings.map((setting, index) => (
                       <Box key={index}>
+
                         <MenuItem
                           component={Link}
                           to={setting.link}
