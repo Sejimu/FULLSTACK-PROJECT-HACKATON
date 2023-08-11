@@ -11,6 +11,7 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
+import AdbIcon from "@mui/icons-material/Adb";
 import { Link } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material";
 import { useAuthContext } from "../contexts/AuthContext";
@@ -22,6 +23,14 @@ function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const { logout, user } = useAuthContext();
+
+  React.useEffect(() => {
+    console.log(user);
+  }, [user]);
+
+  React.useEffect(() => {
+    console.log(user);
+  }, []);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -44,6 +53,8 @@ function Navbar() {
     },
   });
 
+  // console.log(user);
+
   return (
     <ThemeProvider theme={theme}>
       <AppBar
@@ -58,7 +69,81 @@ function Navbar() {
         <Container maxWidth="xl">
           <Box sx={{ maxWidth: "80%", margin: "0 auto" }}>
             <Toolbar disableGutters>
-              {/* ... (rest of the code) */}
+              <Typography
+                variant="h6"
+                noWrap
+                component={Link}
+                to="/"
+                sx={{
+                  mr: 2,
+                  display: { xs: "none", md: "flex" },
+                  fontWeight: 700,
+                  // letterSpacing: ".3rem",
+                  color: "inherit",
+                  textDecoration: "none",
+                }}
+              >
+                VanillaCode
+              </Typography>
+
+              <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+                <IconButton
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  onClick={handleOpenNavMenu}
+                  color="inherit"
+                >
+                  <MenuIcon />
+                </IconButton>
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorElNav}
+                  anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "left",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "left",
+                  }}
+                  open={Boolean(anchorElNav)}
+                  onClose={handleCloseNavMenu}
+                  sx={{
+                    display: { xs: "block", md: "none" },
+                  }}
+                >
+                  {pages.map((page, index) => (
+                    <MenuItem
+                      component={Link}
+                      to={page.link}
+                      onClick={handleCloseNavMenu}
+                      key={index}
+                      sx={{ color: "white" }}
+                    >
+                      <Typography textAlign="center">{page.title}</Typography>
+                    </MenuItem>
+                  ))}
+                </Menu>
+              </Box>
+              <Typography
+                variant="h5"
+                noWrap
+                component="a"
+                href=""
+                sx={{
+                  mr: 2,
+                  display: { xs: "flex", md: "none" },
+                  flexGrow: 1,
+                  fontWeight: 700,
+                  color: "inherit",
+                  textDecoration: "none",
+                }}
+              >
+                VanillaCode
+              </Typography>
               <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
                 {pages.map((page, index) => (
                   <Button
@@ -124,7 +209,7 @@ function Navbar() {
                         </MenuItem>
                       </Box>
                     ))}
-                    <MenuItem key="logout">
+                    <MenuItem key={null}>
                       <Typography
                         sx={{
                           textDecoration: "none",
@@ -140,7 +225,7 @@ function Navbar() {
                   </Menu>
                 </Box>
               ) : (
-                <MenuItem key="login">
+                <MenuItem key={null}>
                   <Typography
                     component={Link}
                     sx={{ textDecoration: "none", color: "inherit" }}
@@ -157,5 +242,4 @@ function Navbar() {
     </ThemeProvider>
   );
 }
-
 export default Navbar;
