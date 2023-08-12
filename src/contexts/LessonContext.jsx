@@ -12,6 +12,7 @@ const initState = {
   lessons: [],
   oneLesson: null,
   totalLessons: 1,
+  questions: [],
 };
 function reducer(state, action) {
   switch (action.type) {
@@ -21,6 +22,8 @@ function reducer(state, action) {
       return { ...state, oneLesson: action.payload };
     case "totalLessons":
       return { ...state, totalLessons: action.payload };
+    case "questions":
+      return { ...state, questions: action.payload };
     default:
       return state;
   }
@@ -35,9 +38,14 @@ const LessonContext = ({ children }) => {
       const { data } = await $axios.get(
         `${BASE_URL}/lessons/${window.location.search}`
       );
+
       dispatch({
         type: "lessons",
         payload: data.results,
+      });
+      dispatch({
+        type: "totalLessons",
+        payload: data.count,
       });
     } catch (e) {
       console.log(e);
@@ -47,7 +55,6 @@ const LessonContext = ({ children }) => {
   async function getOneLesson(id) {
     try {
       const { data } = await $axios.get(`${BASE_URL}/lessons/${id}/`);
-      console.log(data);
       dispatch({
         type: "oneLesson",
         payload: data,
@@ -80,16 +87,33 @@ const LessonContext = ({ children }) => {
     }
   }
 
+  async function createQuestions(id, question) {
+    try {
+      await $axios.post(`${BASE_URL}/lessons/${id}/questions/`, question);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+  async function deleteQuestion(id) {
+    try {
+      await $axios.delete(`${BASE_URL}/lessons/${id}/questions/`);
+    } catch (e) {
+      console.log(e);
+    }
+  }
   const value = {
     lessons: state.lessons,
     oneLesson: state.oneLesson,
+    totalLessons: state.totalLessons,
     page,
+    createQuestions,
     setPage,
     getLessons,
     getOneLesson,
     createLesson,
     updateLesson,
     deleteLesson,
+    deleteQuestion,
   };
   return (
     <lessonContext.Provider value={value}>{children}</lessonContext.Provider>
