@@ -8,16 +8,12 @@ export function useFavouriteContext() {
   return useContext(favouriteContext);
 }
 
-const initState = {
-  favourites: [],
-};
+const initState = [];
 
 function getFavouriteFromLS() {
-  let data = JSON.parse(localStorage.getItem("favourite"));
+  let data = JSON.parse(localStorage.getItem("favourites"));
   if (!data) {
-    data = {
-      favourites: [],
-    };
+    data = [];
   }
   return data;
 }
@@ -31,31 +27,31 @@ function FavouriteContext({ children }) {
   }
 
   function addCourseToFavourite(course) {
+    console.log(course);
     const data = getFavouriteFromLS();
-    data.favourites.push({ ...course });
-
-    localStorage.setItem("favourite", JSON.stringify(data));
+    data.push(course);
+    localStorage.setItem("favourites", JSON.stringify(data));
     getFavourite();
-
     notify("added", "success");
   }
 
   function deleteCourseFromCart(id) {
-    const data = getFavouriteFromLS();
-    data.favourites = data.favourites.filter((item) => item.id !== id);
-    localStorage.setItem("favourite", JSON.stringify(data));
+    let data = getFavouriteFromLS();
+    console.log(data);
+    data = data.filter((item) => item.id !== id);
+    localStorage.setItem("favourites", JSON.stringify(data));
     getFavourite();
     notify("deleted", "success");
   }
 
   function isAlreadyInFavourite(id) {
     const data = getFavouriteFromLS();
-    const isInFavourite = data.products.some((item) => item.id === id);
+    const isInFavourite = data.some((item) => item.id === id);
     return isInFavourite;
   }
 
   function clearFavourite() {
-    localStorage.removeItem("favourite");
+    localStorage.removeItem("favourites");
   }
 
   const value = {
@@ -64,8 +60,10 @@ function FavouriteContext({ children }) {
     deleteCourseFromCart,
     addCourseToFavourite,
     getFavourite,
+    favourite,
     getFavouriteFromLS,
   };
+
   return (
     <favouriteContext.Provider value={value}>
       {children}

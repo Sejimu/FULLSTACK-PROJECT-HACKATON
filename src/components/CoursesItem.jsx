@@ -1,12 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+import BookmarkRemoveIcon from "@mui/icons-material/BookmarkRemove";
 import { IconButton } from "@mui/material";
 import { BASE_URL } from "../utils/consts";
+import { useFavouriteContext } from "../contexts/FavouriteContext";
 
 const CoursesItem = ({ item }) => {
+  const {
+    isAlreadyInFavourite,
+    deleteCourseFromCart,
+    addCourseToFavourite,
+    getFavourite,
+    favourite,
+  } = useFavouriteContext();
+
+  React.useEffect(() => {
+    getFavourite();
+  }, []);
+
   const navigate = useNavigate();
   console.log(item.preview);
+
   return (
     <div className="cardCourse">
       <div className="imgCourse">
@@ -15,11 +30,22 @@ const CoursesItem = ({ item }) => {
           src={`http://16.171.231.50/${item.preview}`}
           alt="Course Preview"
         />
-        <IconButton
-          sx={{ zIndex: "10", position: "absolute", color: "#e0a3df" }}
-        >
-          {<BookmarkBorderIcon />}
-        </IconButton>
+
+        {isAlreadyInFavourite(item.id) ? (
+          <IconButton
+            onClick={() => deleteCourseFromCart(item.id)}
+            sx={{ zIndex: "10", position: "absolute", color: "#e0a3df" }}
+          >
+            <BookmarkRemoveIcon />
+          </IconButton>
+        ) : (
+          <IconButton
+            sx={{ zIndex: "10", position: "absolute", color: "#e0a3df" }}
+            onClick={() => addCourseToFavourite(item)}
+          >
+            <BookmarkBorderIcon />
+          </IconButton>
+        )}
       </div>
 
       <div className="textCourse">
