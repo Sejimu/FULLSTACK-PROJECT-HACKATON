@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { BASE_URL } from "../utils/consts";
+import { ADMIN, BASE_URL } from "../utils/consts";
 import $axios from "../utils/axios";
 import { useNavigate } from "react-router-dom";
 
@@ -29,7 +29,7 @@ function AuthContext({ children }) {
 
   async function activateUser(code) {
     try {
-      const res = await $axios.post(`${BASE_URL}/account/activate/`, {
+      const res = await axios.post(`${BASE_URL}/account/activate/`, {
         activation_code: code,
       });
       console.log(res);
@@ -111,6 +111,14 @@ function AuthContext({ children }) {
     setOpen(false);
   };
 
+  function isAdmin() {
+    if (!user) {
+      return false;
+    }
+
+    return ADMIN.includes(user.email);
+  }
+
   const value = {
     user,
     register,
@@ -124,6 +132,7 @@ function AuthContext({ children }) {
     handleClickOpen,
     handleClose,
     confirmResetPassword,
+    isAdmin,
   };
   return <authContext.Provider value={value}>{children}</authContext.Provider>;
 }
