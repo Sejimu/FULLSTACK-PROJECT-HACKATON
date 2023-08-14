@@ -16,6 +16,7 @@ import CoursesPage from "../pages/CoursesPage";
 import LessonPage from "../pages/LessonPage";
 import EditLesson from "../pages/EditLesson";
 import EditCourse from "../pages/EditCourse";
+import AddQuestion from "../pages/AddQuestion";
 
 function MainRoute() {
   return (
@@ -27,6 +28,7 @@ function MainRoute() {
         <Route path="/courses" element={<CoursesPage />} />
         <Route path="/courses/:id/lesson" element={<LessonPage />} />
         <Route path="/courses/:id/addlesson" element={<AddLesson />} />
+        <Route path="/lesson/:id/question" element={<AddQuestion />} />
         <Route path="/courses/editlesson/:id" element={<EditLesson />} />
         <Route path="/courses/:id" element={<DetailsPage />} />
         <Route path="/addcourse" element={<AddCourse />} />

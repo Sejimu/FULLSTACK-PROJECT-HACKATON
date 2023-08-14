@@ -34,13 +34,12 @@ const theme = createTheme({
   },
 });
 
-export default function AddLesson() {
-  const { getLessons, createLesson } = useLessonContext();
+export default function AddQuestion() {
+  const { createQuestions } = useLessonContext();
   const { id } = useParams();
   const [test, setTest] = useState(true);
 
   useEffect(() => {
-    getLessons();
     document.body.classList.add("addLessonPage");
     return () => {
       document.body.classList.remove("addLessonPage");
@@ -48,10 +47,9 @@ export default function AddLesson() {
   }, []);
 
   const [formValue, setFormValue] = useState({
-    course: +id,
-    title: "",
     body: "",
-    youtube_link: "",
+    right_answer: "",
+    wrong_answers: "",
   });
 
   function handleChange(e) {
@@ -63,21 +61,17 @@ export default function AddLesson() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (
-      !formValue.title.trim() ||
-      !formValue.body.trim() ||
-      !formValue.youtube_link
-    ) {
+    if (!formValue.body.trim() || !formValue.right_answer.trim()) {
       return;
     }
+    console.log(formValue);
+    createQuestions(id, formValue);
 
-    createLesson(formValue);
-
-    setFormValue({
-      title: "",
-      body: "",
-      youtube_link: "",
-    });
+    // setFormValue({
+    //   title: "",
+    //   body: "",
+    //   youtube_link: "",
+    // });
   };
 
   return (
@@ -92,7 +86,7 @@ export default function AddLesson() {
       <Container component="main" sx={{ marginTop: 3, color: "white" }}>
         <CssBaseline />
         <Typography component="h1" variant="h4" sx={{ marginBottom: 3 }}>
-          Добавьте новый урок к курсу
+          Добавьте задание к уроку
         </Typography>
         <Box
           component="form"
@@ -104,31 +98,28 @@ export default function AddLesson() {
             maxWidth: "70%",
           }}
         >
-          <Box noValidate sx={{ mt: 1 }}>
-            <TextField
-              sx={{
-                color: "white",
-                background: "transparent",
-                border: "1px solid white",
-                borderRadius: "5px",
-                "& label": {
-                  color: "white",
-                },
-              }}
-              inputProps={{
-                style: {
-                  color: "white",
-                },
-              }}
-              margin="normal"
-              required
-              fullWidth
-              label="Название урока"
-              name="title"
-              autoFocus
-              value={formValue.title}
-              onChange={handleChange}
-            />
+          <Box>
+            <FormControl>
+              <RadioGroup
+                row
+                aria-labelledby="demo-row-radio-buttons-group-label"
+                name="row-radio-buttons-group"
+                color="white"
+              >
+                <FormControlLabel
+                  value="test"
+                  control={<Radio sx={{ color: "white" }} />}
+                  label="Тест"
+                  onChange={() => setTest(false)}
+                />
+                <FormControlLabel
+                  value="task"
+                  control={<Radio sx={{ color: "white" }} />}
+                  label="Задача"
+                  onChange={() => setTest(true)}
+                />
+              </RadioGroup>
+            </FormControl>
             <TextField
               sx={{
                 color: "white",
@@ -148,11 +139,10 @@ export default function AddLesson() {
               required
               fullWidth
               name="body"
-              label="Содержание урока"
+              label="Вопрос или задача"
               value={formValue.body}
               onChange={handleChange}
             />
-
             <TextField
               sx={{
                 color: "white",
@@ -171,11 +161,38 @@ export default function AddLesson() {
               margin="normal"
               required
               fullWidth
-              name="youtube_link"
-              label="Ссылка на видео-урок"
-              value={formValue.youtube_link}
+              name="right_answer"
+              label="Верный ответ"
+              value={formValue.right_answer}
               onChange={handleChange}
             />
+            {!test ? (
+              <Box>
+                <TextField
+                  sx={{
+                    color: "white",
+                    background: "transparent",
+                    border: "1px solid white",
+                    borderRadius: "5px",
+                    "& label": {
+                      color: "white",
+                    },
+                  }}
+                  inputProps={{
+                    style: {
+                      color: "white",
+                    },
+                  }}
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="wrong_answers"
+                  label="Неверный ответ"
+                  value={formValue.wrong_answers}
+                  onChange={handleChange}
+                />
+              </Box>
+            ) : null}
           </Box>
 
           <Button
@@ -183,7 +200,7 @@ export default function AddLesson() {
             variant="outlined"
             sx={{ mt: 3, mb: 2, py: 1, px: 4 }}
           >
-            Добавить
+            Добавить задание
           </Button>
         </Box>
       </Container>
