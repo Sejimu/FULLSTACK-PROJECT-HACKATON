@@ -9,12 +9,26 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
 import { useAuthContext } from "../contexts/AuthContext";
 import { Avatar } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+
+import BookmarkRemoveIcon from "@mui/icons-material/BookmarkRemove";
+import { IconButton } from "@mui/material";
+import { useCourseContext } from "../contexts/CourseContext";
+import { useFavouriteContext } from "../contexts/FavouriteContext";
 
 const ProfilePage = () => {
+  const navigate = useNavigate();
   const { user } = useAuthContext();
-
+  const {
+    deleteCourseFromCart,
+    addCourseToFavourite,
+    getFavourite,
+    favourite,
+  } = useFavouriteContext();
   useEffect(() => {
     document.body.classList.add("homePage");
+    getFavourite();
     return () => {
       document.body.classList.remove("homePage");
     };
@@ -99,44 +113,8 @@ const ProfilePage = () => {
 
               <div
                 className="first__section_cartHolder hidden"
-                style={{ display: "flex" }}
+                style={{ display: "flex", marginLeft: "-35px" }}
               >
-                <div className="card">
-                  <div className="card__content">
-                    <p className="card__title">Project Name</p>
-                    <p className="card__description">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco.
-                    </p>
-                    <button className="card__button">Live Demo</button>
-                    <button className="card__button secondary">
-                      Source Code
-                    </button>
-                  </div>
-                </div>
-
-                <div className="card">
-                  <div className="card__content">
-                    <p className="card__title">Project Name</p>
-                    <p className="card__description">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco.
-                    </p>
-                    <button className="card__button">Live Demo</button>
-                    <button className="card__button secondary">
-                      Source Code
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="second_section">
-              <div className="second_section__item_visible">
                 <div
                   className="user_name"
                   style={{
@@ -161,7 +139,6 @@ const ProfilePage = () => {
                     </p>
                   </div>
                 </div>
-
                 <div
                   style={{
                     display: "flex",
@@ -185,7 +162,19 @@ const ProfilePage = () => {
                   </div>
                 </div>
               </div>
+            </div>
 
+            <div className="second_section">
+              <div
+                className="second_section__item_visible"
+                style={{
+                  color: "white",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                Активность за последний год
+              </div>
               <div className="infa__holder">
                 <div
                   className="name"
@@ -275,42 +264,62 @@ const ProfilePage = () => {
                   );
                 })}
               </div>
-              <div></div>
+              <div
+                className="Card"
+                style={{
+                  display: "flex",
+                  justifyContent: "space-evenly",
+                  flexWrap: "wrap",
+                  marginTop: "5%",
+                  gap: "2%",
+                }}
+              >
+                {favourite.length > 0
+                  ? favourite.map((item) => (
+                      <>
+                        <div className="cardCourse" key={item.id}>
+                          <div className="imgCourse">
+                            <img
+                              className="imgCardCourse"
+                              src={`http://16.171.231.50/${item.preview}`}
+                              alt="Course Preview"
+                            />
+                            <IconButton
+                              sx={{
+                                zIndex: "10",
+                                position: "absolute",
+                                color: "#e0a3df",
+                              }}
+                              onClick={() => {
+                                deleteCourseFromCart(item.id);
+                              }}
+                            >
+                              <BookmarkRemoveIcon />
+                            </IconButton>
+                          </div>
+
+                          <div className="textCourse">
+                            <p className="h3Course">{item.title}</p>
+                            <p className="pCourse">{item.subject}</p>
+
+                            <div
+                              className="icon-box-course"
+                              style={{ cursor: "pointer" }}
+                              onClick={() =>
+                                navigate(`/courses/${item.id}/lesson`)
+                              }
+                            >
+                              <p className="spanCourse">Начать обучение ➔</p>
+                            </div>
+                          </div>
+                        </div>
+                      </>
+                    ))
+                  : ""}
+              </div>
             </div>
 
-            <div style={{ display: "none" }} className=" visible">
-              <div className="card">
-                <div className="card__content">
-                  <p className="card__title">Project Name</p>
-                  <p className="card__description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco.
-                  </p>
-                  <button className="card__button">Live Demo</button>
-                  <button className="card__button secondary">
-                    Source Code
-                  </button>
-                </div>
-              </div>
-
-              <div className="card">
-                <div className="card__content">
-                  <p className="card__title">Project Name</p>
-                  <p className="card__description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco.
-                  </p>
-                  <button className="card__button">Live Demo</button>
-                  <button className="card__button secondary">
-                    Source Code
-                  </button>
-                </div>
-              </div>
-            </div>
+            <div style={{ display: "none" }} className=" visible"></div>
           </div>
         </div>
       ) : null}
