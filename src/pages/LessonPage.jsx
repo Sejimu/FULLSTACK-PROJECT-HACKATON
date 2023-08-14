@@ -8,10 +8,12 @@ import {
   Typography,
 } from "@mui/material";
 import { Box, Container, ThemeProvider } from "@mui/system";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { createTheme } from "@mui/material/styles";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownOffAltOutlinedIcon from "@mui/icons-material/ThumbDownOffAltOutlined";
+import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useLessonContext } from "../contexts/LessonContext";
 import ExtensionIcon from "@mui/icons-material/Extension";
@@ -31,6 +33,8 @@ const theme = createTheme({
 });
 const LessonPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const [isLiked, setIsLiked] = useState(false);
+  const [isDisliked, setIsDisliked] = useState(false);
   const {
     getLessons,
     lessons,
@@ -39,6 +43,10 @@ const LessonPage = () => {
     deleteLesson,
     deleteQuestion,
     totalLessons,
+    likes,
+    dislikes,
+    like,
+    dislike,
   } = useLessonContext();
   const { id } = useParams();
   const navigate = useNavigate();
@@ -241,20 +249,48 @@ const LessonPage = () => {
               }}
             >
               <IconButton>
-                <ThumbUpOutlinedIcon
-                  sx={{ color: "white", fontSize: "34px" }}
-                />
+                {!isLiked ? (
+                  <ThumbUpIcon
+                    sx={{ color: "white", fontSize: "34px" }}
+                    onClick={() => {
+                      like(item.title, item.id);
+                      setIsLiked(!isLiked);
+                    }}
+                  />
+                ) : (
+                  <ThumbUpOutlinedIcon
+                    sx={{ color: "white", fontSize: "34px" }}
+                    onClick={() => {
+                      like(item.title, item.id);
+                      setIsLiked(!isLiked);
+                    }}
+                  />
+                )}
               </IconButton>
               <Typography component="h3" variant="h6">
-                12345
+                {likes}
               </Typography>
               <IconButton>
-                <ThumbDownOffAltOutlinedIcon
-                  sx={{ color: "white", fontSize: "34px" }}
-                />
+                {isDisliked ? (
+                  <ThumbDownIcon
+                    sx={{ color: "white", fontSize: "34px" }}
+                    onClick={() => {
+                      dislike(item.title, item.id);
+                      setIsDisliked(!isDisliked);
+                    }}
+                  />
+                ) : (
+                  <ThumbDownOffAltOutlinedIcon
+                    sx={{ color: "white", fontSize: "34px" }}
+                    onClick={() => {
+                      dislike(item.title, item.id);
+                      setIsDisliked(!isDisliked);
+                    }}
+                  />
+                )}
               </IconButton>
               <Typography component="h3" variant="h6">
-                12345
+                {dislikes}
               </Typography>
             </Box>
             <Box
