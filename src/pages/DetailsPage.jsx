@@ -51,7 +51,9 @@ const animateOnScroll = () => {
 window.addEventListener("scroll", animateOnScroll);
 
 const DetailsPage = () => {
+
   const { isAdmin } = useAuthContext();
+
   const {
     oneCourse,
     getOneCourse,
@@ -154,7 +156,7 @@ const DetailsPage = () => {
             }}
           >
             <Box sx={{ animation: "slideInFromLeft 1s ease-in-out" }}>
-              <Typography component="h1" variant="h3">
+              <Typography className="details-title" component="h1" variant="h3">
                 {/* Профессия Frontend-разработчик */}
                 {oneCourse.title}
               </Typography>
@@ -183,6 +185,7 @@ const DetailsPage = () => {
             >
               <img
                 src={`http://app.vanillacode.pp.ua/${oneCourse.preview}`}
+                className="details-image"
                 width={"80%"}
                 height="300px"
               />
@@ -205,6 +208,7 @@ const DetailsPage = () => {
               height="300px"
             />
             <Typography
+              className="details-course-description"
               component="h1"
               variant="h6"
               sx={{
@@ -264,8 +268,10 @@ const DetailsPage = () => {
                 {oneCourse.lessons.map((item, index) => (
                   <React.Fragment key={index}>
                     <ListItemText
-                      primary={`Урок ${item.id} - ${item.title}`}
-                      onClick={() => navigate(`/courses/:id/lesson`)}
+                      primary={`${item.title}`}
+                      onClick={() =>
+                        navigate(`/courses/${oneCourse.id}/lesson`)
+                      }
                       primaryTypographyProps={{
                         fontSize: 22,
                         fontWeight: "medium",
@@ -278,6 +284,7 @@ const DetailsPage = () => {
               </List>
             </Box>
             <img
+              className="second-icon-details"
               src="https://video-public.canva.com/VAFKHLlSM90/v/8be168ef08.gif"
               width={"30%"}
               height="300px"

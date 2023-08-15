@@ -17,6 +17,11 @@ import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useLessonContext } from "../contexts/LessonContext";
 import ExtensionIcon from "@mui/icons-material/Extension";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
 
 const theme = createTheme({
   typography: {
@@ -51,6 +56,12 @@ const LessonPage = () => {
   } = useLessonContext();
   const { id } = useParams();
   const navigate = useNavigate();
+
+  //? проверка ответов
+  const [isAnswerCorrect, setIsAnswerCorrect] = useState(null);
+  const [selectedAnswer, setSelectedAnswer] = useState("");
+  const [inpVal, setInpVal] = useState("");
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -61,6 +72,7 @@ const LessonPage = () => {
   };
   useEffect(() => {
     getLessons();
+    setIsAnswerCorrect(null);
     document.body.classList.add("lessonPage");
     return () => {
       document.body.classList.remove("lessonPage");
@@ -77,6 +89,7 @@ const LessonPage = () => {
   function nextPage() {
     setPage(page + 1);
   }
+
   return (
     <>
       {lessons.map((item) => (
@@ -181,7 +194,29 @@ const LessonPage = () => {
                 allowfullscreen
               ></iframe>
             </Box>
-            <Box sx={{ margin: "5% auto", textAlign: "center", width: "60%" }}>
+            <Box
+              component="form"
+              onSubmit={(e) => {
+                e.preventDefault();
+                if (
+                  inpVal.toLowerCase() === item.right_answer.toLowerCase() ||
+                  selectedAnswer === item.right_answer
+                ) {
+                  setIsAnswerCorrect(true);
+                } else {
+                  setIsAnswerCorrect(false);
+                }
+                setInpVal("");
+              }}
+              sx={{
+                margin: "5% auto",
+                textAlign: "center",
+                width: "60%",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
               <Typography
                 component="h1"
                 variant="h4"
@@ -196,29 +231,87 @@ const LessonPage = () => {
               >
                 {item.question}
               </Typography>
-              <TextField
-                label="Введите ваш ответ"
-                variant="outlined"
-                sx={{
-                  marginBottom: "3%",
-                  width: "100%",
-                  color: "white",
-                  background: "transparent",
-                  border: "1px solid white",
-                  borderRadius: "5px",
-                  "& label": {
+              {!item.wrong_answers ? (
+                <TextField
+                  label="Введите ваш ответ"
+                  variant="outlined"
+                  value={inpVal}
+                  onChange={(e) => setInpVal(e.target.value)}
+                  sx={{
+                    marginBottom: "3%",
+                    width: "100%",
                     color: "white",
-                  },
-                }}
-                inputProps={{
-                  style: {
-                    color: "white",
-                  },
-                }}
-              />
-              <Button variant="contained" sx={{ color: "#9021cf" }}>
+                    background: "transparent",
+                    border: "1px solid white",
+                    borderRadius: "5px",
+                    "& label": {
+                      color: "white",
+                    },
+                  }}
+                  inputProps={{
+                    style: {
+                      color: "white",
+                    },
+                  }}
+                />
+              ) : (
+                <FormControl>
+                  <RadioGroup
+                    aria-labelledby="demo-radio-buttons-group-label"
+                    name="radio-buttons-group"
+                    value={selectedAnswer}
+                    onChange={(e) => setSelectedAnswer(e.target.value)}
+                    sx={{ textAlign: "left" }}
+                  >
+                    <FormControlLabel
+                      value={item.right_answer}
+                      control={<Radio />}
+                      label={item.right_answer}
+                    />
+                    {item.wrong_answers.split(", ").map((i) => (
+                      <FormControlLabel
+                        value={i}
+                        control={<Radio />}
+                        label={i}
+                      />
+                    ))}
+                  </RadioGroup>
+                </FormControl>
+              )}
+
+              <Button
+                type="submit"
+                variant="contained"
+                sx={{ color: "#9021cf", width: "30%" }}
+              >
                 Отправить
               </Button>
+              <Box>
+                {isAnswerCorrect === true && (
+                  <Typography
+                    sx={{
+                      color: "green",
+                      marginTop: "10px",
+                      textAlign: "center",
+                      fontSize: "24px",
+                    }}
+                  >
+                    Верный ответ! Продолжайте в том же духе.
+                  </Typography>
+                )}
+                {isAnswerCorrect === false && (
+                  <Typography
+                    sx={{
+                      color: "red",
+                      marginTop: "10px",
+                      textAlign: "center",
+                      fontSize: "24px",
+                    }}
+                  >
+                    Неправильный ответ. Попробуйте снова.
+                  </Typography>
+                )}
+              </Box>
             </Box>
             <Box
               sx={{

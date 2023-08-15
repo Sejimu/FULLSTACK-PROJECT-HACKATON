@@ -55,9 +55,9 @@ export default function EditLesson() {
     title: "",
     body: "",
     youtube_link: "",
-    questions: "",
+    question: "",
     right_answer: "",
-    wrong_answer: "",
+    wrong_answers: "",
   });
 
   function handleChange(e) {
@@ -69,13 +69,7 @@ export default function EditLesson() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (
-      !formValue.title.trim() ||
-      !formValue.body.trim() ||
-      !formValue.youtube_link ||
-      !formValue.questions.trim() ||
-      !formValue.right_answer.trim()
-    ) {
+    if (!formValue.title || !formValue.body || !formValue.youtube_link) {
       return;
     }
     updateLesson(id, formValue);
@@ -218,7 +212,7 @@ export default function EditLesson() {
               margin="normal"
               required
               fullWidth
-              name="questions"
+              name="question"
               label="Вопрос или задача"
               value={formValue.question}
               onChange={handleChange}
@@ -243,7 +237,7 @@ export default function EditLesson() {
               fullWidth
               name="right_answer"
               label="Верный ответ"
-              value={formValue.rightAnswer}
+              value={formValue.right_answer}
               onChange={handleChange}
             />
             {!test ? (
@@ -268,7 +262,7 @@ export default function EditLesson() {
                   fullWidth
                   name="wrong_answers"
                   label="Неверный ответ"
-                  value={formValue.wrongAnswer}
+                  value={formValue.wrong_answers}
                   onChange={handleChange}
                 />
               </Box>
