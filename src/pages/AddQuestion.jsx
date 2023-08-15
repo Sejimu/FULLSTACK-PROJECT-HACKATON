@@ -53,10 +53,20 @@ export default function AddQuestion() {
   });
 
   function handleChange(e) {
-    setFormValue({
-      ...formValue,
-      [e.target.name]: e.target.value,
-    });
+    if (formValue.wrong_answers === "") {
+      setFormValue({
+        body: e.target.name === "body" ? e.target.value : formValue.body,
+        right_answer:
+          e.target.name === "right_answer"
+            ? e.target.value
+            : formValue.right_answer,
+      });
+    } else {
+      setFormValue({
+        ...formValue,
+        [e.target.name]: e.target.value,
+      });
+    }
   }
 
   const handleSubmit = (event) => {
