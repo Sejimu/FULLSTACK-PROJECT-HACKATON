@@ -22,6 +22,7 @@ import ExtensionIcon from "@mui/icons-material/Extension";
 import { BASE_URL } from "../utils/consts";
 import { useAuthContext } from "../contexts/AuthContext";
 
+
 const theme = createTheme({
   typography: {
     fontFamily: '"Play", sans-serif',
@@ -52,7 +53,6 @@ window.addEventListener("scroll", animateOnScroll);
 
 const DetailsPage = () => {
   const { isAdmin } = useAuthContext();
-
   const {
     oneCourse,
     getOneCourse,
@@ -95,6 +95,12 @@ const DetailsPage = () => {
     <ThemeProvider theme={theme}>
       {oneCourse ? (
         <Container component="main" sx={{ color: "white" }}>
+          <IconButton
+            onClick={handleClick}
+            sx={{ marginLeft: "90%", color: "white" }}
+          >
+            <ExtensionIcon />
+          </IconButton>
           {isAdmin() ? (
             <IconButton
               onClick={handleClick}
@@ -111,26 +117,30 @@ const DetailsPage = () => {
             onClose={handleClose}
             MenuListProps={{
               "aria-labelledby": "basic-button",
-            }}>
+            }}
+          >
             <MenuItem
               component={Button}
               sx={{ textTransform: "capitalize", color: "red" }}
               onClick={() => {
                 deleteCourse(oneCourse.id);
                 navigate(`/courses`);
-              }}>
+              }}
+            >
               Удалить курс
             </MenuItem>
             <MenuItem
               onClick={() => navigate(`/editcourse/${oneCourse.id}`)}
               component={Button}
-              sx={{ textTransform: "capitalize", width: "100%" }}>
+              sx={{ textTransform: "capitalize", width: "100%" }}
+            >
               Изменить курс
             </MenuItem>
             <MenuItem
               onClick={() => navigate(`/courses/${oneCourse.id}/addlesson`)}
               component={Button}
-              sx={{ textTransform: "capitalize", width: "100%" }}>
+              sx={{ textTransform: "capitalize", width: "100%" }}
+            >
               Добавить урок
             </MenuItem>
           </Menu>
@@ -157,7 +167,8 @@ const DetailsPage = () => {
               <Button
                 onClick={() => navigate("/payment")}
                 variant="outlined"
-                sx={{ color: "#D73CBE" }}>
+                sx={{ color: "#D73CBE" }}
+              >
                 Начать обучение
               </Button>
             </Box>
@@ -167,7 +178,8 @@ const DetailsPage = () => {
                 width: "100%",
                 height: "100%",
                 left: "10%",
-              }}>
+              }}
+            >
               <img
                 src={`http://16.171.231.50/${oneCourse.preview}`}
                 width={"80%"}
@@ -239,7 +251,8 @@ const DetailsPage = () => {
               </Typography>
               <List
                 sx={{ textAlign: "left", cursor: "pointer" }}
-                component="nav">
+                component="nav"
+              >
                 <hr />
                 {oneCourse.lessons.map((item, index) => (
                   <React.Fragment key={index}>
