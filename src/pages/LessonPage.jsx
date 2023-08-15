@@ -22,6 +22,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
+import { useAuthContext } from "../contexts/AuthContext";
 
 const theme = createTheme({
   typography: {
@@ -37,6 +38,7 @@ const theme = createTheme({
   },
 });
 const LessonPage = () => {
+  const { isAdmin } = useAuthContext();
   const [searchParams, setSearchParams] = useSearchParams();
   const [isLiked, setIsLiked] = useState(false);
   const [isDisliked, setIsDisliked] = useState(false);
@@ -95,12 +97,17 @@ const LessonPage = () => {
         <ThemeProvider theme={theme}>
           <Container component="main" sx={{ color: "white", width: "90%" }}>
             <Box>
-              <IconButton
-                onClick={handleClick}
-                sx={{ marginLeft: "96%", color: "white" }}
-              >
-                <ExtensionIcon />
-              </IconButton>
+              {isAdmin() ? (
+                <IconButton
+                  onClick={handleClick}
+                  sx={{ marginLeft: "96%", color: "white" }}
+                >
+                  <ExtensionIcon />
+                </IconButton>
+              ) : (
+                ""
+              )}
+
               <Menu
                 id="basic-menu"
                 anchorEl={anchorEl}
@@ -319,14 +326,14 @@ const LessonPage = () => {
                 justifyContent: "space-between",
               }}
             >
-              {item.id !== 1 ? (
+              {page !== 1 ? (
                 <Button variant="outlined" onClick={prevPage}>
                   ⇽ Предыдущее задание
                 </Button>
               ) : (
                 ""
               )}
-              {item.id < totalLessons ? (
+              {page < totalLessons ? (
                 <Button variant="outlined" onClick={nextPage}>
                   Следующее задание ⇾
                 </Button>
