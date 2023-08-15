@@ -33,11 +33,12 @@ const CoursesReviews = ({ id }) => {
   return (
     <>
       {user && showForm ? (
-        <div className="cardCom" style={{ margin: "50px auto 0" }}>
+        <div
+          className="cardCom"
+          style={{ margin: "50px auto 0", width: "50%" }}>
           <span
             className="titleCom"
-            style={{ fontSize: "2.125rem", fontWeight: "400" }}
-          >
+            style={{ fontSize: "2.125rem", fontWeight: "400" }}>
             Оставить Отзыв
           </span>
           <form
@@ -45,8 +46,7 @@ const CoursesReviews = ({ id }) => {
               handleSubmit(e);
             }}
             className="formCom"
-            style={{ marginTop: "50px" }}
-          >
+            style={{ marginTop: "50px" }}>
             <Rating
               sx={{ margin: "0 auto 20px" }}
               component="div"
@@ -61,8 +61,7 @@ const CoursesReviews = ({ id }) => {
                 id="comment"
                 name="body"
                 rows="5"
-                required
-              ></textarea>
+                required></textarea>
               <label htmlFor="comment">Отзыв</label>
             </div>
             <button type="submit">Отправить</button>
@@ -75,8 +74,7 @@ const CoursesReviews = ({ id }) => {
           width: "90%",
           margin: "5% auto",
           color: "white",
-        }}
-      >
+        }}>
         <Typography component="h1" variant="h4">
           Отзывы
         </Typography>
@@ -84,14 +82,13 @@ const CoursesReviews = ({ id }) => {
       <div
         style={{
           margin: "40px auto 0",
-          width: "90vw",
+          width: "90%",
           display: "flex",
           flexFlow: "column",
           justifyContent: "center",
           gap: "10px",
           alignItems: "center",
-        }}
-      >
+        }}>
         {reviews && Array.isArray(reviews) ? (
           reviews.map((item, index) => {
             const rating = item.rating;
@@ -102,9 +99,8 @@ const CoursesReviews = ({ id }) => {
             return (
               <div
                 className="review"
-                style={{ position: "relative" }}
-                key={index}
-              >
+                style={{ position: "relative", width: "100%" }}
+                key={index}>
                 {user && user.email === item.owner_email ? (
                   <DeleteForeverIcon
                     sx={{
@@ -128,10 +124,9 @@ const CoursesReviews = ({ id }) => {
                       backgroundSize: "cover",
                       backgroundRepeat: "no-repeat",
                       height: "4rem",
-                      width: "4rem",
+                      width: "7rem",
                       borderRadius: "9999px",
-                    }}
-                  ></div>
+                    }}></div>
                   <div>
                     <div className="stars">{stars}</div>
                     <p className="name_review">{item.owner_email}</p>

@@ -282,6 +282,9 @@ hr {
   .add-course-third-box {
     width: 100% !important;
   }
+  .details-image {
+    display: none;
+  }
 }
 @media screen and (max-width: 376px) {
   .details-title {
