@@ -181,3 +181,128 @@ hr {
   background-size: cover;
 }
 
+/* ! adaptivka */
+@media screen and (max-width: 1025px) {
+  .home-button {
+    margin-top: 2% !important;
+  }
+}
+
+@media screen and (max-width: 769px) {
+  .home-button {
+    margin-top: 8% !important;
+  }
+  .home-title-span {
+    margin-top: 3% !important;
+  }
+  .home-thirdPart-text {
+    font-size: 17px !important;
+  }
+}
+
+@media screen and (max-width: 426px) {
+  .course-img {
+    width: 70%;
+  }
+  .course-title {
+    font-size: 25px !important;
+  }
+  .icon-details {
+    display: none !important;
+  }
+  .details-course-description {
+    text-align: left !important;
+  }
+  .second-icon-details {
+    display: none !important;
+  }
+  .home-button {
+    font-size: 10% !important;
+  }
+  .home-title-div {
+    font-size: 30px !important;
+  }
+  .home-title-span {
+    font-size: 20px !important;
+  }
+  .homeImg {
+    display: none;
+  }
+  .home-secondPart-div {
+    width: 90% !important;
+  }
+  .home-secondPart-title {
+    font-size: 20px !important;
+  }
+  .home-secondPart-text {
+    font-size: 15px !important;
+  }
+  .home-thirdPart-title {
+    font-size: 20px !important;
+  }
+  .home-thirdPart-text {
+    font-size: 16px !important;
+  }
+  .home-thirdPart-column {
+    flex-direction: column;
+    align-items: center;
+    font-size: 15px !important;
+  }
+  .home-thirdPart-column hr {
+    display: none !important;
+  }
+  .home-thirdPart-column1 {
+    width: 90% !important;
+  }
+  .home-thirdPart-column2 {
+    width: 90% !important;
+    margin-top: 2%;
+  }
+  .home-thirdPart-column3 {
+    width: 90% !important;
+    margin-top: 2%;
+  }
+  .home-fourthPart-div {
+    width: 100% !important;
+    font-size: 15px !important;
+  }
+  .home-fourthPart-container {
+    margin-top: 2%;
+  }
+  .homeImg2 {
+    display: none;
+  }
+  .add-course-box {
+    display: flex;
+    flex-direction: column;
+  }
+  .add-course-second-box {
+    width: 100% !important;
+  }
+  .add-course-third-box {
+    width: 100% !important;
+  }
+}
+@media screen and (max-width: 376px) {
+  .details-title {
+    font-size: 40px !important;
+  }
+  .details-image {
+    display: none !important;
+  }
+  .home-fourthPart-div {
+    width: 90% !important;
+    font-size: 15px !important;
+  }
+}
+@media screen and (max-width: 321px) {
+  .details-title {
+    font-size: 35px !important;
+  }
+  .details-image {
+    display: none !important;
+  }
+  .home-button {
+    font-size: 4px !important;
+  }
+}

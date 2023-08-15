@@ -118,6 +118,7 @@ export default function AddCourse() {
           Добавьте новый курс!
         </Typography>
         <Box
+          className="add-course-box"
           component="form"
           onSubmit={handleSubmit}
           sx={{
@@ -126,7 +127,7 @@ export default function AddCourse() {
             justifyContent: "space-evenly",
             alignItems: "center",
           }}>
-          <Box sx={{ mt: 1, width: "40%" }}>
+          <Box className="add-course-second-box" sx={{ mt: 1, width: "40%" }}>
             <TextField
               sx={{
                 color: "white",
@@ -207,7 +208,7 @@ export default function AddCourse() {
               onChange={handleChange}
             />
           </Box>
-          <Box sx={{ mt: 1, width: "40%" }}>
+          <Box className="add-course-third-box" sx={{ mt: 1, width: "40%" }}>
             <TextField
               sx={{
                 color: "white", // Цвет текста
