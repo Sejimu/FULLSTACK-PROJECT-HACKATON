@@ -22,7 +22,6 @@ import ExtensionIcon from "@mui/icons-material/Extension";
 import { BASE_URL } from "../utils/consts";
 import { useAuthContext } from "../contexts/AuthContext";
 
-
 const theme = createTheme({
   typography: {
     fontFamily: '"Play", sans-serif',
@@ -52,7 +51,9 @@ const animateOnScroll = () => {
 window.addEventListener("scroll", animateOnScroll);
 
 const DetailsPage = () => {
+
   const { isAdmin } = useAuthContext();
+
   const {
     oneCourse,
     getOneCourse,
@@ -257,8 +258,10 @@ const DetailsPage = () => {
                 {oneCourse.lessons.map((item, index) => (
                   <React.Fragment key={index}>
                     <ListItemText
-                      primary={`Урок ${item.id} - ${item.title}`}
-                      onClick={() => navigate(`/courses/:id/lesson`)}
+                      primary={`${item.title}`}
+                      onClick={() =>
+                        navigate(`/courses/${oneCourse.id}/lesson`)
+                      }
                       primaryTypographyProps={{
                         fontSize: 22,
                         fontWeight: "medium",
