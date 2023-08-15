@@ -36,7 +36,7 @@ const CourseContext = ({ children }) => {
   async function getCourses() {
     try {
       const { data } = await $axios.get(`${BASE_URL}/courses/`);
-      console.log(data);
+      // console.log(data);
       dispatch({
         type: "courses",
         payload: data,

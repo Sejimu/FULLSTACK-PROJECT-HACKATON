@@ -38,8 +38,7 @@ const theme = createTheme({
 });
 const LessonPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [isLiked, setIsLiked] = useState(false);
-  const [isDisliked, setIsDisliked] = useState(false);
+
   const {
     getLessons,
     lessons,
@@ -52,6 +51,8 @@ const LessonPage = () => {
     dislikes,
     like,
     dislike,
+    isLiked,
+    isDisliked,
   } = useLessonContext();
   const { id } = useParams();
   const navigate = useNavigate();
@@ -342,12 +343,11 @@ const LessonPage = () => {
               }}
             >
               <IconButton>
-                {!isLiked ? (
+                {isLiked ? (
                   <ThumbUpIcon
                     sx={{ color: "white", fontSize: "34px" }}
                     onClick={() => {
                       like(item.title, item.id);
-                      setIsLiked(!isLiked);
                     }}
                   />
                 ) : (
@@ -355,7 +355,6 @@ const LessonPage = () => {
                     sx={{ color: "white", fontSize: "34px" }}
                     onClick={() => {
                       like(item.title, item.id);
-                      setIsLiked(!isLiked);
                     }}
                   />
                 )}
@@ -369,7 +368,6 @@ const LessonPage = () => {
                     sx={{ color: "white", fontSize: "34px" }}
                     onClick={() => {
                       dislike(item.title, item.id);
-                      setIsDisliked(!isDisliked);
                     }}
                   />
                 ) : (
@@ -377,7 +375,6 @@ const LessonPage = () => {
                     sx={{ color: "white", fontSize: "34px" }}
                     onClick={() => {
                       dislike(item.title, item.id);
-                      setIsDisliked(!isDisliked);
                     }}
                   />
                 )}

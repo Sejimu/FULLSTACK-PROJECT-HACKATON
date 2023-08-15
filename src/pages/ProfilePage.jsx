@@ -281,7 +281,7 @@ const ProfilePage = () => {
                           <div className="imgCourse">
                             <img
                               className="imgCardCourse"
-                              src={`http://16.171.231.50/${item.preview}`}
+                              src={`http://app.vanillacode.pp.ua/${item.preview}`}
                               alt="Course Preview"
                             />
                             <IconButton
