@@ -20,6 +20,7 @@ import CoursesReviews from "../components/CoursesReviews";
 import { useNavigate, useParams } from "react-router-dom";
 import ExtensionIcon from "@mui/icons-material/Extension";
 import { BASE_URL } from "../utils/consts";
+import { useAuthContext } from "../contexts/AuthContext";
 
 const theme = createTheme({
   typography: {
@@ -50,6 +51,9 @@ const animateOnScroll = () => {
 window.addEventListener("scroll", animateOnScroll);
 
 const DetailsPage = () => {
+
+  const { isAdmin } = useAuthContext();
+
   const {
     oneCourse,
     getOneCourse,
@@ -98,6 +102,15 @@ const DetailsPage = () => {
           >
             <ExtensionIcon />
           </IconButton>
+          {isAdmin() ? (
+            <IconButton
+              onClick={handleClick}
+              sx={{ marginLeft: "90%", color: "white" }}>
+              <ExtensionIcon />
+            </IconButton>
+          ) : (
+            ""
+          )}
           <Menu
             id="basic-menu"
             anchorEl={anchorEl}
@@ -139,8 +152,7 @@ const DetailsPage = () => {
               display: "flex",
               alignItems: "center",
               textAlign: "left",
-            }}
-          >
+            }}>
             <Box sx={{ animation: "slideInFromLeft 1s ease-in-out" }}>
               <Typography component="h1" variant="h3">
                 {/* Профессия Frontend-разработчик */}
@@ -184,8 +196,7 @@ const DetailsPage = () => {
               alignItems: "center",
               justifyContent: "space-between",
               // gap: "20%",
-            }}
-          >
+            }}>
             <img
               className="icon-details"
               src="https://video-public.canva.com/VAFKHPCHN00/v/397c1bb2f3.gif"
@@ -202,8 +213,7 @@ const DetailsPage = () => {
                 textAlign: "right",
                 margin: "5% auto",
                 animation: "slideInFromRight 1s ease-in-out",
-              }}
-            >
+              }}>
               {/* Frontend-разработчик разрабатывает frontend-часть веб-приложения
               или сайта: это та часть сайта, которая работает у пользователя в
               браузере и общается посредством http-запросов с серверной частью
@@ -219,8 +229,7 @@ const DetailsPage = () => {
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            ></iframe>
+              allowFullScreen></iframe>
           </Box>
           <Box
             sx={{
@@ -230,18 +239,15 @@ const DetailsPage = () => {
               alignItems: "center",
               gap: "10%",
               // justifyContent: "space-evenly",
-            }}
-          >
+            }}>
             <Box
               sx={{
                 className: "animated-element",
                 width: "60%",
-              }}
-            >
+              }}>
               <Typography
                 variant="h4"
-                sx={{ textAlign: "left", marginBottom: "5%" }}
-              >
+                sx={{ textAlign: "left", marginBottom: "5%" }}>
                 Программа курса
               </Typography>
               <List
