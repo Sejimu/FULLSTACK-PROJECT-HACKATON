@@ -38,8 +38,12 @@ const CoursesReviews = ({ id }) => {
           style={{ margin: "50px auto 0", width: "50%" }}>
           <span
             className="titleCom"
+
             style={{ fontSize: "2.125rem", fontWeight: "400" }}>
             Оставить Отзыв
+
+            
+
           </span>
           <form
             onSubmit={(e) => {
