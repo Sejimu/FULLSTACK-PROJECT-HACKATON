@@ -16,6 +16,8 @@ const initState = {
   questions: [],
   likes: 0,
   dislikes: 0,
+  isLiked: false,
+  isDisliked: false,
 };
 function reducer(state, action) {
   switch (action.type) {
@@ -31,6 +33,10 @@ function reducer(state, action) {
       return { ...state, likes: action.payload };
     case "dislikes":
       return { ...state, dislikes: action.payload };
+    case "isLiked":
+      return { ...state, isLiked: action.payload };
+    case "isDisliked":
+      return { ...state, isDisliked: action.payload };
     default:
       return state;
   }
@@ -45,7 +51,6 @@ const LessonContext = ({ children }) => {
       const { data } = await $axios.get(
         `${BASE_URL}/lessons/${window.location.search}`
       );
-      console.log(data.results[0].like_count);
       dispatch({
         type: "lessons",
         payload: data.results,
@@ -61,6 +66,14 @@ const LessonContext = ({ children }) => {
       dispatch({
         type: "dislikes",
         payload: data.results[0].dislike_count,
+      });
+      dispatch({
+        type: "isLiked",
+        payload: data.results[0].is_liked,
+      });
+      dispatch({
+        type: "isDisliked",
+        payload: data.results[0].is_disliked,
       });
     } catch (e) {
       console.log(e);
@@ -148,6 +161,8 @@ const LessonContext = ({ children }) => {
     totalLessons: state.totalLessons,
     likes: state.likes,
     dislikes: state.dislikes,
+    isLiked: state.isLiked,
+    isDisliked: state.isDisliked,
     page,
     createQuestions,
     setPage,
