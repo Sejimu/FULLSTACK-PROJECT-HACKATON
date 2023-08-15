@@ -6,16 +6,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import {
-  FormControl,
-  FormControlLabel,
-  InputLabel,
-  MenuItem,
-  RadioGroup,
-  Select,
-} from "@mui/material";
-import { useParams } from "react-router-dom/dist";
-import Radio from "@mui/material/Radio/Radio";
+import { useNavigate, useParams } from "react-router-dom/dist";
 import { useLessonContext } from "../contexts/LessonContext";
 
 // TODO remove, this demo shouldn't need to reset the theme.
@@ -37,8 +28,7 @@ const theme = createTheme({
 export default function AddLesson() {
   const { getLessons, createLesson } = useLessonContext();
   const { id } = useParams();
-  const [test, setTest] = useState(true);
-
+  const navigate = useNavigate();
   useEffect(() => {
     getLessons();
     document.body.classList.add("addLessonPage");
@@ -72,12 +62,7 @@ export default function AddLesson() {
     }
 
     createLesson(formValue);
-
-    setFormValue({
-      title: "",
-      body: "",
-      youtube_link: "",
-    });
+    navigate(-1);
   };
 
   return (
