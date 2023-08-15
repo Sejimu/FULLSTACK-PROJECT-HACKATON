@@ -154,7 +154,7 @@ const DetailsPage = () => {
               textAlign: "left",
             }}>
             <Box sx={{ animation: "slideInFromLeft 1s ease-in-out" }}>
-              <Typography component="h1" variant="h3">
+              <Typography className="details-title" component="h1" variant="h3">
                 {/* Профессия Frontend-разработчик */}
                 {oneCourse.title}
               </Typography>
@@ -182,6 +182,7 @@ const DetailsPage = () => {
               }}
             >
               <img
+                className="details-image"
                 src={`http://16.171.231.50/${oneCourse.preview}`}
                 width={"80%"}
                 height="300px"
@@ -204,6 +205,7 @@ const DetailsPage = () => {
               height="300px"
             />
             <Typography
+              className="details-course-description"
               component="h1"
               variant="h6"
               sx={{
@@ -274,6 +276,7 @@ const DetailsPage = () => {
               </List>
             </Box>
             <img
+              className="second-icon-details"
               src="https://video-public.canva.com/VAFKHLlSM90/v/8be168ef08.gif"
               width={"30%"}
               height="300px"

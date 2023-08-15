@@ -52,6 +52,7 @@ const CoursesPage = () => {
           maxHeight: "300%",
         }}>
         <img
+          className="course-img"
           src="https://media-public.canva.com/tUuBs/MAEFsptUuBs/1/tl.png"
           alt="halfEarth"
           style={{
@@ -62,7 +63,10 @@ const CoursesPage = () => {
             top: "20%",
           }}
         />
-        <Typography variant="h3" sx={{ color: "white" }}>
+        <Typography
+          className="course-title"
+          variant="h3"
+          sx={{ color: "white" }}>
           Учитесь и развивайтесь вместе с VanilaCode!
         </Typography>
       </Box>
