@@ -51,7 +51,6 @@ const animateOnScroll = () => {
 window.addEventListener("scroll", animateOnScroll);
 
 const DetailsPage = () => {
-
   const { isAdmin } = useAuthContext();
 
   const {
@@ -164,7 +163,6 @@ const DetailsPage = () => {
                 <IconButton>
                   {<HourglassBottomIcon sx={{ color: "white" }} />}
                 </IconButton>
-                {/* Длительность - 3 месяца */}
                 Длительность - {oneCourse.duration} месяца
               </Typography>
               <Button
@@ -198,7 +196,6 @@ const DetailsPage = () => {
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
-              // gap: "20%",
             }}
           >
             <img
@@ -220,10 +217,6 @@ const DetailsPage = () => {
                 animation: "slideInFromRight 1s ease-in-out",
               }}
             >
-              {/* Frontend-разработчик разрабатывает frontend-часть веб-приложения
-              или сайта: это та часть сайта, которая работает у пользователя в
-              браузере и общается посредством http-запросов с серверной частью
-              (back-end). */}
               {oneCourse.description}
             </Typography>
           </Box>
