@@ -181,6 +181,11 @@ hr {
   background-size: cover;
 }
 
+.footer a {
+  text-decoration: none;
+  color: inherit;
+}
+
 /* ! adaptivka */
 @media screen and (max-width: 1025px) {
   .home-button {

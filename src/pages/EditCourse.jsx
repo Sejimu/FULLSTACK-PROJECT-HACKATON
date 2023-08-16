@@ -63,7 +63,7 @@ export default function EditCourse() {
   useEffect(() => {
     oneCourse && setFormValue(oneCourse);
   }, [oneCourse]);
-  console.log(oneCourse, "dsfds");
+
   useEffect(() => {
     document.body.classList.add("addCoursePage");
     return () => {
@@ -83,7 +83,6 @@ export default function EditCourse() {
         [e.target.name]: e.target.value,
       });
     }
-    // console.log(formValue);
   }
 
   const handleSubmit = (event) => {
@@ -100,9 +99,6 @@ export default function EditCourse() {
     }
 
     const data = new FormData(event.currentTarget);
-
-    console.log(formValue);
-    console.log(...data);
 
     if (!formValue.preview) {
       data.delete("preview");
@@ -127,7 +123,8 @@ export default function EditCourse() {
         <Typography
           component="h1"
           variant="h5"
-          sx={{ marginTop: 3, color: "white" }}>
+          sx={{ marginTop: 3, color: "white" }}
+        >
           Добавьте изменения к курсу
         </Typography>
         <Box
@@ -138,7 +135,8 @@ export default function EditCourse() {
             display: "flex",
             justifyContent: "space-evenly",
             alignItems: "center",
-          }}>
+          }}
+        >
           <Box sx={{ mt: 1, width: "40%" }}>
             <TextField
               sx={{
@@ -259,7 +257,8 @@ export default function EditCourse() {
                 value={formValue.subject}
                 onChange={handleChange}
                 label="Выберите напраление"
-                name="subject">
+                name="subject"
+              >
                 {subjects.map((subject) => (
                   <MenuItem key={subject.slug} value={subject.slug}>
                     {subject.title}
@@ -292,7 +291,8 @@ export default function EditCourse() {
               type="submit"
               fullWidth
               variant="outlined"
-              sx={{ mt: 2, mb: 1, height: "53px" }}>
+              sx={{ mt: 2, mb: 1, height: "53px" }}
+            >
               Изменить курс
             </Button>
           </Box>

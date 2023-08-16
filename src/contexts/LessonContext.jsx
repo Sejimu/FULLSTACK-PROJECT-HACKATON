@@ -95,7 +95,6 @@ const LessonContext = ({ children }) => {
   async function createLesson(lesson) {
     try {
       const data = await $axios.post(`${BASE_URL}/lessons/`, lesson);
-      console.log(data, "сработало");
     } catch (e) {
       console.log(e);
     }

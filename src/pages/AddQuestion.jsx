@@ -74,7 +74,6 @@ export default function AddQuestion() {
     if (!formValue.body.trim() || !formValue.right_answer.trim()) {
       return;
     }
-    console.log(formValue);
     createQuestions(id, formValue);
     navigate(-1);
   };
