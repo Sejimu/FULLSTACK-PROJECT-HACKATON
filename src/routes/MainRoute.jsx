@@ -4,6 +4,7 @@ import HomePage from "../pages/HomePage";
 import AuthPage from "../pages/AuthPage";
 import NotFoundPage from "../pages/NotFoundPage";
 import MainLayout from "../layouts/MainLayout";
+import SecondLayout from "../layouts/SecondLayout";
 import ActivationPage from "../pages/ActivationPage";
 import AddCourse from "../pages/AddCourse";
 import Checkout from "../pages/paymentPage/Checkout";
@@ -17,7 +18,6 @@ import LessonPage from "../pages/LessonPage";
 import EditLesson from "../pages/EditLesson";
 import EditCourse from "../pages/EditCourse";
 import AddQuestion from "../pages/AddQuestion";
-import SecondLayout from "../layouts/SecondLayout";
 
 function MainRoute() {
   return (
