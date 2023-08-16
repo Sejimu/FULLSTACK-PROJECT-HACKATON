@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useReducer, useState } from "react";
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 import $axios from "../utils/axios";
 import { BASE_URL } from "../utils/consts";
 import { useSearchParams } from "react-router-dom";
@@ -18,6 +24,7 @@ const initState = {
   dislikes: 0,
   isLiked: false,
   isDisliked: false,
+  comments: [],
 };
 function reducer(state, action) {
   switch (action.type) {
@@ -37,6 +44,8 @@ function reducer(state, action) {
       return { ...state, isLiked: action.payload };
     case "isDisliked":
       return { ...state, isDisliked: action.payload };
+    case "comments":
+      return { ...state, comments: action.payload };
     default:
       return state;
   }
@@ -100,6 +109,7 @@ const LessonContext = ({ children }) => {
       console.log(e);
     }
   }
+
   async function updateLesson(id, lesson) {
     try {
       await $axios.patch(`${BASE_URL}/lessons/${id}/`, lesson);
@@ -107,6 +117,7 @@ const LessonContext = ({ children }) => {
       console.log(e);
     }
   }
+
   async function deleteLesson(id) {
     try {
       await $axios.delete(`${BASE_URL}/lessons/${id}/`);
@@ -155,6 +166,22 @@ const LessonContext = ({ children }) => {
       notify(e.code.split("/")[1], "error");
     }
   }
+
+  const [comments2, setComments2] = useState([]);
+
+  async function getComments(id) {
+    try {
+      const { data } = await $axios.get(`${BASE_URL}/lessons/${id}/comments/`);
+      // dispatch({
+      //   type: "comments",
+      //   payload: data,
+      // });
+      setComments2(data);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   const value = {
     lessons: state.lessons,
     oneLesson: state.oneLesson,
@@ -163,7 +190,9 @@ const LessonContext = ({ children }) => {
     dislikes: state.dislikes,
     isLiked: state.isLiked,
     isDisliked: state.isDisliked,
+    comments: state.comments,
     page,
+    comments2,
     createQuestions,
     setPage,
     getLessons,
@@ -174,6 +203,8 @@ const LessonContext = ({ children }) => {
     deleteQuestion,
     like,
     dislike,
+    getComments,
+    setComments2,
   };
   return (
     <lessonContext.Provider value={value}>{children}</lessonContext.Provider>
