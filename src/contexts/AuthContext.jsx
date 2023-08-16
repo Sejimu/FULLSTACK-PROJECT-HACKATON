@@ -21,7 +21,6 @@ function AuthContext({ children }) {
         `${BASE_URL}/account/register/`,
         credentials
       );
-      console.log("res" + res);
     } catch (e) {
       console.log(e);
     }

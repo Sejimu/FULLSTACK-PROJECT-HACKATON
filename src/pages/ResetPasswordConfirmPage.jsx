@@ -30,7 +30,6 @@ function ResetPasswordConfirmPage() {
 
     const setPass = Object.fromEntries([...data]);
 
-    console.log({ ...setPass, code: searchParams.get("c") });
     confirmResetPassword(setPass, searchParams.get("c"));
   }
 

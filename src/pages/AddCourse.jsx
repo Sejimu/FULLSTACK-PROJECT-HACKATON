@@ -67,7 +67,6 @@ export default function AddCourse() {
         [e.target.name]: e.target.value,
       });
     }
-    // console.log(formValue);
   }
 
   const handleSubmit = (event) => {
@@ -114,7 +113,8 @@ export default function AddCourse() {
         <Typography
           component="h1"
           variant="h5"
-          sx={{ marginTop: 3, color: "white" }}>
+          sx={{ marginTop: 3, color: "white" }}
+        >
           Добавьте новый курс!
         </Typography>
         <Box
@@ -126,7 +126,8 @@ export default function AddCourse() {
             display: "flex",
             justifyContent: "space-evenly",
             alignItems: "center",
-          }}>
+          }}
+        >
           <Box className="add-course-second-box" sx={{ mt: 1, width: "40%" }}>
             <TextField
               sx={{
@@ -247,7 +248,8 @@ export default function AddCourse() {
                 value={formValue.subject}
                 onChange={handleChange}
                 label="Выберите напраление"
-                name="subject">
+                name="subject"
+              >
                 {subjects.map((subject) => (
                   <MenuItem key={subject.slug} value={subject.slug}>
                     {subject.title}
@@ -280,7 +282,8 @@ export default function AddCourse() {
               type="submit"
               fullWidth
               variant="outlined"
-              sx={{ mt: 2, mb: 1, height: "53px" }}>
+              sx={{ mt: 2, mb: 1, height: "53px" }}
+            >
               Добавьте курс
             </Button>
           </Box>

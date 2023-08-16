@@ -34,9 +34,7 @@ const ProfilePage = () => {
     };
   }, []);
 
-  console.log(user);
   const currentDate = new Date();
-  console.log(currentDate);
   const currentDayOfYear = Math.floor(
     (currentDate - new Date(currentDate.getFullYear(), 0, 0)) /
       (1000 * 60 * 60 * 24)
@@ -237,13 +235,13 @@ const ProfilePage = () => {
                   borderRadius: "5px",
                 }}
               >
-                {months.map((month) => {
+                {months.map((month, index) => {
                   const monthDays = Array.from(
                     { length: month.days },
                     () => ++dayCounter
                   );
                   return (
-                    <div className="month" key={month.name}>
+                    <div className="month" key={index}>
                       <h3
                         style={{
                           textAlign: "center",
