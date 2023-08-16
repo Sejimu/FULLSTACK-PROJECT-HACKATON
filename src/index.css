@@ -213,6 +213,14 @@ code {
   display: flex;
   flex-direction: column;
 }
+.cardCom-comment {
+  background-color: transparent;
+  border-radius: 10px;
+  padding: 20px;
+  width: 60% !important;
+  display: flex;
+  flex-direction: column;
+}
 
 .titleCom {
   font-size: 24px;
@@ -277,7 +285,18 @@ code {
   height: 100px;
 }
 
-.formCom button {
+/* .formCom button {
+  background-color: rgb(215, 60, 190);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+} */
+
+.formCom .comment-btn {
   background-color: rgb(215, 60, 190);
   color: #fff;
   border: none;
@@ -287,15 +306,27 @@ code {
   cursor: pointer;
   transition: all 0.3s ease;
 }
-
 .formCom button:hover {
   background-color: rgb(245, 98, 220);
+}
+
+.comment-second-btn {
+  margin: 2% auto !important;
 }
 
 .review {
   background-color: rgba(243, 244, 246, 1);
   padding: 2rem;
   max-width: 53%;
+
+  border-radius: 10px;
+  box-shadow: 0 20px 30px -20px rgba(5, 5, 5, 0.24);
+}
+
+.review-input {
+  background-color: rgba(243, 244, 246, 1);
+  padding: 2rem;
+  width: 100%;
 
   border-radius: 10px;
   box-shadow: 0 20px 30px -20px rgba(5, 5, 5, 0.24);
