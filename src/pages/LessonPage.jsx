@@ -117,8 +117,7 @@ const LessonPage = () => {
               {isAdmin() ? (
                 <IconButton
                   onClick={handleClick}
-                  sx={{ marginLeft: "96%", color: "white" }}
-                >
+                  sx={{ marginLeft: "96%", color: "white" }}>
                   <ExtensionIcon />
                 </IconButton>
               ) : (
@@ -132,16 +131,14 @@ const LessonPage = () => {
                 onClose={handleClose}
                 MenuListProps={{
                   "aria-labelledby": "basic-button",
-                }}
-              >
+                }}>
                 <MenuItem
                   component={Button}
                   sx={{ textTransform: "capitalize", color: "red" }}
                   onClick={() => {
                     deleteLesson(item.id);
                     navigate(`/courses`);
-                  }}
-                >
+                  }}>
                   Удалить урок
                 </MenuItem>
                 <MenuItem
@@ -151,22 +148,19 @@ const LessonPage = () => {
                     textTransform: "capitalize",
                     width: "100%",
                     color: "red",
-                  }}
-                >
+                  }}>
                   Удалить задание
                 </MenuItem>
                 <MenuItem
                   onClick={() => navigate(`/courses/editlesson/${item.id}`)}
                   component={Button}
-                  sx={{ textTransform: "capitalize", width: "100%" }}
-                >
+                  sx={{ textTransform: "capitalize", width: "100%" }}>
                   Изменить урок
                 </MenuItem>
                 <MenuItem
                   onClick={() => navigate(`/lesson/${item.id}/question`)}
                   component={Button}
-                  sx={{ textTransform: "capitalize", width: "100%" }}
-                >
+                  sx={{ textTransform: "capitalize", width: "100%" }}>
                   Добавить задание
                 </MenuItem>
               </Menu>
@@ -177,8 +171,7 @@ const LessonPage = () => {
                 justifyContent: "flex-end",
                 padding: 0,
                 margin: 0,
-              }}
-            >
+              }}>
               <Pagination
                 count={totalLessons}
                 page={page}
@@ -198,13 +191,11 @@ const LessonPage = () => {
                 display: "flex",
                 gap: "5%",
                 alignItems: "center",
-              }}
-            >
+              }}>
               <Typography
                 component="p"
                 variant="p"
-                sx={{ textAlign: "left", width: "45%" }}
-              >
+                sx={{ textAlign: "left", width: "45%" }}>
                 {item.body}
               </Typography>
               <iframe
@@ -214,8 +205,7 @@ const LessonPage = () => {
                 title="YouTube video player"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-              ></iframe>
+                allowfullscreen></iframe>
             </Box>
             <Box
               component="form"
@@ -239,20 +229,17 @@ const LessonPage = () => {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-              }}
-            >
+              }}>
               <Typography
                 component="h1"
                 variant="h4"
-                sx={{ marginBottom: "3%" }}
-              >
+                sx={{ marginBottom: "3%" }}>
                 Задание:
               </Typography>
               <Typography
                 component="h3"
                 variant="h6"
-                sx={{ marginBottom: "3%" }}
-              >
+                sx={{ marginBottom: "3%" }}>
                 {item.question}
               </Typography>
               {!item.wrong_answers ? (
@@ -285,8 +272,7 @@ const LessonPage = () => {
                     name="radio-buttons-group"
                     value={selectedAnswer}
                     onChange={(e) => setSelectedAnswer(e.target.value)}
-                    sx={{ textAlign: "left" }}
-                  >
+                    sx={{ textAlign: "left" }}>
                     <FormControlLabel
                       value={item.right_answer}
                       control={<Radio />}
@@ -306,8 +292,7 @@ const LessonPage = () => {
               <Button
                 type="submit"
                 variant="contained"
-                sx={{ color: "#9021cf", width: "30%" }}
-              >
+                sx={{ color: "#9021cf", width: "30%" }}>
                 Отправить
               </Button>
               <Box>
@@ -318,8 +303,7 @@ const LessonPage = () => {
                       marginTop: "10px",
                       textAlign: "center",
                       fontSize: "24px",
-                    }}
-                  >
+                    }}>
                     Верный ответ! Продолжайте в том же духе.
                   </Typography>
                 )}
@@ -330,8 +314,7 @@ const LessonPage = () => {
                       marginTop: "10px",
                       textAlign: "center",
                       fontSize: "24px",
-                    }}
-                  >
+                    }}>
                     Неправильный ответ. Попробуйте снова.
                   </Typography>
                 )}
@@ -342,8 +325,7 @@ const LessonPage = () => {
                 margin: "5% auto",
                 display: "flex",
                 justifyContent: "space-between",
-              }}
-            >
+              }}>
               {page !== 1 ? (
                 <Button variant="outlined" onClick={prevPage}>
                   ⇽ Предыдущее задание
@@ -364,8 +346,7 @@ const LessonPage = () => {
                 margin: "5% auto",
                 display: "flex",
                 alignItems: "center",
-              }}
-            >
+              }}>
               <IconButton>
                 {isLiked ? (
                   <ThumbUpIcon
@@ -407,69 +388,99 @@ const LessonPage = () => {
                 {dislikes}
               </Typography>
             </Box>
-            <Box
-              sx={{
-                margin: "5% auto",
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              <Typography component="h3" variant="h4">
+            {/* !--------------------- */}
+
+            <div
+              className="cardCom-comment"
+              style={{ margin: "50px auto 0", width: "50%" }}>
+              <span
+                className="titleCom"
+                style={{ fontSize: "2.125rem", fontWeight: "400" }}>
                 Комментарии:
-              </Typography>
-            </Box>
-            <Box sx={{ display: "flex", flexDirection: "column" }}>
-              <Box>
-                <TextField
-                  name="body"
-                  label="Оставьте комментарии"
-                  variant="standard"
-                  value={comInp}
-                  onChange={(e) => setComInp(e.target.value)}
-                  sx={{
-                    color: "white",
-                    maxWidth: "300px",
-                    width: "300px",
-                    margin: "10px auto",
-                    background: "transparent",
-                    marginBottom: "30px",
-                    borderRadius: "5px",
-                    "& label": {
+              </span>
+              <form className="formCom" style={{ marginTop: "50px" }}>
+                <div className="groupCom">
+                  <TextField
+                    name="body"
+                    label="Оставьте комментарии"
+                    variant="standard"
+                    value={comInp}
+                    onChange={(e) => {
+                      setComInp(e.target.value);
+                    }}
+                    sx={{
                       color: "white",
-                    },
-                  }}
-                  inputProps={{
-                    style: {
-                      color: "white",
-                    },
-                  }}
-                />
+                      maxWidth: "300px",
+                      width: "500px",
+                      margin: "10px auto",
+                      background: "transparent",
+                      marginBottom: "30px",
+                      borderRadius: "5px",
+                      "& label": {
+                        color: "white",
+                      },
+                    }}
+                    inputProps={{
+                      style: {
+                        color: "white",
+                      },
+                    }}
+                  />
+
+                  <label htmlFor="comment"></label>
+                </div>
+
                 <Button
+                  className="comment-btn"
                   onClick={() => {
-                    createComments(id, { body: comInp });
+                    createComments(item.id, { body: comInp });
                     setComInp("");
-                  }}
-                >
+                  }}>
                   Сохранить коммент
                 </Button>
-              </Box>
-              <Button
-                onClick={() => {
-                  setComBtn(item.id);
-                }}
-                sx={{ display: "flex", flexDirection: "column" }}
-              >
-                Показать Комментарии
-                {comBtn &&
-                  comments2.map((value) => (
-                    <Box>
-                      <h1>{value.owner_email}</h1>
-                      <Typography>{value.body}</Typography>
-                      <Typography>{value.created_at}</Typography>
-                    </Box>
-                  ))}
-              </Button>
-            </Box>
+                <div>
+                  <Button
+                    className="comment-second-btn"
+                    variant="outlined"
+                    onClick={() => {
+                      setComBtn(item.id);
+                    }}
+                    sx={{ display: "flex", flexDirection: "column" }}>
+                    Показать Комментарии
+                  </Button>
+                  {/*  Сами комменты-------------------- */}
+                  <div
+                    style={{
+                      margin: "40px auto 0",
+                      width: "90%",
+                      display: "flex",
+                      flexFlow: "column",
+                      justifyContent: "center",
+                      gap: "10px",
+                      alignItems: "center",
+                    }}>
+                    {comBtn &&
+                      comments2.map((value) => (
+                        <Box className="review-input">
+                          <div className="header-comment">
+                            <Typography className="review_text">
+                              {value.created_at
+                                .split(".")[0]
+                                .split("T")
+                                .join(" ")}
+                            </Typography>
+                            <h1 className="name_review">{value.owner_email}</h1>
+                            <Typography className="review_text">
+                              {value.body}
+                            </Typography>
+                          </div>
+                        </Box>
+                      ))}
+                  </div>
+                  {/* -------------------- */}
+                </div>
+              </form>
+            </div>
           </Container>
         </ThemeProvider>
       ))}
