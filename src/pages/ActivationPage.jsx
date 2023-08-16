@@ -7,8 +7,6 @@ function ActivationPage() {
   const [searchParams] = useSearchParams();
   const { activateUser } = useAuthContext();
 
-  console.log(searchParams.get("c"));
-
   useEffect(() => {
     activateUser(searchParams.get("c"));
   }, []);

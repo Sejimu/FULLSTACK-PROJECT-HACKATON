@@ -17,15 +17,18 @@ import LessonPage from "../pages/LessonPage";
 import EditLesson from "../pages/EditLesson";
 import EditCourse from "../pages/EditCourse";
 import AddQuestion from "../pages/AddQuestion";
+import SecondLayout from "../layouts/SecondLayout";
 
 function MainRoute() {
   return (
     <Routes>
-      <Route element={<MainLayout />}>
+      <Route element={<SecondLayout />}>
         <Route path="/" element={<HomePage />} />
+        <Route path="/courses" element={<CoursesPage />} />
+      </Route>
+      <Route element={<MainLayout />}>
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/payment" element={<Checkout />} />
-        <Route path="/courses" element={<CoursesPage />} />
         <Route path="/courses/:id/lesson" element={<LessonPage />} />
         <Route path="/courses/:id/addlesson" element={<AddLesson />} />
         <Route path="/lesson/:id/question" element={<AddQuestion />} />

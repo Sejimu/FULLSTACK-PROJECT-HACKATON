@@ -55,7 +55,6 @@ export default function AuthPage() {
     } else {
       register(data);
     }
-    console.log(...data);
   };
 
   const theme = createTheme({
