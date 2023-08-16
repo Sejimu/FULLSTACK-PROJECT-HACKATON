@@ -3,6 +3,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import { ADMIN, BASE_URL } from "../utils/consts";
 import $axios from "../utils/axios";
 import { useNavigate } from "react-router-dom";
+import { notify } from "../components/Toastify";
 
 const authContext = createContext();
 
@@ -22,7 +23,7 @@ function AuthContext({ children }) {
         credentials
       );
     } catch (e) {
-      console.log(e);
+      notify(`${e.response.status}: ${e.response.statusText}`, "error");
     }
   }
 
@@ -34,7 +35,7 @@ function AuthContext({ children }) {
 
       navigate("/auth");
     } catch (e) {
-      console.log(e);
+      notify(`${e.response.status}: ${e.response.statusText}`, "error");
     }
   }
 
@@ -45,7 +46,7 @@ function AuthContext({ children }) {
         credentials
       );
     } catch (e) {
-      console.log(e);
+      notify(`${e.response.status}: ${e.response.statusText}`, "error");
     }
   }
 
@@ -57,7 +58,7 @@ function AuthContext({ children }) {
       );
       navigate("/auth");
     } catch (e) {
-      console.log(e);
+      notify(`${e.response.status}: ${e.response.statusText}`, "error");
     }
   }
 
@@ -75,7 +76,7 @@ function AuthContext({ children }) {
 
       setUser(data);
     } catch (e) {
-      console.log(e);
+      notify(`${e.response.status}: ${e.response.statusText}`, "error");
     }
   }
 
@@ -94,7 +95,7 @@ function AuthContext({ children }) {
         setUser(null);
       }
     } catch (e) {
-      console.log(e);
+      notify(`${e.response.status}: ${e.response.statusText}`, "error");
     }
   }
 

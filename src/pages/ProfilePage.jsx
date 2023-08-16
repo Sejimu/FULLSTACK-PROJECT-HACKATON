@@ -235,13 +235,13 @@ const ProfilePage = () => {
                   borderRadius: "5px",
                 }}
               >
-                {months.map((month) => {
+                {months.map((month, index) => {
                   const monthDays = Array.from(
                     { length: month.days },
                     () => ++dayCounter
                   );
                   return (
-                    <div className="month" key={month.name}>
+                    <div className="month" key={index}>
                       <h3
                         style={{
                           textAlign: "center",

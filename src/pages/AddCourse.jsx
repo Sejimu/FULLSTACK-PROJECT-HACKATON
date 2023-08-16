@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import { useCourseContext } from "../contexts/CourseContext";
+import { notify } from "../components/Toastify";
 
 // TODO remove, this demo shouldn't need to reset the theme.
 
@@ -85,7 +86,7 @@ export default function AddCourse() {
     const data = new FormData(event.currentTarget);
 
     createCourse(data);
-
+    notify("Successfully added", "success");
     setFormValue({
       title: "",
       description: "",

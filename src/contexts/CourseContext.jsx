@@ -44,18 +44,17 @@ const CourseContext = ({ children }) => {
         payload: data,
       });
     } catch (e) {
-      notify(e.code.split("/")[1], "error");
+      console.log(e);
     }
   }
 
   async function createCourse(course) {
     try {
-      const { data } = await $axios.post(`${BASE_URL}/courses/`, course);
+      await $axios.post(`${BASE_URL}/courses/`, course);
     } catch (e) {
       console.log(e);
     }
   }
-  //   createCourse();
 
   async function deleteCourse(id) {
     try {
@@ -78,7 +77,6 @@ const CourseContext = ({ children }) => {
       console.log(e);
     }
   }
-  //   getSubject();
 
   async function editCourse(id, newData) {
     try {
