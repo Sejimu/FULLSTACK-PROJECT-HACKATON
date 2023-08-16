@@ -12,15 +12,17 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material";
 import { useAuthContext } from "../contexts/AuthContext";
+import LiveSearch from "./LiveSearch";
 
 const pages = [{ title: "Курсы", link: "/courses" }];
 
 const settings = [{ title: "Профиль", link: "/profile" }];
 
 function Navbar() {
+  const location = useLocation();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const { logout, user } = useAuthContext();
@@ -148,6 +150,7 @@ function Navbar() {
                   </Button>
                 ))}
               </Box>
+              {location.pathname === "/courses" && <LiveSearch />}
               {user ? (
                 <Box sx={{ flexGrow: 0 }}>
                   <Tooltip title="Open settings">
