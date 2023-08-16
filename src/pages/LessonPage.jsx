@@ -410,8 +410,8 @@ const LessonPage = () => {
                     }}
                     sx={{
                       color: "white",
-                      maxWidth: "300px",
-                      width: "500px",
+                      // maxWidth: "300px",
+                      width: "90%",
                       margin: "10px auto",
                       background: "transparent",
                       marginBottom: "30px",
@@ -431,6 +431,10 @@ const LessonPage = () => {
                 </div>
 
                 <Button
+                  sx={{
+                    margin: "0 auto",
+                    width: "90%",
+                  }}
                   className="comment-btn"
                   onClick={() => {
                     createComments(item.id, { body: comInp });

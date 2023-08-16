@@ -82,7 +82,6 @@ const CoursesReviews = ({ id }) => {
         </Typography>
       </Box>
       <div
-        className="review-input"
         style={{
           margin: "40px auto 0",
           width: "90%",
