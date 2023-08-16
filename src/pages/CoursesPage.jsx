@@ -50,7 +50,8 @@ const CoursesPage = () => {
           maxWidth: "60%",
           margin: "0 auto",
           maxHeight: "300%",
-        }}>
+        }}
+      >
         <img
           className="course-img"
           src="https://media-public.canva.com/tUuBs/MAEFsptUuBs/1/tl.png"
@@ -66,14 +67,16 @@ const CoursesPage = () => {
         <Typography
           className="course-title"
           variant="h3"
-          sx={{ color: "white" }}>
+          sx={{ color: "white" }}
+        >
           Учитесь и развивайтесь вместе с VanilaCode!
         </Typography>
       </Box>
       {isAdmin() ? (
         <IconButton
           onClick={handleClick}
-          sx={{ marginLeft: "74%", color: "white" }}>
+          sx={{ marginLeft: "74%", color: "white" }}
+        >
           <AddCircleOutlineIcon />
         </IconButton>
       ) : (
@@ -86,11 +89,13 @@ const CoursesPage = () => {
         onClose={handleClose}
         MenuListProps={{
           "aria-labelledby": "basic-button",
-        }}>
+        }}
+      >
         <MenuItem
           onClick={() => navigate(`/addcourse`)}
           component={Button}
-          sx={{ textTransform: "capitalize", width: "100%" }}>
+          sx={{ textTransform: "capitalize", width: "100%" }}
+        >
           Добавить курс
         </MenuItem>
       </Menu>
@@ -103,7 +108,8 @@ const CoursesPage = () => {
           margin: "0 auto",
           maxWidth: "70%",
           paddingTop: "5%",
-        }}>
+        }}
+      >
         {courses.map((item) => (
           <CoursesItem item={item} key={item.id} />
         ))}
