@@ -38,12 +38,8 @@ const CoursesReviews = ({ id }) => {
           style={{ margin: "50px auto 0", width: "50%" }}>
           <span
             className="titleCom"
-
             style={{ fontSize: "2.125rem", fontWeight: "400" }}>
             Оставить Отзыв
-
-            
-
           </span>
           <form
             onSubmit={(e) => {
@@ -84,6 +80,7 @@ const CoursesReviews = ({ id }) => {
         </Typography>
       </Box>
       <div
+        className="review-input"
         style={{
           margin: "40px auto 0",
           width: "90%",
@@ -121,7 +118,7 @@ const CoursesReviews = ({ id }) => {
                 ) : null}
 
                 <div className="header">
-                  <div
+                  {/* <div
                     className="image"
                     style={{
                       backgroundImage: `url(${item.preview})`,
@@ -130,7 +127,7 @@ const CoursesReviews = ({ id }) => {
                       height: "4rem",
                       width: "7rem",
                       borderRadius: "9999px",
-                    }}></div>
+                    }}></div> */}
                   <div>
                     <div className="stars">{stars}</div>
                     <p className="name_review">{item.owner_email}</p>
