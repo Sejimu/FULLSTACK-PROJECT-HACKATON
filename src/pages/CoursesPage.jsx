@@ -15,6 +15,7 @@ import CoursesReviews from "../components/CoursesReviews";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { useAuthContext } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import Filter from "../components/Filter";
 
 const theme = createTheme({
   typography: {
@@ -99,6 +100,11 @@ const CoursesPage = () => {
           Добавить курс
         </MenuItem>
       </Menu>
+
+      <Box sx={{ marginTop: "2rem" }}>
+        <Filter />
+      </Box>
+
       <Box
         className="boxCourses"
         sx={{
