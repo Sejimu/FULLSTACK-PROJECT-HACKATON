@@ -24,11 +24,31 @@ function HomePage() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const currentDate = new Date();
+    const currentDayOfYear = Math.floor(
+      (currentDate - new Date(currentDate.getFullYear(), 0, 0)) /
+        (1000 * 60 * 60 * 24)
+    );
+    let date = JSON.parse(localStorage.getItem("actives"));
+    if (!date) {
+      date = [];
+      localStorage.setItem("actives", JSON.stringify(date));
+    }
+
+    let dater = JSON.parse(localStorage.getItem("actives"));
+    dater.includes(currentDayOfYear)
+      ? console.log("includes")
+      : localStorage.setItem(
+          "actives",
+          JSON.stringify([...dater, currentDayOfYear])
+        );
+
     document.body.classList.add("homePage");
     return () => {
       document.body.classList.remove("homePage");
     };
   }, []);
+
   return (
     <ThemeProvider theme={theme}>
       <div>
@@ -281,7 +301,9 @@ function HomePage() {
               textAlign: "left",
               marginTop: "50px",
               marginLeft: "35px",
+
               // marginBottom: "3%",
+
             }}
           >
             <div
