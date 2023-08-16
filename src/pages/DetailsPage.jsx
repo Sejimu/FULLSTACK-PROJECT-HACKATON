@@ -80,8 +80,6 @@ const DetailsPage = () => {
     };
   }, []);
 
-  // console.log(oneCourse.preview);
-
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -98,7 +96,8 @@ const DetailsPage = () => {
           {isAdmin() ? (
             <IconButton
               onClick={handleClick}
-              sx={{ marginLeft: "90%", color: "white" }}>
+              sx={{ marginLeft: "90%", color: "white" }}
+            >
               <ExtensionIcon />
             </IconButton>
           ) : (
@@ -111,26 +110,30 @@ const DetailsPage = () => {
             onClose={handleClose}
             MenuListProps={{
               "aria-labelledby": "basic-button",
-            }}>
+            }}
+          >
             <MenuItem
               component={Button}
               sx={{ textTransform: "capitalize", color: "red" }}
               onClick={() => {
                 deleteCourse(oneCourse.id);
                 navigate(`/courses`);
-              }}>
+              }}
+            >
               Удалить курс
             </MenuItem>
             <MenuItem
               onClick={() => navigate(`/editcourse/${oneCourse.id}`)}
               component={Button}
-              sx={{ textTransform: "capitalize", width: "100%" }}>
+              sx={{ textTransform: "capitalize", width: "100%" }}
+            >
               Изменить курс
             </MenuItem>
             <MenuItem
               onClick={() => navigate(`/courses/${oneCourse.id}/addlesson`)}
               component={Button}
-              sx={{ textTransform: "capitalize", width: "100%" }}>
+              sx={{ textTransform: "capitalize", width: "100%" }}
+            >
               Добавить урок
             </MenuItem>
           </Menu>
@@ -141,7 +144,8 @@ const DetailsPage = () => {
               display: "flex",
               alignItems: "center",
               textAlign: "left",
-            }}>
+            }}
+          >
             <Box sx={{ animation: "slideInFromLeft 1s ease-in-out" }}>
               <Typography className="details-title" component="h1" variant="h3">
                 {/* Профессия Frontend-разработчик */}
@@ -156,7 +160,8 @@ const DetailsPage = () => {
               <Button
                 onClick={() => navigate("/payment")}
                 variant="outlined"
-                sx={{ color: "#D73CBE" }}>
+                sx={{ color: "#D73CBE" }}
+              >
                 Начать обучение
               </Button>
             </Box>
@@ -166,7 +171,8 @@ const DetailsPage = () => {
                 width: "100%",
                 height: "100%",
                 left: "10%",
-              }}>
+              }}
+            >
               <img
                 src={`http://app.vanillacode.pp.ua/${oneCourse.preview}`}
                 className="details-image"
@@ -182,12 +188,8 @@ const DetailsPage = () => {
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
-
-             
-            }}>
-
-       
-
+            }}
+          >
             <img
               className="icon-details"
               src="https://video-public.canva.com/VAFKHPCHN00/v/397c1bb2f3.gif"
@@ -205,12 +207,8 @@ const DetailsPage = () => {
                 textAlign: "right",
                 margin: "5% auto",
                 animation: "slideInFromRight 1s ease-in-out",
-
-              }}>
-            
-
-           
-
+              }}
+            >
               {oneCourse.description}
             </Typography>
           </Box>
@@ -222,7 +220,8 @@ const DetailsPage = () => {
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen></iframe>
+              allowFullScreen
+            ></iframe>
           </Box>
           <Box
             sx={{
@@ -232,20 +231,24 @@ const DetailsPage = () => {
               alignItems: "center",
               gap: "10%",
               // justifyContent: "space-evenly",
-            }}>
+            }}
+          >
             <Box
               sx={{
                 className: "animated-element",
                 width: "60%",
-              }}>
+              }}
+            >
               <Typography
                 variant="h4"
-                sx={{ textAlign: "left", marginBottom: "5%" }}>
+                sx={{ textAlign: "left", marginBottom: "5%" }}
+              >
                 Программа курса
               </Typography>
               <List
                 sx={{ textAlign: "left", cursor: "pointer" }}
-                component="nav">
+                component="nav"
+              >
                 <hr />
                 {oneCourse.lessons.map((item, index) => (
                   <React.Fragment key={index}>

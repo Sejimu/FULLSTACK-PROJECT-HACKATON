@@ -31,7 +31,7 @@ function AuthContext({ children }) {
       const res = await axios.post(`${BASE_URL}/account/activate/`, {
         activation_code: code,
       });
-      console.log(res);
+
       navigate("/auth");
     } catch (e) {
       console.log(e);
@@ -44,14 +44,12 @@ function AuthContext({ children }) {
         `${BASE_URL}/account/reset-password/`,
         credentials
       );
-      console.log(res);
     } catch (e) {
       console.log(e);
     }
   }
 
   async function confirmResetPassword(credentials, code) {
-    console.log(credentials);
     try {
       const res = await axios.post(
         `${BASE_URL}/account/reset-password/confirm/?c=${code}`,
@@ -74,8 +72,6 @@ function AuthContext({ children }) {
 
       const { data } = await $axios.get(`${BASE_URL}/account/profile/`);
       setUser(data);
-
-      console.log(data);
 
       setUser(data);
     } catch (e) {

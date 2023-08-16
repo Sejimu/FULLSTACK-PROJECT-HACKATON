@@ -2,9 +2,10 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkRemoveIcon from "@mui/icons-material/BookmarkRemove";
-import { IconButton } from "@mui/material";
+import { IconButton, Rating } from "@mui/material";
 import { BASE_URL } from "../utils/consts";
 import { useFavouriteContext } from "../contexts/FavouriteContext";
+import { useCourseContext } from "../contexts/CourseContext";
 
 const CoursesItem = ({ item }) => {
   const {
@@ -12,7 +13,6 @@ const CoursesItem = ({ item }) => {
     deleteCourseFromCart,
     addCourseToFavourite,
     getFavourite,
-    favourite,
   } = useFavouriteContext();
 
   React.useEffect(() => {
@@ -50,6 +50,8 @@ const CoursesItem = ({ item }) => {
       <div className="textCourse">
         <p className="h3Course">{item.title}</p>
         <p className="pCourse">{item.subject}</p>
+        <p className="pCourse">{item.price} $</p>
+        <Rating name="read-only" value={item.rating.rating__avg} readOnly />
 
         <div
           className="icon-box-course"

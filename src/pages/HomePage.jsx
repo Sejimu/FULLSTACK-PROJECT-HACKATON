@@ -299,10 +299,11 @@ function HomePage() {
               display: "flex",
               justifyContent: "space-evenly",
               textAlign: "left",
-
               marginTop: "50px",
               marginLeft: "35px",
-              marginBottom: "100px",
+
+              // marginBottom: "3%",
+
             }}
           >
             <div

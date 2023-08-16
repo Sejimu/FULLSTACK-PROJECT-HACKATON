@@ -71,7 +71,7 @@ export default function AddCourse() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // console.log("das");
+
     if (
       !formValue.title.trim() ||
       !formValue.description.trim() ||
@@ -84,8 +84,6 @@ export default function AddCourse() {
 
     const data = new FormData(event.currentTarget);
 
-    // console.log(formValue);
-    console.log(...data);
     createCourse(data);
 
     setFormValue({
