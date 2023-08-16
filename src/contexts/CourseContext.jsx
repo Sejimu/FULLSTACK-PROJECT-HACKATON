@@ -50,8 +50,6 @@ const CourseContext = ({ children }) => {
   async function createCourse(course) {
     try {
       const { data } = await $axios.post(`${BASE_URL}/courses/`, course);
-
-      console.log(data);
     } catch (e) {
       console.log(e);
     }

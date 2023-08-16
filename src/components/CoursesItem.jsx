@@ -13,7 +13,6 @@ const CoursesItem = ({ item }) => {
     deleteCourseFromCart,
     addCourseToFavourite,
     getFavourite,
-    favourite,
   } = useFavouriteContext();
 
   React.useEffect(() => {

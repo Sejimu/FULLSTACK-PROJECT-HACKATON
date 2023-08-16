@@ -27,7 +27,6 @@ function FavouriteContext({ children }) {
   }
 
   function addCourseToFavourite(course) {
-    console.log(course);
     const data = getFavouriteFromLS();
     data.push(course);
     localStorage.setItem("favourites", JSON.stringify(data));
@@ -37,7 +36,6 @@ function FavouriteContext({ children }) {
 
   function deleteCourseFromCart(id) {
     let data = getFavouriteFromLS();
-    console.log(data);
     data = data.filter((item) => item.id !== id);
     localStorage.setItem("favourites", JSON.stringify(data));
     getFavourite();

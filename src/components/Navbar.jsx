@@ -46,8 +46,6 @@ function Navbar() {
     },
   });
 
-  // console.log(user);
-
   return (
     <ThemeProvider theme={theme}>
       <AppBar

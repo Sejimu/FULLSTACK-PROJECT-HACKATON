@@ -34,9 +34,7 @@ const ProfilePage = () => {
     };
   }, []);
 
-  console.log(user);
   const currentDate = new Date();
-  console.log(currentDate);
   const currentDayOfYear = Math.floor(
     (currentDate - new Date(currentDate.getFullYear(), 0, 0)) /
       (1000 * 60 * 60 * 24)

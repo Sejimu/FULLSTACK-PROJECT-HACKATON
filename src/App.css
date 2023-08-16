@@ -181,6 +181,11 @@ hr {
   background-size: cover;
 }
 
+.footer a {
+  text-decoration: none;
+  color: inherit;
+}
+
 /* ! adaptivka */
 @media screen and (max-width: 1025px) {
   .home-button {
@@ -285,7 +290,14 @@ hr {
   .details-image {
     display: none;
   }
+  .review {
+    max-width: 100% !important;
+  }
+  .cardCom {
+    width: 100% !important;
+  }
 }
+
 @media screen and (max-width: 376px) {
   .details-title {
     font-size: 40px !important;

@@ -50,7 +50,8 @@ function HomePage() {
               color: "white",
               padding: "10px",
               animation: "slideInFromLeft 1s ease-in-out",
-            }}>
+            }}
+          >
             Vanilla Code -
           </div>
           <span
@@ -63,7 +64,8 @@ function HomePage() {
               color: "white",
               padding: "10px",
               animation: "slideInFromLeft 1s ease-in-out",
-            }}>
+            }}
+          >
             о сложном простыми словами
           </span>
           <Button
@@ -77,7 +79,8 @@ function HomePage() {
               top: "60%",
               left: "4%",
               padding: "10px",
-            }}>
+            }}
+          >
             Перейти к курсам
           </Button>
         </div>
@@ -87,20 +90,23 @@ function HomePage() {
             justifyContent: "space-evenly",
             marginTop: "100px",
             marginBottom: "100px",
-          }}>
+          }}
+        >
           <img
             className="homeImg"
             src="https://video-public.canva.com/VAFKHPCHN00/v/397c1bb2f3.gif"
           />
           <div
             className="home-secondPart-div"
-            style={{ color: "white", width: "40%", marginTop: "5%" }}>
+            style={{ color: "white", width: "40%", marginTop: "5%" }}
+          >
             <h2
               className="home-secondPart-title"
               style={{
                 fontSize: "40px",
                 animation: "slideInFromRight 1s ease-in-out",
-              }}>
+              }}
+            >
               Основные обучающие онлайн-курсы
             </h2>
             <span
@@ -108,7 +114,8 @@ function HomePage() {
               style={{
                 fontSize: "20px",
                 animation: "slideInFromRight 1s ease-in-out",
-              }}>
+              }}
+            >
               Полноценные программы, на которых вы освоите востребованную
               IT-профессию с нуля и будете готовы к работе.
             </span>
@@ -117,10 +124,12 @@ function HomePage() {
         <div
           style={{
             color: "white",
-          }}>
+          }}
+        >
           <h2
             className="home-thirdPart-title"
-            style={{ animation: "slideInFromRight 1s ease-in-out" }}>
+            style={{ animation: "slideInFromRight 1s ease-in-out" }}
+          >
             На обучении в Vanilla Code вас ждут
           </h2>
           <div
@@ -131,13 +140,15 @@ function HomePage() {
               justifyContent: "space-evenly",
               marginTop: "50px",
               marginBottom: "150px",
-            }}>
+            }}
+          >
             <div
               className="home-thirdPart-column1"
               style={{
                 textAlign: "left",
                 width: "30%",
-              }}>
+              }}
+            >
               <div>
                 <h3 style={{ color: "#D73CBE", marginBottom: "2%" }}>
                   Материал без «воды»
@@ -157,7 +168,8 @@ function HomePage() {
                     color: "#D73CBE",
                     marginBottom: "2%",
                     marginTop: "5%",
-                  }}>
+                  }}
+                >
                   Курсы по профессиям только с фидбэком
                 </h3>
                 <span>
@@ -173,7 +185,8 @@ function HomePage() {
               style={{
                 textAlign: "left",
                 width: "30%",
-              }}>
+              }}
+            >
               <div>
                 <h3 style={{ color: "#D73CBE", marginBottom: "2%" }}>
                   Рекомендации по трудоустройству
@@ -192,7 +205,8 @@ function HomePage() {
                     color: "#D73CBE",
                     marginBottom: "2%",
                     marginTop: "5%",
-                  }}>
+                  }}
+                >
                   Общий чат с группой и выпускниками{" "}
                 </h3>
                 <span>
@@ -207,13 +221,15 @@ function HomePage() {
               style={{
                 textAlign: "left",
                 width: "30%",
-              }}>
+              }}
+            >
               <div>
                 <h3
                   style={{
                     color: "#D73CBE",
                     marginBottom: "2%",
-                  }}>
+                  }}
+                >
                   Большое количество практики
                 </h3>
                 <span>
@@ -230,7 +246,8 @@ function HomePage() {
                     color: "#D73CBE",
                     marginBottom: "2%",
                     marginTop: "5%",
-                  }}>
+                  }}
+                >
                   Практикующие преподаватели
                 </h3>
                 <span>
@@ -245,12 +262,14 @@ function HomePage() {
         <div style={{ color: "white" }}>
           <h2
             className="home-thirdPart-title"
-            style={{ animation: "slideInFromRight 1s ease-in-out" }}>
+            style={{ animation: "slideInFromRight 1s ease-in-out" }}
+          >
             Комфортная система обучения
           </h2>
           <h3
             className="home-thirdPart-text"
-            style={{ animation: "slideInFromRight 1s ease-in-out" }}>
+            style={{ animation: "slideInFromRight 1s ease-in-out" }}
+          >
             Мы обеспечиваем каждому нашему ученику комфортный и удобный процесс
             обучения!
           </h3>
@@ -260,11 +279,11 @@ function HomePage() {
               display: "flex",
               justifyContent: "space-evenly",
               textAlign: "left",
-
               marginTop: "50px",
               marginLeft: "35px",
-              marginBottom: "100px",
-            }}>
+              // marginBottom: "3%",
+            }}
+          >
             <div
               className="home-fourthPart-div"
               style={{
@@ -272,7 +291,8 @@ function HomePage() {
                 display: "flex",
                 flexDirection: "column",
                 gap: "5%",
-              }}>
+              }}
+            >
               <div>
                 <h3 style={{ color: "#D73CBE" }}>
                   Собственная удобная онлайн-платформа
@@ -285,7 +305,8 @@ function HomePage() {
               <div>
                 <h3
                   className="home-fourthPart-container"
-                  style={{ color: "#D73CBE" }}>
+                  style={{ color: "#D73CBE" }}
+                >
                   Контроль результативности
                 </h3>
                 <span>
@@ -297,7 +318,8 @@ function HomePage() {
               <div>
                 <h3
                   className="home-fourthPart-container"
-                  style={{ color: "#D73CBE" }}>
+                  style={{ color: "#D73CBE" }}
+                >
                   Учитесь в удобное для вас время суток
                 </h3>
                 <span>

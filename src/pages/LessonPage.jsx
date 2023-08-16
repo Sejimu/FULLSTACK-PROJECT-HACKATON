@@ -1,6 +1,7 @@
 import {
   Button,
   IconButton,
+  Input,
   Menu,
   MenuItem,
   Pagination,
@@ -23,6 +24,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import { useAuthContext } from "../contexts/AuthContext";
+// import { getConfetti } from "../utils/confetti";
 
 const theme = createTheme({
   typography: {
@@ -40,6 +42,7 @@ const theme = createTheme({
 const LessonPage = () => {
   const { isAdmin } = useAuthContext();
   const [searchParams, setSearchParams] = useSearchParams();
+  const [comBtn, setComBtn] = useState(false);
 
   const {
     getLessons,
@@ -55,9 +58,14 @@ const LessonPage = () => {
     dislike,
     isLiked,
     isDisliked,
+    getComments,
+    comments2,
+    setComments2,
+    createComments,
   } = useLessonContext();
   const { id } = useParams();
   const navigate = useNavigate();
+  const [comInp, setComInp] = useState("");
 
   //? проверка ответов
   const [isAnswerCorrect, setIsAnswerCorrect] = useState(null);
@@ -72,8 +80,16 @@ const LessonPage = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  useEffect(() => {
+    if (comBtn) {
+      getComments(comBtn);
+    }
+  }, [comBtn, searchParams]);
+
   useEffect(() => {
     getLessons();
+    setComBtn(false);
     setIsAnswerCorrect(null);
     document.body.classList.add("lessonPage");
     return () => {
@@ -210,6 +226,7 @@ const LessonPage = () => {
                   selectedAnswer === item.right_answer
                 ) {
                   setIsAnswerCorrect(true);
+                  // getConfetti();
                 } else {
                   setIsAnswerCorrect(false);
                 }
@@ -400,6 +417,58 @@ const LessonPage = () => {
               <Typography component="h3" variant="h4">
                 Комментарии:
               </Typography>
+            </Box>
+            <Box sx={{ display: "flex", flexDirection: "column" }}>
+              <Box>
+                <TextField
+                  name="body"
+                  label="Оставьте комментарии"
+                  variant="standard"
+                  value={comInp}
+                  onChange={(e) => setComInp(e.target.value)}
+                  sx={{
+                    color: "white",
+                    maxWidth: "300px",
+                    width: "300px",
+                    margin: "10px auto",
+                    background: "transparent",
+                    marginBottom: "30px",
+                    borderRadius: "5px",
+                    "& label": {
+                      color: "white",
+                    },
+                  }}
+                  inputProps={{
+                    style: {
+                      color: "white",
+                    },
+                  }}
+                />
+                <Button
+                  onClick={() => {
+                    createComments(id, { body: comInp });
+                    setComInp("");
+                  }}
+                >
+                  Сохранить коммент
+                </Button>
+              </Box>
+              <Button
+                onClick={() => {
+                  setComBtn(item.id);
+                }}
+                sx={{ display: "flex", flexDirection: "column" }}
+              >
+                Показать Комментарии
+                {comBtn &&
+                  comments2.map((value) => (
+                    <Box>
+                      <h1>{value.owner_email}</h1>
+                      <Typography>{value.body}</Typography>
+                      <Typography>{value.created_at}</Typography>
+                    </Box>
+                  ))}
+              </Button>
             </Box>
           </Container>
         </ThemeProvider>

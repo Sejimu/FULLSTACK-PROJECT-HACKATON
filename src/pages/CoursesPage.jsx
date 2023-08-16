@@ -106,6 +106,7 @@ const CoursesPage = () => {
           justifyContent: "space-evenly",
           flexWrap: "wrap",
           margin: "0 auto",
+          marginBottom: "5%",
           maxWidth: "70%",
           paddingTop: "5%",
         }}
