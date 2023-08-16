@@ -36,7 +36,8 @@ const CourseContext = ({ children }) => {
   async function getCourses() {
     try {
       const { data } = await $axios.get(`${BASE_URL}/courses/`);
-
+      // console.log(data);
+      // console.log(data[0].rating.rating__avg);
       dispatch({
         type: "courses",
         payload: data,

@@ -69,7 +69,7 @@ const CoursesPage = () => {
           variant="h3"
           sx={{ color: "white" }}
         >
-          Учитесь и развивайтесь вместе с VanillaCode!
+          Учитесь и развивайтесь вместе с VanilaCode!
         </Typography>
       </Box>
       {isAdmin() ? (
