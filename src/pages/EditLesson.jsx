@@ -6,16 +6,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import {
-  FormControl,
-  FormControlLabel,
-  InputLabel,
-  MenuItem,
-  RadioGroup,
-  Select,
-} from "@mui/material";
-import { useParams } from "react-router-dom/dist";
-import Radio from "@mui/material/Radio/Radio";
+import { useNavigate, useParams } from "react-router-dom/dist";
 import { useLessonContext } from "../contexts/LessonContext";
 
 // TODO remove, this demo shouldn't need to reset the theme.
@@ -37,8 +28,7 @@ const theme = createTheme({
 export default function EditLesson() {
   const { getOneLesson, oneLesson, updateLesson } = useLessonContext();
   const { id } = useParams();
-  const [test, setTest] = useState(true);
-
+  const navigate = useNavigate();
   useEffect(() => {
     getOneLesson(id);
     document.body.classList.add("addLessonPage");
@@ -55,9 +45,6 @@ export default function EditLesson() {
     title: "",
     body: "",
     youtube_link: "",
-    question: "",
-    right_answer: "",
-    wrong_answers: "",
   });
 
   function handleChange(e) {
@@ -73,6 +60,7 @@ export default function EditLesson() {
       return;
     }
     updateLesson(id, formValue);
+    navigate(-1);
   };
 
   return (
@@ -172,102 +160,7 @@ export default function EditLesson() {
               onChange={handleChange}
             />
           </Box>
-          <Box>
-            <FormControl>
-              <RadioGroup
-                row
-                aria-labelledby="demo-row-radio-buttons-group-label"
-                name="row-radio-buttons-group"
-                color="white"
-              >
-                <FormControlLabel
-                  value="test"
-                  control={<Radio sx={{ color: "white" }} />}
-                  label="Тест"
-                  onChange={() => setTest(false)}
-                />
-                <FormControlLabel
-                  value="task"
-                  control={<Radio sx={{ color: "white" }} />}
-                  label="Задача"
-                  onChange={() => setTest(true)}
-                />
-              </RadioGroup>
-            </FormControl>
-            <TextField
-              sx={{
-                color: "white",
-                background: "transparent",
-                border: "1px solid white",
-                borderRadius: "5px",
-                "& label": {
-                  color: "white",
-                },
-              }}
-              inputProps={{
-                style: {
-                  color: "white",
-                },
-              }}
-              margin="normal"
-              required
-              fullWidth
-              name="question"
-              label="Вопрос или задача"
-              value={formValue.question}
-              onChange={handleChange}
-            />
-            <TextField
-              sx={{
-                color: "white",
-                background: "transparent",
-                border: "1px solid white",
-                borderRadius: "5px",
-                "& label": {
-                  color: "white",
-                },
-              }}
-              inputProps={{
-                style: {
-                  color: "white",
-                },
-              }}
-              margin="normal"
-              required
-              fullWidth
-              name="right_answer"
-              label="Верный ответ"
-              value={formValue.right_answer}
-              onChange={handleChange}
-            />
-            {!test ? (
-              <Box>
-                <TextField
-                  sx={{
-                    color: "white",
-                    background: "transparent",
-                    border: "1px solid white",
-                    borderRadius: "5px",
-                    "& label": {
-                      color: "white",
-                    },
-                  }}
-                  inputProps={{
-                    style: {
-                      color: "white",
-                    },
-                  }}
-                  margin="normal"
-                  required
-                  fullWidth
-                  name="wrong_answers"
-                  label="Неверный ответ"
-                  value={formValue.wrong_answers}
-                  onChange={handleChange}
-                />
-              </Box>
-            ) : null}
-          </Box>
+
           <Button
             type="submit"
             variant="outlined"

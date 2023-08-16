@@ -295,7 +295,8 @@ code {
 .review {
   background-color: rgba(243, 244, 246, 1);
   padding: 2rem;
-  max-width: 310px;
+  max-width: 53%;
+
   border-radius: 10px;
   box-shadow: 0 20px 30px -20px rgba(5, 5, 5, 0.24);
 }
@@ -303,8 +304,9 @@ code {
 .header {
   display: flex;
   align-items: center;
-  grid-gap: 1rem;
-  gap: 1rem;
+  justify-content: center;
+  /* grid-gap: 1rem;
+  gap: 2rem; */
 }
 
 .stars {

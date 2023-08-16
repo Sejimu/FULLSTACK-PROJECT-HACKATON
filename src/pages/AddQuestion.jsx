@@ -14,7 +14,7 @@ import {
   RadioGroup,
   Select,
 } from "@mui/material";
-import { useParams } from "react-router-dom/dist";
+import { useNavigate, useParams } from "react-router-dom/dist";
 import Radio from "@mui/material/Radio/Radio";
 import { useLessonContext } from "../contexts/LessonContext";
 
@@ -38,7 +38,7 @@ export default function AddQuestion() {
   const { createQuestions } = useLessonContext();
   const { id } = useParams();
   const [test, setTest] = useState(true);
-
+  const navigate = useNavigate();
   useEffect(() => {
     document.body.classList.add("addLessonPage");
     return () => {
@@ -76,12 +76,7 @@ export default function AddQuestion() {
     }
     console.log(formValue);
     createQuestions(id, formValue);
-
-    // setFormValue({
-    //   title: "",
-    //   body: "",
-    //   youtube_link: "",
-    // });
+    navigate(-1);
   };
 
   return (

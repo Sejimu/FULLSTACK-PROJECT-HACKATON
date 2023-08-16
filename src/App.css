@@ -282,7 +282,17 @@ hr {
   .add-course-third-box {
     width: 100% !important;
   }
+  .details-image {
+    display: none;
+  }
+  .review {
+    max-width: 100% !important;
+  }
+  .cardCom {
+    width: 100% !important;
+  }
 }
+
 @media screen and (max-width: 376px) {
   .details-title {
     font-size: 40px !important;
