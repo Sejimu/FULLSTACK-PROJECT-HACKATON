@@ -23,6 +23,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import { useAuthContext } from "../contexts/AuthContext";
+import { getConfetti } from "../utils/confetti";
 
 const theme = createTheme({
   typography: {
@@ -210,6 +211,7 @@ const LessonPage = () => {
                   selectedAnswer === item.right_answer
                 ) {
                   setIsAnswerCorrect(true);
+                  getConfetti();
                 } else {
                   setIsAnswerCorrect(false);
                 }
