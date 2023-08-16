@@ -61,6 +61,7 @@ export default function Footer() {
               <Link
                 href="https://web.telegram.org/k/#@Vanilla_code_bot"
                 color="inherit"
+                target="_blank"
               >
                 <TelegramIcon />
               </Link>
@@ -68,10 +69,11 @@ export default function Footer() {
                 href="https://github.com/Sejimu/FULLSTACK-PROJECT-HACKATON"
                 color="inherit"
                 sx={{ pl: 1, pr: 1 }}
+                target="_blank"
               >
                 <GitHubIcon />
               </Link>
-              <Link href="#" color="inherit">
+              <Link href="#" color="inherit" target="_blank">
                 <LocalPhoneIcon />
               </Link>
             </Grid>
@@ -79,7 +81,11 @@ export default function Footer() {
           <Box mt={5}>
             <Typography variant="body2" align="center" className="footer">
               © 2023:
-              <Link color="inherit" href="https://your-website.com/">
+              <Link
+                color="inherit"
+                href="https://your-website.com/"
+                target="_blank"
+              >
                 VanillaCode
               </Link>
             </Typography>
