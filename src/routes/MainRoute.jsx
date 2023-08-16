@@ -4,6 +4,7 @@ import HomePage from "../pages/HomePage";
 import AuthPage from "../pages/AuthPage";
 import NotFoundPage from "../pages/NotFoundPage";
 import MainLayout from "../layouts/MainLayout";
+import SecondLayout from "../layouts/SecondLayout";
 import ActivationPage from "../pages/ActivationPage";
 import AddCourse from "../pages/AddCourse";
 import Checkout from "../pages/paymentPage/Checkout";
@@ -17,7 +18,6 @@ import LessonPage from "../pages/LessonPage";
 import EditLesson from "../pages/EditLesson";
 import EditCourse from "../pages/EditCourse";
 import AddQuestion from "../pages/AddQuestion";
-import SecondLayout from "../layouts/SecondLayout";
 
 function MainRoute() {
   return (
@@ -26,19 +26,20 @@ function MainRoute() {
         <Route path="/" element={<HomePage />} />
         <Route path="/courses" element={<CoursesPage />} />
       </Route>
-      <Route element={<MainLayout />}>
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/payment" element={<Checkout />} />
-        <Route path="/courses/:id/lesson" element={<LessonPage />} />
-        <Route path="/courses/:id/addlesson" element={<AddLesson />} />
-        <Route path="/lesson/:id/question" element={<AddQuestion />} />
-        <Route path="/courses/editlesson/:id" element={<EditLesson />} />
-        <Route path="/courses/:id" element={<DetailsPage />} />
-        <Route path="/addcourse" element={<AddCourse />} />
-        <Route path="/editcourse/:id" element={<EditCourse />} />
-      </Route>
 
-      <Route element={<UserProtectedRoute />}></Route>
+      <Route element={<UserProtectedRoute />}>
+        <Route element={<MainLayout />}>
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/payment" element={<Checkout />} />
+          <Route path="/courses/:id/lesson" element={<LessonPage />} />
+          <Route path="/courses/:id/addlesson" element={<AddLesson />} />
+          <Route path="/lesson/:id/question" element={<AddQuestion />} />
+          <Route path="/courses/editlesson/:id" element={<EditLesson />} />
+          <Route path="/courses/:id" element={<DetailsPage />} />
+          <Route path="/addcourse" element={<AddCourse />} />
+          <Route path="/editcourse/:id" element={<EditCourse />} />
+        </Route>
+      </Route>
       <Route path="/api/account/activate/" element={<ActivationPage />} />
       <Route
         path="/api/account/reset-password/confirm/"

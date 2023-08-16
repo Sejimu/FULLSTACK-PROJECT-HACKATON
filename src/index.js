@@ -7,6 +7,7 @@ import AuthContext from "./contexts/AuthContext";
 import LessonContext from "./contexts/LessonContext";
 import FavouriteContext from "./contexts/FavouriteContext";
 import CourseContext from "./contexts/CourseContext";
+import Toastify from "./components/Toastify";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -15,6 +16,7 @@ root.render(
       <FavouriteContext>
         <CourseContext>
           <LessonContext>
+            <Toastify />
             <App />
           </LessonContext>
         </CourseContext>

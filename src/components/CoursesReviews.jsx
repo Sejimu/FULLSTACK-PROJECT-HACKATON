@@ -64,7 +64,9 @@ const CoursesReviews = ({ id }) => {
                 required></textarea>
               <label htmlFor="comment">Отзыв</label>
             </div>
-            <button type="submit">Отправить</button>
+            <button className="comment-btn" type="submit">
+              Отправить
+            </button>
           </form>
         </div>
       ) : null}

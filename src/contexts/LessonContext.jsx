@@ -103,7 +103,7 @@ const LessonContext = ({ children }) => {
 
   async function createLesson(lesson) {
     try {
-      const data = await $axios.post(`${BASE_URL}/lessons/`, lesson);
+      await $axios.post(`${BASE_URL}/lessons/`, lesson);
     } catch (e) {
       console.log(e);
     }
@@ -149,7 +149,7 @@ const LessonContext = ({ children }) => {
       notify("liked", "success");
       getLessons();
     } catch (e) {
-      notify(e.code.split("/")[1], "error");
+      console.log(e);
     }
   }
 
@@ -189,6 +189,8 @@ const LessonContext = ({ children }) => {
       console.log(e);
     }
   }
+
+  console.log(comments2);
 
   const value = {
     lessons: state.lessons,
