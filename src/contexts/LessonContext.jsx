@@ -182,6 +182,15 @@ const LessonContext = ({ children }) => {
     }
   }
 
+  async function createComments(id, newComment) {
+    try {
+      await $axios.post(`${BASE_URL}/lessons/${id}/comments/`, newComment);
+      getComments(id);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   const value = {
     lessons: state.lessons,
     oneLesson: state.oneLesson,
@@ -205,6 +214,7 @@ const LessonContext = ({ children }) => {
     dislike,
     getComments,
     setComments2,
+    createComments,
   };
   return (
     <lessonContext.Provider value={value}>{children}</lessonContext.Provider>
