@@ -296,6 +296,23 @@ hr {
   .cardCom {
     width: 100% !important;
   }
+  .lesson-first-div {
+    flex-wrap: wrap;
+  }
+  .lesson-text {
+    width: 100% !important;
+    margin-bottom: 10% !important;
+  }
+
+  .lesson-task {
+    width: 100% !important;
+  }
+  .lesson-comment {
+    font-size: 20px !important;
+  }
+  .lesson-comment-input {
+    width: 100% !important;
+  }
 }
 
 @media screen and (max-width: 376px) {
@@ -319,5 +336,8 @@ hr {
   }
   .home-button {
     font-size: 4px !important;
+  }
+  .lesson-video {
+    width: 100% !important;
   }
 }

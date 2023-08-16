@@ -186,6 +186,7 @@ const LessonPage = () => {
               </Typography>
             </Box>
             <Box
+              className="lesson-first-div"
               sx={{
                 margin: "5%",
                 display: "flex",
@@ -193,12 +194,14 @@ const LessonPage = () => {
                 alignItems: "center",
               }}>
               <Typography
+                className="lesson-text"
                 component="p"
                 variant="p"
                 sx={{ textAlign: "left", width: "45%" }}>
                 {item.body}
               </Typography>
               <iframe
+                className="lesson-video"
                 width="560"
                 height="315"
                 src={item.youtube_link}
@@ -208,6 +211,7 @@ const LessonPage = () => {
                 allowfullscreen></iframe>
             </Box>
             <Box
+              className="lesson-task"
               component="form"
               onSubmit={(e) => {
                 e.preventDefault();
@@ -391,14 +395,14 @@ const LessonPage = () => {
             {/* !--------------------- */}
 
             <div
-              className="cardCom-comment"
+              className="cardCom-comment lesson-comment-input"
               style={{ margin: "50px auto 0", width: "50%" }}>
               <span
-                className="titleCom"
+                className="titleCom lesson-comment"
                 style={{ fontSize: "2.125rem", fontWeight: "400" }}>
                 Комментарии:
               </span>
-              <form className="formCom" style={{ marginTop: "50px" }}>
+              <form className="formCom " style={{ marginTop: "50px" }}>
                 <div className="groupCom">
                   <TextField
                     name="body"
