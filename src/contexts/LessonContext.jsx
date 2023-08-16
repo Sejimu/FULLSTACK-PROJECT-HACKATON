@@ -190,6 +190,8 @@ const LessonContext = ({ children }) => {
     }
   }
 
+  console.log(comments2);
+
   const value = {
     lessons: state.lessons,
     oneLesson: state.oneLesson,

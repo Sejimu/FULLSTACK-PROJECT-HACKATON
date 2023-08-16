@@ -26,19 +26,20 @@ function MainRoute() {
         <Route path="/" element={<HomePage />} />
         <Route path="/courses" element={<CoursesPage />} />
       </Route>
-      <Route element={<MainLayout />}>
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/payment" element={<Checkout />} />
-        <Route path="/courses/:id/lesson" element={<LessonPage />} />
-        <Route path="/courses/:id/addlesson" element={<AddLesson />} />
-        <Route path="/lesson/:id/question" element={<AddQuestion />} />
-        <Route path="/courses/editlesson/:id" element={<EditLesson />} />
-        <Route path="/courses/:id" element={<DetailsPage />} />
-        <Route path="/addcourse" element={<AddCourse />} />
-        <Route path="/editcourse/:id" element={<EditCourse />} />
-      </Route>
 
-      <Route element={<UserProtectedRoute />}></Route>
+      <Route element={<UserProtectedRoute />}>
+        <Route element={<MainLayout />}>
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/payment" element={<Checkout />} />
+          <Route path="/courses/:id/lesson" element={<LessonPage />} />
+          <Route path="/courses/:id/addlesson" element={<AddLesson />} />
+          <Route path="/lesson/:id/question" element={<AddQuestion />} />
+          <Route path="/courses/editlesson/:id" element={<EditLesson />} />
+          <Route path="/courses/:id" element={<DetailsPage />} />
+          <Route path="/addcourse" element={<AddCourse />} />
+          <Route path="/editcourse/:id" element={<EditCourse />} />
+        </Route>
+      </Route>
       <Route path="/api/account/activate/" element={<ActivationPage />} />
       <Route
         path="/api/account/reset-password/confirm/"
