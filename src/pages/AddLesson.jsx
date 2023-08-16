@@ -8,6 +8,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate, useParams } from "react-router-dom/dist";
 import { useLessonContext } from "../contexts/LessonContext";
+import { notify } from "../components/Toastify";
 
 // TODO remove, this demo shouldn't need to reset the theme.
 
@@ -62,6 +63,7 @@ export default function AddLesson() {
     }
 
     createLesson(formValue);
+    notify("Successfully added", "success");
     navigate(-1);
   };
 

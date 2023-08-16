@@ -234,8 +234,8 @@ const DetailsPage = () => {
             }}
           >
             <Box
+              className="animated-element"
               sx={{
-                className: "animated-element",
                 width: "60%",
               }}
             >
