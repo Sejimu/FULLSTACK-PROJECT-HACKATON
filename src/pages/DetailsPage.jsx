@@ -158,7 +158,7 @@ const DetailsPage = () => {
                 Длительность - {oneCourse.duration} месяца
               </Typography>
               <Button
-                onClick={() => navigate("/payment")}
+                onClick={() => navigate(`/payment/${id}`)}
                 variant="outlined"
                 sx={{ color: "#D73CBE" }}
               >
@@ -254,9 +254,7 @@ const DetailsPage = () => {
                   <React.Fragment key={index}>
                     <ListItemText
                       primary={`${item.title}`}
-                      onClick={() =>
-                        navigate(`/courses/${oneCourse.id}/lesson`)
-                      }
+                      onClick={() => navigate(`/payment/${id}`)}
                       primaryTypographyProps={{
                         fontSize: 22,
                         fontWeight: "medium",

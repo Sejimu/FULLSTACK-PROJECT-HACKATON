@@ -47,8 +47,10 @@ export default function Footer() {
               <Typography variant="h6" gutterBottom sx={{ fontSize: "18px" }}>
                 Курсы
               </Typography>
-              {courses.map((item) => (
-                <Typography variant="body2">{item.title}</Typography>
+              {courses.map((item, index) => (
+                <Typography variant="body2" key={index}>
+                  {item.title}
+                </Typography>
               ))}
 
               {/* <Typography variant="body2">Email: info@example.com</Typography>

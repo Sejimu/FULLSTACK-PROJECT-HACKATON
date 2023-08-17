@@ -38,15 +38,14 @@ const CourseContext = ({ children }) => {
       const { data } = await $axios.get(
         `${BASE_URL}/courses/${window.location.search}`
       );
-  
+
       // console.log(data);
       // console.log(data[0].rating.rating__avg);
-  
+
       dispatch({
         type: "courses",
         payload: data,
       });
-      console.log(data, ":data");
     } catch (e) {
       console.log(e);
     }

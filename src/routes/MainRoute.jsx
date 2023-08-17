@@ -30,7 +30,7 @@ function MainRoute() {
       <Route element={<UserProtectedRoute />}>
         <Route element={<MainLayout />}>
           <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/payment" element={<Checkout />} />
+          <Route path="/payment/:id" element={<Checkout />} />
           <Route path="/courses/:id/lesson" element={<LessonPage />} />
           <Route path="/courses/:id/addlesson" element={<AddLesson />} />
           <Route path="/lesson/:id/question" element={<AddQuestion />} />
