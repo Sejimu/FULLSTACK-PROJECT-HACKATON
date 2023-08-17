@@ -152,7 +152,7 @@ const ProfilePage = () => {
                       display: "flex",
                       flexFlow: "column",
                       alignItems: "center",
-                      marginLeft: "20px",
+                      marginLeft: "10px",
                     }}
                   >
                     <p style={{ fontSize: "14px", color: "#ff00d4" }}>email</p>
@@ -163,16 +163,6 @@ const ProfilePage = () => {
             </div>
 
             <div className="second_section">
-              <div
-                className="second_section__item_visible"
-                style={{
-                  color: "white",
-                  display: "flex",
-                  justifyContent: "center",
-                }}
-              >
-                Активность за последний год
-              </div>
               <div className="infa__holder">
                 <div
                   className="name"
@@ -226,6 +216,16 @@ const ProfilePage = () => {
                     <p style={{ color: "white" }}>{user.email}</p>
                   </div>
                 </div>
+              </div>
+              <div
+                className="second_section__item_visible"
+                style={{
+                  color: "white",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                Активность за последний год
               </div>
               <div
                 className="calendar"
