@@ -4,46 +4,41 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Grid from "@mui/material/Grid";
-
-const products = [
-  {
-    name: "Product 1",
-    desc: "A nice thing",
-    price: "$9.99",
-  },
-  {
-    name: "Product 2",
-    desc: "Another thing",
-    price: "$3.45",
-  },
-  {
-    name: "Product 3",
-    desc: "Something else",
-    price: "$6.51",
-  },
-  {
-    name: "Product 4",
-    desc: "Best thing of all",
-    price: "$14.11",
-  },
-  { name: "Shipping", desc: "", price: "Free" },
-];
-
-const addresses = ["1 MUI Drive", "Reactville", "Anytown", "99999", "USA"];
-const payments = [
-  { name: "Card type", detail: "Visa" },
-  { name: "Card holder", detail: "Mr John Smith" },
-  { name: "Card number", detail: "xxxx-xxxx-xxxx-1234" },
-  { name: "Expiry date", detail: "04/2024" },
-];
+import { useParams } from "react-router";
+import { useCourseContext } from "../../contexts/CourseContext";
+import { useAuthContext } from "../../contexts/AuthContext";
 
 export default function Review() {
+  const { getOneCourse, oneCourse } = useCourseContext();
+  const { user } = useAuthContext();
+  const { id } = useParams();
+
   React.useEffect(() => {
+    getOneCourse(id);
+    if (!oneCourse || !user) {
+      return "";
+    }
     document.body.classList.add("addLessonPage");
     return () => {
       document.body.classList.remove("addLessonPage");
     };
   }, []);
+
+  const products = [
+    {
+      name: oneCourse.title,
+      desc: oneCourse.subject,
+      price: `$${oneCourse.price}`,
+    },
+  ];
+
+  const payments = [
+    { name: "Card type", detail: "Visa" },
+    { name: "Your Balance", detail: "$" + user.balance },
+    { name: "Card number", detail: "xxxx-xxxx-xxxx-1234" },
+    { name: "Expiry date", detail: "04/2024" },
+  ];
+
   return (
     <React.Fragment>
       <Typography
@@ -66,25 +61,18 @@ export default function Review() {
             <Typography variant="body2">{product.price}</Typography>
           </ListItem>
         ))}
-        <ListItem sx={{ py: 1, px: 0, color: "white" }}>
-          <ListItemText primary="Total" />
-          <Typography
-            variant="subtitle1"
-            sx={{ fontWeight: 700, color: "white" }}
-          >
-            $34.06
-          </Typography>
-        </ListItem>
       </List>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
           <Typography variant="h6" gutterBottom sx={{ mt: 2, color: "white" }}>
-            Shipping
+            Shoper
           </Typography>
           <Typography gutterBottom sx={{ color: "white" }}>
-            John Smith
+            {user.first_name}
           </Typography>
-          <Typography gutterBottom>{addresses.join(", ")}</Typography>
+          <Typography gutterBottom sx={{ color: "white" }}>
+            {user.last_name}
+          </Typography>
         </Grid>
         <Grid item container direction="column" xs={12} sm={6}>
           <Typography variant="h6" gutterBottom sx={{ mt: 2, color: "white" }}>
